@@ -1,3 +1,67 @@
 .sidebar{
-    font-family: inherit
+    position: fixed;
+    display: flex;
+    z-index: 9;
+    top: 0;
+    right: 0;
+    width: 240px;
+    height: 100%;
+    font-family: inherit;
+    background-color: white;
+    border: 1px solid #863d3d62;
+    padding-top: 100px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transition-duration: 0.5s;
 }
+
+.sidebar span,
+.sidebar a {
+    padding: 15px 0;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: black;
+    transition-duration: 0.5s;
+  }
+  
+  .sidebar a:hover,
+  .sidebar a:active,
+  .sidebar a.active {
+    color: rgb(150, 87, 5);
+  }
+
+  /* --------------- HIDDEN ---------------- */
+
+  .hidden{
+    display: flex;
+    font-family: inherit;
+    height: 100%;
+    width: 0px;
+    position: fixed;
+    z-index: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid rgba(128, 128, 128, 0.384);
+    padding-top: 100px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transition-duration: 0.5s;
+    transform:matrix3d(30)
+}   
+
+.hidden span,
+.hidden a {
+    padding: 15px 0;
+    text-decoration: none;
+    font-size: 0rem;
+    color: #3f3e3e;;
+    transition-duration: 0.5s;
+  }
+
+  .hidden a:hover,
+  .hidden a:active,
+  .hidden a.active {
+    color: rgb(112, 110, 110);
+  }
