@@ -1,3 +1,27 @@
 .mainLayout{
   font-family: inherit;
+  margin: 0;
+}
+
+.main{
+  margin: 0 280px;
+  background-color: whitesmoke;
+  border: 1px solid rgba(128, 128, 128, 0.384);
+  margin-top: 45px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
