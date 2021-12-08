@@ -3,7 +3,10 @@ import classes from "./InventoryEdit.module.css";
 function InventoryEdit() {
     return ( 
         <div className={classes.inventoryEdit}>
-            <h1>Inventory Edit is rendered here</h1>
+            <h2>Inventory Edit is rendered here</h2>
+            <h3>Content</h3>
+            <h3>Content2</h3>
+            <h3>Content3</h3>
         </div>
      );
 }

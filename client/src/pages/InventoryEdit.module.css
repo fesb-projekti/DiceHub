@@ -1,4 +1,5 @@
 .inventoryEdit{
+    padding-top: 40px;
     font-family: inherit;
     display: flex;
     flex-direction: column;

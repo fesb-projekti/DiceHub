@@ -13,6 +13,7 @@ import Profile from "./pages/Profile";
 import Inventory from "./pages/Inventory";
 import InventoryEdit from "./pages/InventoryEdit";
 import Settings from "./pages/Settings";
+import About from "./pages/About";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/inventory_edit" element={<InventoryEdit />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </MainLayout>)
   }
