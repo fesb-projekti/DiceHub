@@ -1,54 +1,84 @@
 .sidebar{
     position: fixed;
     display: flex;
+    font-family: inherit;
     z-index: 9;
     top: 0;
     right: 0;
     width: 240px;
-    height: 100%;
-    font-family: inherit;
+    height: 100vh;
     background-color: white;
     border: 1px solid #863d3d62;
     padding-top: 100px;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    transition-duration: 0.5s;
+    transition-duration: 0.8s;
 }
 
 .sidebar span,
 .sidebar a {
-    padding: 15px 0;
+    display: inline-flex;
+    justify-content: center;
+    margin: 0;
+    padding: 10px 0;
+    width: inherit;
     text-decoration: none;
     font-size: 1.2rem;
     color: black;
     transition-duration: 0.5s;
   }
   
+  .sidebar span{
+    padding: 0px;
+  }
+  
   .sidebar a:hover,
   .sidebar a:active,
   .sidebar a.active {
-    color: rgb(150, 87, 5);
+    display: inline-flex;
+    margin: 0;
+    padding: 10px 0;
+    width: inherit;
+    background-color: whitesmoke;
+    color: #f87070;
+  }
+
+  .sidebar .logout{
+    padding: 60px 0;
+    transition-duration: 0.5s;
+  }
+
+  .sidebar .logout span:hover{
+    background-color: whitesmoke;
+  }
+
+  .sidebar .logout span{
+    padding: 10px 50px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #f87070;
+    box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
   }
 
   /* --------------- HIDDEN ---------------- */
 
   .hidden{
+    position: fixed;
     display: flex;
     font-family: inherit;
+    z-index: 9;
+    top: 0;
+    right: 0;
     height: 100%;
     width: 0px;
-    position: fixed;
-    z-index: 0;
-    right: 0;
     background-color: white;
     border: 1px solid rgba(128, 128, 128, 0.384);
     padding-top: 100px;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    transition-duration: 0.5s;
-    transform:matrix3d(30)
+    transition-duration: 0.8s;
 }   
 
 .hidden span,
@@ -59,9 +89,16 @@
     color: #3f3e3e;;
     transition-duration: 0.5s;
   }
+  
 
   .hidden a:hover,
   .hidden a:active,
   .hidden a.active {
     color: rgb(112, 110, 110);
+  }
+
+  .hidden .logout span{
+    padding: 100px 0;
+    font-size: 0px;
+    transition-duration: 0.5s;
   }

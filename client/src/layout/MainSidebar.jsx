@@ -8,20 +8,24 @@ function MainSidebar({ active }) {
             <div className={classes.sidebar}>
                 <span><Link to="/chat">Chat</Link></span>
                 <span><Link to="/profile">Profile</Link></span>
-                <span><Link to="/inventory">Inventroy</Link></span>
+                <span><Link to="/inventory">Inventory</Link></span>
                 <span><Link to="/settings">Settings</Link></span>
                 <span><Link to="/about">About</Link></span>
-                <span>Logout</span>
+                <div className={classes.logout}>
+                    <span>Logout</span>
+                </div>
             </div >
         )
     else return (
         <div className={classes.hidden}>
             <span><Link to="/chat">Chat</Link></span>
             <span><Link to="/profile">Profile</Link></span>
-            <span><Link to="/inventory">Inventroy</Link></span>
+            <span><Link to="/inventory">Inventory</Link></span>
             <span><Link to="/settings">Settings</Link></span>
             <span><Link to="/about">About</Link></span>
-            <span>Logout</span>
+            <div className={classes.logout}>
+                    <span>Logout</span>
+                </div>
         </div >
     )
 }

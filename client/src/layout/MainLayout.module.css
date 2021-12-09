@@ -4,11 +4,9 @@
 }
 
 .main{
-  margin: 0 280px;
-  background-color: whitesmoke;
-  border: 1px solid rgba(128, 128, 128, 0.384);
-  margin-top: 45px;
-  border-radius: 5px;
+  margin: 0 300px;
+  background-color: white;
+  height: 100vh;
 }
 
 ::-webkit-scrollbar {

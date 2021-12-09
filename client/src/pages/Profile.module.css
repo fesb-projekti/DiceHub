@@ -1,9 +1,10 @@
 .profile{
-    padding-top: 40px;
+    padding-top: 5vh;
     font-family: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: white;
-    border-radius: 5px;
+    border-left: 1px solid rgba(128, 128, 128, 0.384);
+    border-right: 1px solid rgba(128, 128, 128, 0.384);
 }
