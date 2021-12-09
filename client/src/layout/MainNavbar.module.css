@@ -7,13 +7,18 @@
     height: 3rem;
     justify-content: center;
     align-items: center;
-    background-color: #7e3818;
+    background: rgb(255,140,25);
+    background: linear-gradient(133deg, rgba(255,140,25,1) 0%, rgba(255,189,82,1) 28%, rgba(255,129,136,1) 100%);
+    /* background-color: #7e3818; */
     z-index: 10;
   }
   
-  .toggle{
-    cursor: pointer;
-  }
+.toggle{
+  cursor: pointer;
+}
+.toggle:hover{
+  color: white;
+}
 
   .header ul {
     list-style: none;
@@ -26,6 +31,7 @@
   .header li {
     padding: 0 70px;
     text-decoration: none;
+    font-weight: bolder;
     font-size: 1.2rem;
     color: #ffdfdf;
   }
