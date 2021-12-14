@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import MainLayout from "./layout/MainLayout";
 import Home from "./pages/Home"
 import Chat from "./pages/Chat";
+import ChatScreen from "./pages/ChatScreen";
 import Profile from "./pages/Profile";
 import Inventory from "./pages/Inventory";
 import InventoryEdit from "./pages/InventoryEdit";
