@@ -4,15 +4,16 @@
 }
 
 .main{
-  margin: 0 300px;
+  margin: 0 50px;
   background-color: white;
-  height: 100vh;
+  padding-top: 5vh;
+  height: 95vh;
   border-left: 1px solid rgba(128, 128, 128, 0.384);
   border-right: 1px solid rgba(128, 128, 128, 0.384);
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 0.3vw;
 }
 
 ::-webkit-scrollbar-track {
@@ -26,3 +27,65 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+
+@media only screen and (min-width: 300px) and (max-width: 680) {
+  .main{
+    margin: 0 10px;
+    background-color: rgb(255, 255, 255);
+    padding-top: 5vh;
+    height: 95vh;
+    border-left: 1px solid rgba(128, 128, 128, 0.384);
+    border-right: 1px solid rgba(128, 128, 128, 0.384);
+  }
+  }
+@media only screen and (min-width: 650px) and (max-width: 950px) {
+  .main{
+    margin: 0 200px;
+    background-color: white;
+    padding-top: 5vh;
+    height: 95vh;
+    border-left: 1px solid rgba(128, 128, 128, 0.384);
+    border-right: 1px solid rgba(128, 128, 128, 0.384);
+  }
+  }
+@media only screen and (min-width: 950px) and (max-width: 1400px) {
+  .main{
+    margin: 0 350px;
+    background-color: white;
+    padding-top: 5vh;
+    height: 95vh;
+    border-left: 1px solid rgba(128, 128, 128, 0.384);
+    border-right: 1px solid rgba(128, 128, 128, 0.384);
+  }
+}
+@media only screen and (min-width: 1400px) and (max-width: 1500px) {
+  .main{
+    margin: 0 400px;
+    background-color: white;
+    padding-top: 5vh;
+    height: 95vh;
+    border-left: 1px solid rgba(128, 128, 128, 0.384);
+    border-right: 1px solid rgba(128, 128, 128, 0.384);
+  }
+}
+  @media only screen and (min-width: 1500px) and (max-width: 1700px) {
+  .main{
+    margin: 0 500px;
+    background-color: white;
+    padding-top: 5vh;
+    height: 95vh;
+    border-left: 1px solid rgba(128, 128, 128, 0.384);
+    border-right: 1px solid rgba(128, 128, 128, 0.384);
+  }
+}
+@media only screen and (min-width: 1700px) {
+  .main{
+    margin: 0 600px;
+    background-color: white;
+    padding-top: 5vh;
+    height: 95vh;
+    border-left: 1px solid rgba(128, 128, 128, 0.384);
+    border-right: 1px solid rgba(128, 128, 128, 0.384);
+  }
+  }
