@@ -227,7 +227,7 @@ const SwipeCard = forwardRef(({ flickOnSwipe = true, children, onSwipe, onCardLe
           handleSwipeReleased(element.current, speed)
         }
       })
-    },[])
+    })
 
     return (
       createElement('div', { ref: element, className }, children)
