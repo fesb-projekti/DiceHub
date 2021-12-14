@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "profilecards":[
+  {
+    "name": "Ne ljuti se konju",
+    "url": "https://image.cnbcfm.com/api/v1/image/104151701-GettyImages-143949731.jpg?v=1481108000"
+  },
+  {
+    "name": "Zidopoli",
+    "url": "https://i.guim.co.uk/img/media/696d305e8fb4ec8e33038325f5e135ad7e6f62b5/0_878_3586_2149/master/3586.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=7c8a02cb30d1bc9b008a31529aa98fc1"
+  },
+  {
+    "name": "Ono kako se zove",
+    "url": "https://www.insidehook.com/wp-content/uploads/2020/03/Settlers-of-Catan-Tabletop-Simulator.jpg?fit=1500%2C1000"
+  },
+  {
+    "name": "Scythe",
+    "url": "https://miro.medium.com/max/1838/1*fcOemY1xrwLcWUnX8l8g8Q.jpeg"
+  },
+  {
+    "name": "Krajina Zove",
+    "url": "https://cdn.thewirecutter.com/wp-content/media/2021/07/boardgames-2048px-2233.jpg"
+  }
+  ]
+}
