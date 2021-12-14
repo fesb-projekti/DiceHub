@@ -1,19 +1,32 @@
-import React from "react";
-import './Chat.module.css';
-import Avatar from "@material-ui/core/Avatar";
+import { StreamChat } from 'stream-chat';
+import { Chat } from 'stream-chat-react';
+import Cookies from 'universal-cookie';
+import ChannelContainer from '../components/ChannelContainer';
+import ChannelListContainer from '../components/ChannelListContainer';
+import './Chat.css';
 
-function Chat({ name, message, profilePic, timeStamp}) {
-    return (
-        <div className = "chat">
-            <Avatar className = "chat__image" src = {profilePic} />
-            <div className = "chat__details">
-                <h2>{name}</h2>
-                <p>{message}</p>
-            </div>
-            <p className = "chat__timestamp">{timeStamp}</p>
-        </div> 
-    )
+
+const apiKey = '9savhsb8uzh5';
+
+const client = StreamChat.getInstance(apiKey);
+
+const _Chat = () => {
+    return(
+        
+        <div className="app__wrapper">
+            
+            <Chat client = {client} theme="team light">
+                <ChannelListContainer 
+                
+                />
+
+                <ChannelContainer
+
+                />
+            </Chat>
+        </div>
+    );
 }
 
 
-export default Chat;
+export default _Chat;
