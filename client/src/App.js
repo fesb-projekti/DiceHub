@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // Landing page layout and its pages
 import LandingPageLayout from "./layout/LandingPageLayout";
 import LandingPage from "./pages/LandingPage";
@@ -9,7 +9,6 @@ import Login from "./pages/Login";
 import MainLayout from "./layout/MainLayout";
 import Home from "./pages/Home"
 import Chat from "./pages/Chat";
-import ChatScreen from "./pages/ChatScreen";
 import Profile from "./pages/Profile";
 import Inventory from "./pages/Inventory";
 import InventoryEdit from "./pages/InventoryEdit";
@@ -18,7 +17,12 @@ import About from "./pages/About";
 
 function App() {
 
-  const [isAuthorized, setAuthorize] = useState(true); // Authorization state, default is false
+  const [isAuthorized, setAuthorize] = useState(false); // Authorization state, default is false
+
+  useEffect(() => {
+    setAuthorize(true); // Change to false to view landing page, for development only
+  }, []);
+
   // Change this to true or false if you want to render the LandingPage or the Application untill
   // proper login with accounts is implemented
 
