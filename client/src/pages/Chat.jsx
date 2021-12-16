@@ -27,7 +27,7 @@ if(authToken) {
 }
 
 
-const App = () => {
+const ChatModule = () => {
     const [createType, setCreateType] = useState('');
     const [isCreating, setIsCreating] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
