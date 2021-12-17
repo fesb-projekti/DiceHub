@@ -3,7 +3,7 @@ import { StreamChat } from 'stream-chat';
 import { Chat } from 'stream-chat-react';
 import Cookies from 'universal-cookie';
 
-import { ChannelListContainer, ChannelContainer, Auth } from '../components/chat';
+import { ChannelListContainer, ChannelContainer, Auth } from '../components/Chat';
 
 import 'stream-chat-react/dist/css/index.css';
 import './Chat.css';
@@ -55,4 +55,4 @@ const ChatModule = () => {
     );
 }
 
-export default Chat;
+export default ChatModule;
