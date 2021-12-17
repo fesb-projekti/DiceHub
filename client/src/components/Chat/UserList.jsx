@@ -78,7 +78,7 @@ const UserList = ({ setSelectedUsers }) => {
         return (
             <ListContainer>
                 <div className="user-list__message">
-                    Error loading, please refresh and try again.
+                    Error loading, refresh and try again.
                 </div>
             </ListContainer>
         )
@@ -88,7 +88,7 @@ const UserList = ({ setSelectedUsers }) => {
         return (
             <ListContainer>
                 <div className="user-list__message">
-                    No users found.
+                    There are no users found.
                 </div>
             </ListContainer>
         )

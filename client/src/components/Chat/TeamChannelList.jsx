@@ -7,7 +7,7 @@ const TeamChannelList = ({ setToggleContainer, children, error = false, loading,
         return type === 'team' ? (
             <div className="team-channel-list">
                 <p className="team-channel-list__message">
-                    Connection error, please wait a moment and try again.
+                    Connection error, try again.
                 </p>
             </div>
         ) : null
@@ -17,7 +17,7 @@ const TeamChannelList = ({ setToggleContainer, children, error = false, loading,
         return (
             <div className="team-channel-list">
                 <p className="team-channel-list__message loading">
-                    {type === 'team' ? 'Channels' : 'Messages'} loading...
+                    {type === 'team' ? 'Channels' : 'Messages'} Loading...
                 </p>
             </div>
         )
