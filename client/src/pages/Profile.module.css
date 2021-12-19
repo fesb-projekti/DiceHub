@@ -1,8 +1,99 @@
 .profile{
-    padding-top: 5vh;
     font-family: inherit;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    background: rgb(255,129,136);
+    background: linear-gradient(133deg, rgba(255,129,136,0.2) 0%, rgba(255,189,82,0.2) 50%, rgba(255,140,25,0.2) 100%);
+}
+
+.profileHeader{
+    padding-top: 5vh;
+    padding-bottom: 4vh;
+    justify-content: space-around;
     align-items: center;
-    background-color: white;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.profileHeader .infoRow{
+    padding-bottom: 0.3vh;
+    padding-left: 0;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+}
+.profileHeader .infoData{
+    font: inherit;
+    padding-left: 7px;
+}
+
+.profile img{
+    height: 25vh;
+    width: 15vw;
+    border-radius: 300px;
+}
+
+.spacer{
+    width: 100%;
+    height: 4vh;
+    padding-top: 1vh;
+    margin: 1vh 0;
+    background: rgb(255,140,25);
+    background: linear-gradient(133deg, rgba(255,140,25,0.4) 0%, rgba(255,189,82,0.4) 28%, rgba(255,129,136,0.4) 100%);
+}
+.profile .spacer h3{
+    margin: 0;
+    padding-left: 2vh;
+}
+
+.infoRow{
+    padding-left: 2vh;
+    padding-bottom: 1vh;
+    font-size: 17px;
+    display: flex;
+    flex-direction: row;
+}
+
+.infoDesc{
+    font-style:oblique;
+    font-weight:bold;
+}
+
+.infoData{
+    font: inherit;
+    padding-left: 5px;
+}
+
+.username{
+    font-style:oblique;
+    font-weight:bold;
+    font-size: 17px;
+    padding-bottom: 1vh;
+    padding-left: 2vh;
+}
+
+.bio{
+    display: flex;
+    flex-direction: column;
+    padding: 2vh 0;
+    width: 100%;
+}
+
+.library{
+    display: flex;
+    flex-direction: column;
+    padding: 2vh 0;
+    width: 100%;
+}
+
+.rating{
+    display: flex;
+    flex-direction: column;
+}
+
+.rating span{
+    padding: 0.5vh 0;
 }
