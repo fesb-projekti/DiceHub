@@ -1,8 +1,6 @@
-
 const express = require("express");
 const app = express();
 const mysql = require("mysql");
-//const cors = require("cors");
 const bodyParser = require("body-parser")
 
 const db = mysql.createConnection({
@@ -16,9 +14,8 @@ db.connect((err) => {
     if (err) {
         throw err;
     }
-    console.log("spojeno!");
+    console.log("Connected to the database!");
 })
-
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -60,5 +57,5 @@ app.get("/profileCards/looking4", (req, res) => {
 });
 
 app.listen(3001, () => {
-    console.log("radi!");
+    console.log("Listening on port 3001!");
 });
