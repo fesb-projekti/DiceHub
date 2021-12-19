@@ -11,7 +11,7 @@ function About() {
                 <span>Team members: Matea Kunac, Danijel Vlah, Trpimir Rajevskij, Maris Gicevski, Kristian Dzidzic</span>
                 <span>The source code will be available once the project is finished @ https://github.com/fesb-projekti/DiceHub</span>
             </div>
-            <h4>Copyright 2021-2022</h4>
+            <h4>Copyright © 2021-2022</h4>
         </div>
     );
 }

@@ -12,7 +12,7 @@ function MainSidebar({ active }) {
                 <span><Link to="/settings">Settings</Link></span>
                 <span><Link to="/about">About</Link></span>
                 <div className={classes.logout}>
-                    <span>Logout</span>
+                    <span><Link to="#">Logout</Link></span>
                 </div>
             </div >
         )
@@ -24,8 +24,8 @@ function MainSidebar({ active }) {
             <span><Link to="/settings">Settings</Link></span>
             <span><Link to="/about">About</Link></span>
             <div className={classes.logout}>
-                    <span>Logout</span>
-                </div>
+                <span><Link to="#">Logout</Link></span>
+            </div>
         </div >
     )
 }
