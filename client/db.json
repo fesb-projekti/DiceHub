@@ -33,23 +33,25 @@
       "url": "https://cdn.thewirecutter.com/wp-content/media/2021/07/boardgames-2048px-2233.jpg"
     }
   ],
-  "profile":
-    {
-      "id": 1,
-      "name": "Mate",
-      "surname": "Matic",
-      "age": 19,
-      "location": "Split",
-      "games_owned": "Sudoku, Ne ljuti se konju",
-      "favorite_game": "Sudoku",
-      "favorite_genre": "Fantasy",
-      "about": "Ja sam mali mate od mame i tate",
-      "has_location": "Naravno",
-      "avatar": "https://yt3.ggpht.com/ytc/AKedOLQO1tjN44tCHGFsqCMYKOgsu-1PUuBuWz51JU94=s900-c-k-c0x00ffffff-no-rj",
-      "trading_titles": "Covjece ne budi konj",
-      "looking_for": "Super Momcilo NES",
-      "positive_ratings": 4,
-      "negative_ratings": 2,
-      "times_matched": 9
-    }
+  "profile": {
+    "id": 1,
+    "name": "Mate",
+    "surname": "Matic",
+    "age": 19,
+    "location": "Split",
+    "games_owned": "Sudoku, Ne ljuti se konju",
+    "favorite_game": "Sudoku",
+    "favorite_genre": "Fantasy",
+    "about": "Ja sam mali mate od mame i tate",
+    "has_location": "Naravno",
+    "avatar": "https://yt3.ggpht.com/ytc/AKedOLQO1tjN44tCHGFsqCMYKOgsu-1PUuBuWz51JU94=s900-c-k-c0x00ffffff-no-rj",
+    "trading_titles": "Covjece ne budi konj",
+    "looking_for": "Super Momcilo NES",
+    "positive_ratings": 4,
+    "negative_ratings": 2,
+    "times_matched": 9
+  },
+  "profile_ratings": {
+    "canRate": "negative"
+  }
 }

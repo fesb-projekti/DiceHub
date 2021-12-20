@@ -6,11 +6,10 @@
     align-items: flex-start;
     background: rgb(255,129,136);
     background: linear-gradient(133deg, rgba(255,129,136,0.2) 0%, rgba(255,189,82,0.2) 50%, rgba(255,140,25,0.2) 100%);
+    justify-content: space-evenly;
 }
 
 .profileHeader{
-    padding-top: 5vh;
-    padding-bottom: 4vh;
     justify-content: space-around;
     align-items: center;
     display: flex;
@@ -19,7 +18,6 @@
 }
 
 .profileHeader .infoRow{
-    padding-bottom: 0.3vh;
     padding-left: 0;
     font-size: 16px;
     display: flex;
@@ -51,7 +49,7 @@
 
 .infoRow{
     padding-left: 2vh;
-    padding-bottom: 0.5vh;
+    padding-bottom: 0.3vh;
     font-size: 17px;
     display: flex;
     flex-direction: row;
@@ -78,14 +76,12 @@
 .bio{
     display: flex;
     flex-direction: column;
-    padding: 2vh 0;
     width: 100%;
 }
 
 .library{
     display: flex;
     flex-direction: column;
-    padding: 2vh 0;
     width: 100%;
 }
 
@@ -95,5 +91,20 @@
 }
 
 .rating span{
-    padding: 0.5vh 0;
+    padding: 0.4vh 0;
+}
+
+.rate{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.rate button{
+    width: 15vw;
+    text-decoration: none;
+    font-size: 15px;
+    background: rgb(255,140,25);
+    background: linear-gradient(133deg, rgba(255,140,25,0.4) 0%, rgba(255,189,82,0.4) 28%, rgba(255,129,136,0.4) 100%);
+    border-radius: 8px;
 }
