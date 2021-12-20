@@ -11,9 +11,7 @@ function Home() {
   const currentIndexRef = useRef(currentIndex);
 
   const childRefs = useMemo(() =>
-  Array(profileCards.length)
-    .fill(0)
-    .map((i) => createRef()), []);
+    Array(profileCards.length).fill(0).map((i) => createRef()), []);
 
   useEffect(() => {
     const getProfileCards = async () => {
@@ -69,8 +67,7 @@ function Home() {
             ref={childRefs[index]}
             key={character.name}
             onSwipe={(dir) => swiped(dir, character.name, index)}
-            onCardLeftScreen={() => outOfFrame(character.name, index)}
-          >
+            onCardLeftScreen={() => outOfFrame(character.name, index)}>
             <div className={classes.card} style={{ backgroundImage: 'url(' + character.url + ')' }}>
               <h3>{character.name}</h3>
             </div>

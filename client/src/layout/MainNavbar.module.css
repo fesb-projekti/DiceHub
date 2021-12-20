@@ -6,7 +6,7 @@
     top: 0;
     height: 6vh;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     background: rgb(255,140,25);
     background: linear-gradient(133deg, rgba(255,140,25,1) 0%, rgba(255,189,82,1) 28%, rgba(255,129,136,1) 100%);
     z-index: 10;
