@@ -23,8 +23,8 @@
   .card {
     position: relative;
     background-color: #fff;
-    width: 30vw;
-    height: 45vh;
+    width: 350px;
+    height: 350px;
     box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.30);
     border-radius: 20px;
     background-size: cover;
@@ -100,15 +100,27 @@
     padding-top: 2vh;
   }
 
-  .buttons i{
+  .buttons button{
     padding: 5px;
     padding-top: 8px;
-    border-radius:50%;
+    border-radius:200px;
     box-shadow: 0 0 15px 1px #c9c9c9;
     background-color: white;
   }
 
-  .buttons i:hover{
+  .buttons button:hover{
     box-shadow: 0 0 15px 3px #9c9c9c;
   }
 
+  @media only screen and (max-width: 1050px) {
+    .card {
+      position: relative;
+      background-color: #fff;
+      width: 250px;
+      height: 250px;
+      box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.30);
+      border-radius: 20px;
+      background-size: cover;
+      background-position: center;
+    }
+  }
