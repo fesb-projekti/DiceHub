@@ -1,10 +1,12 @@
 .inventoryEdit {
-  margin-top: 30%;
+  padding-top: 10vh;
+  height: 85vh;
   font-family: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
+  background: rgb(255, 129, 136);
+  background: linear-gradient(133deg,rgba(255, 129, 136, 0.2) 0%,rgba(255, 189, 82, 0.2) 50%,rgba(255, 140, 25, 0.2) 100%);
 }
 
 .inputField {
