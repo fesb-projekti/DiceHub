@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 // Application layout and its pages
 import MainLayout from "./layout/MainLayout";
 import Home from "./pages/Home"
-import ChatModule from "./pages/Chat";
+import Chat from "./pages/Chat";
 import Profile from "./pages/Profile";
 import Inventory from "./pages/Inventory";
 import InventoryEdit from "./pages/InventoryEdit";
@@ -38,9 +38,9 @@ function App() {
         <Routes>
           <Route path="/" exact={true} element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/chat" element={<ChatModule />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/inventory/:id" element={<Inventory />} />
           <Route path="/inventory_edit" element={<InventoryEdit />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/about" element={<About />} />
