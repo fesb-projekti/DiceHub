@@ -20,14 +20,17 @@ db.connect((err) => {
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//BACKEND CODE FOR PROFILE --------------------------------
+//---------------------------------------------------------
+//---------------------------------------------------------
+
 app.get("/profileCards/profile", (req, res) => {
     const ID = req.body.ID
-    const sqlSelect = "SELECT ime,  prezime,  grad,  about,  2021 - YEAR(datum_rodenja) AS age, korisnik.favGame as FavGame, korisnik.favGenre as FavGenre FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID WHERE korisnik.ID = ? LIMIT 1";
+    const sqlSelect = "SELECT ime,  prezime,  grad,  about,  2021 - YEAR(datum_rodenja) AS age FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID WHERE korisnik.ID = ? LIMIT 1";
     db.query(sqlSelect, [ID], (err, result) => {
         res.send(result)
     })
 });
-
 
 
 app.get("/profileCards/gamesOwned", (req, res) => {
@@ -46,6 +49,28 @@ app.get("/profileCards/giving4trade", (req, res) => {
     })
 });
 
+app.get("/profileCards/getFavGame", (req, res) => {
+    const ID = req.body.ID
+
+    const sqlGet =
+        "SELECT igre.naziv FROM igre WHERE igre.ID = (SELECT korisnik.favGame FROM korisnik WHERE korisnik.ID = ?)"
+    db.query(sqlGet, [ID], (err, result) => {
+        res.send(result)
+    })
+})
+
+app.get("/profileCards/getFavGenre", (req, res) => {
+    const ID = req.body.ID
+
+    const sqlGet =
+        "SELECT kategorija.naziv FROM kategorija WHERE kategorija.ID = (SELECT korisnik.favGenre FROM korisnik WHERE korisnik.ID = ?)"
+    db.query(sqlGet, [ID], (err, result) => {
+        res.send(result)
+    })
+})
+
+
+
 app.get("/profileCards/looking4", (req, res) => {
     const ID = req.body.ID
     const sqlSelect = "SELECT igre.naziv FROM igre JOIN looking4 on igre.ID = looking4.igraWantID WHERE looking4.korisnikID = ?";
@@ -53,7 +78,7 @@ app.get("/profileCards/looking4", (req, res) => {
         res.send(result)
     })
 });
-//POST REQUESTS
+
 app.post("/profileCards/vote", (req, res) => {
     const voterID = req.body.voterID
     const ratedUserID = req.body.voterID
@@ -79,6 +104,38 @@ app.get("/profileCards/getNegativeRating", (req, res) => {
 
     const sqlPut = "SELECT COUNT(vote) AS Broj FROM ratings WHERE vote = 'negative' AND ratedUserID = ?"
     db.query(sqlPut, [ID], (err, result) => {
+        res.send(result)
+    })
+})
+
+// BACKEND CODE FOR INVENTORY------------------------------
+//---------------------------------------------------------
+//---------------------------------------------------------
+
+app.get("/inventory/getAbout", (req, res) => {
+    const ID = req.body.ID
+
+    const sqlPut = "SELECT korisnik.about FROM korisnik WHERE korisnik.ID = ?"
+    db.query(sqlPut, [ID], (err, result) => {
+        res.send(result)
+    })
+})
+
+app.get("/inventory/getOwnedGames", (req, res) => {
+    const ID = req.body.ID
+
+    const sqlGet = "SELECT igre.naziv FROM igre JOIN inventar ON igre.ID = inventar.igraID JOIN korisnik ON inventar.korisnikID = korisnik.ID WHERE korisnik.ID = ?"
+    db.query(sqlGet, [ID], (err, result) => {
+        res.send(result)
+    })
+})
+
+app.get("/inventory/getFavGame", (req, res) => {
+    const ID = req.body.ID
+
+    const sqlGet =
+        "SELECT igre.naziv as favgame FROM igre WHERE igre.ID = (SELECT korisnik.favGame FROM korisnik WHERE korisnik.ID = 10)"
+    db.query(sqlGet, [ID], (err, result) => {
         res.send(result)
     })
 })
