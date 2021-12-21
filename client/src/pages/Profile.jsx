@@ -33,10 +33,11 @@ function Profile() {
         return data;
     }
 
+    // Check if first vote
     const changeRating = async (arg) => {
         const updatedProfile = { ...profile };
-        if (arg === 1 && (canRate == "" || canRate == "negative")) {
-            if (canRate == "negative")
+        if (arg === 1 && canRate === "negative") {
+            if (canRate === "negative")
                 updatedProfile.negative_ratings -= 1;
             updatedProfile.positive_ratings += 1;
             setProfile(updatedProfile);
@@ -45,9 +46,25 @@ function Profile() {
             updateRating();
             updateProfile(updatedProfile);
         }
-        else if (arg === -1 && (canRate == "" || canRate == "positive")) {
-            if (canRate == "positive")
+        else if (arg === -1 && canRate === "positive") {
+            if (canRate === "positive")
                 updatedProfile.positive_ratings -= 1;
+            updatedProfile.negative_ratings += 1;
+            setProfile(updatedProfile);
+            setCanRate("negative");
+            ratings.canRate = "negative";
+            updateRating();
+            updateProfile(updatedProfile);
+        }
+        else if (arg === 1 && canRate === "") {
+            updatedProfile.positive_ratings += 1;
+            setProfile(updatedProfile);
+            setCanRate("negative");
+            ratings.canRate = "negative";
+            updateRating();
+            updateProfile(updatedProfile);
+        }
+        else if (arg === -1 && canRate === "") {
             updatedProfile.negative_ratings += 1;
             setProfile(updatedProfile);
             setCanRate("negative");
