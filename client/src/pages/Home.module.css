@@ -97,12 +97,14 @@
     display:flex;
     justify-content:space-evenly;
     width: 100%;
-    padding-top: 2vh;
+    padding-top: 3vh;
   }
 
   .buttons button{
+    width: 40px;
+    height: 40px;
     padding: 5px;
-    padding-top: 8px;
+    padding-top: 5px;
     border-radius:200px;
     box-shadow: 0 0 15px 1px #c9c9c9;
     background-color: white;
