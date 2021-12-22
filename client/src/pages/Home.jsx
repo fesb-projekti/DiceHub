@@ -5,19 +5,20 @@ import classes from "./Home.module.css";
 function Home() {
 
   const [profileCards, setProfileCards] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(profileCards.length);
+  const [currentIndex, setCurrentIndex] = useState();
   const [lastDirection, setLastDirection] = useState();
 
   const currentIndexRef = useRef(currentIndex);
 
-  const childRefs = useMemo(() =>
-    Array(profileCards.length).fill(0).map((i) => createRef()), []);
+  const childRefs = useMemo(
+    () =>Array(profileCards.length).fill(0).map((i) => createRef()),[profileCards.length]
+  )
 
   useEffect(() => {
     const getProfileCards = async () => {
       const profileCardsFromServer = await fetchProfileCards();
       setProfileCards(profileCardsFromServer);
-      setCurrentIndex(profileCardsFromServer.length)
+      setCurrentIndex(profileCardsFromServer.length-1)
     }
     getProfileCards();
   }, [])
@@ -33,30 +34,31 @@ function Home() {
     currentIndexRef.current = val;
   }
 
-  const canGoBack = currentIndex < profileCards.length;
+  const canGoBack = currentIndex < profileCards.length - 1;
   const canSwipe = currentIndex >= 0;
 
   const swiped = (direction, index) => {
     setLastDirection(direction);
-    updateCurrentIndex(index - 1);
+    updateCurrentIndex(index-1);
   }
 
-  const swipe = async (dir) => {
-    if (canSwipe && currentIndex < profileCards.length) {
-      await childRefs[currentIndex].current.swipe(dir);
+  const swipe = (dir) => {
+    if (canSwipe && currentIndex < profileCards.length+1) {
+      childRefs[currentIndex].current.swipe(dir);
+      updateCurrentIndex(currentIndex - 1);
     }
   }
 
   const outOfFrame = (name, idx) => {
-    console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
+    //console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
   }
 
-  const goBack = async () => {
+  const goBack = () => {
     if (!canGoBack) return
     const newIndex = currentIndex + 1
     updateCurrentIndex(newIndex)
-    await childRefs[newIndex].current.restoreCard()
+    childRefs[newIndex].current.restoreCard()
   }
 
   return (
@@ -66,7 +68,7 @@ function Home() {
           <SwipeCard className={classes.swipe}
             ref={childRefs[index]}
             key={character.id}
-            onSwipe={(dir) => swiped(dir, character.name, index)}
+            onSwipe={(dir) => swiped(dir, index)}
             onCardLeftScreen={() => outOfFrame(character.name, index)}>
             <div className={classes.card} style={{ backgroundImage: 'url(' + character.url + ')' }}>
               <h3>{character.name}</h3>
