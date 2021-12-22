@@ -16,7 +16,7 @@ function Inventory() {
         <span className={classes.inventoryDesc}>Favorite game: </span>
         <span>Sudoku</span>
       </div>
-      <button className={classes.inventoryBtn}>
+      <button>
         <Link to="../inventory_edit" className={classes.link}>
           Edit
         </Link>

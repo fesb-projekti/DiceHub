@@ -1,5 +1,6 @@
 import { useState } from "react";
 import classes from "./InventoryEdit.module.css";
+import { Link } from "react-router-dom";
 
 function InventoryEdit() {
   const [enteredDescription, setEnteredDescription] = useState("");
@@ -68,6 +69,9 @@ function InventoryEdit() {
         </div>
         <div>
           <input type="submit" value="Save" className={classes.submitBtn} />
+          <Link to="/inventory/:id" className={classes.cancel}>
+            Cancel
+          </Link>
         </div>
       </form>
     </div>

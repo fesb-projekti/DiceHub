@@ -1,6 +1,7 @@
 .settings{
     padding-top: 5vh;
     height: 90vh;
+    width: 100%;
     font-family: inherit;
     display: flex;
     flex-direction: column;
@@ -8,3 +9,55 @@
     background: rgb(255,129,136);
     background: linear-gradient(133deg, rgba(255,129,136,0.3) 0%, rgba(255,189,82,0.3) 50%, rgba(255,140,25,0.3) 100%);
 }
+  
+  .form {
+    text-align: start;
+    width: 80%;
+}
+
+.control {
+    display: flex;
+    flex-direction: row;
+    padding-top: 2vh;
+    justify-content: space-between;
+  }
+  
+  .control label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .control input,
+  .control textarea {
+    display: block;
+    font: inherit;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    resize: none;
+    width: 18vw;
+  }
+  
+  .actions {
+    padding-top: 5vh;
+    text-align: center;
+  }
+  
+  .actions button {
+    font: inherit;
+    cursor: pointer;
+    color: white;
+    padding: 0.35rem 1.4rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    background: linear-gradient(to bottom right,rgba(255, 140, 25, 0.8) 0%,rgba(255, 189, 82, 0.8) 28%,rgba(255, 129, 136, 0.8) 100%);
+  }
+  
+  .actions button:hover,
+  .actions button:active {
+    background: linear-gradient(to bottom right,rgba(255, 140, 25, 1) 0%,rgba(255, 189, 82, 1) 28%,rgba(255, 129, 136, 1) 100%);
+    border-color: #a50e48;
+  }
+  
