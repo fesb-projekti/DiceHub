@@ -9,49 +9,231 @@
   "profilecards": [
     {
       "id": 1,
-      "name": "Ne ljuti se konju",
-      "url": "https://image.cnbcfm.com/api/v1/image/104151701-GettyImages-143949731.jpg?v=1481108000"
+      "name": "Marko",
+      "url": "https://m.vecernji.hr/media/img/8e/17/4728d86e0cc2110f5381.jpeg",
+      "surname": "Perkovic",
+      "location": "Cavoglave",
+      "games_owned": 58,
+      "favorite_genre": "Combat"
     },
     {
       "id": 2,
-      "name": "Zidopoli",
-      "url": "https://i.guim.co.uk/img/media/696d305e8fb4ec8e33038325f5e135ad7e6f62b5/0_878_3586_2149/master/3586.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=7c8a02cb30d1bc9b008a31529aa98fc1"
+      "name": "Ivo",
+      "url": "https://www.predsjednik.hr/wp-content/uploads/2020/02/1_DSC_0054-20x30-1.jpg",
+      "surname": "Josipovic",
+      "location": "Zagreb",
+      "games_owned": 16,
+      "favorite_genre": "Political"
     },
     {
       "id": 3,
-      "name": "Ono kako se zove",
-      "url": "https://www.insidehook.com/wp-content/uploads/2020/03/Settlers-of-Catan-Tabletop-Simulator.jpg?fit=1500%2C1000"
+      "name": "Andrej",
+      "url": "https://static.jutarnji.hr/images/slike/2021/12/12/k_22926335_640.jpg",
+      "surname": "Plenkovic",
+      "location": "Zagreb",
+      "games_owned": 5,
+      "favorite_genre": "Area Control"
     },
     {
       "id": 4,
-      "name": "Scythe",
-      "url": "https://miro.medium.com/max/1838/1*fcOemY1xrwLcWUnX8l8g8Q.jpeg"
+      "name": "Severina",
+      "url": "https://ip.index.hr/remote/indexnew.s3.index.hr/5ef6e21c-435c-4bf8-88ab-0ef37ab9fb20.png?width=480&height=480",
+      "surname": "Vuckovic",
+      "location": "Split",
+      "games_owned": 16,
+      "favorite_genre": "Bluffing"
     },
     {
       "id": 5,
-      "name": "Krajina Zove",
-      "url": "https://cdn.thewirecutter.com/wp-content/media/2021/07/boardgames-2048px-2233.jpg"
+      "name": "Zoran",
+      "url": "https://static.jutarnji.hr/images/slike/2021/09/27/k_12509291_640.jpg",
+      "surname": "Milanovic",
+      "location": "Pantovcak",
+      "games_owned": 33,
+      "favorite_genre": "Abstract strategy"
+    },
+    {
+      "id": 6,
+      "name": "Mate",
+      "url": "https://compassmag.3ds.com/wp-content/uploads/2020/06/MR1-1024x683.jpg",
+      "surname": "Rimac",
+      "location": "Zagreb",
+      "games_owned": 78,
+      "favorite_genre": "Dexterity"
+    },
+    {
+      "id": 7,
+      "name": "Goran",
+      "url": "https://img.24sata.hr/uBxkd5eQfPhaTgqoyK90Ub63fO4=/1200x800/smart/media/images/src/20090520/198057.jpg",
+      "surname": "Bare",
+      "location": "Split",
+      "games_owned": 8,
+      "favorite_genre": "Roleplaying"
+    },
+    {
+      "id": 8,
+      "name": "Miroslav",
+      "url": "http://www.057info.hr/images/vijesti/orginal/skoro_1357891332.jpg",
+      "surname": "Škoro",
+      "location": "Osijek",
+      "games_owned": 21,
+      "favorite_genre": "Storytelling"
+    },
+    {
+      "id": 9,
+      "name": "Mate",
+      "url": "https://static.slobodnadalmacija.hr/images/slike/2020/01/28/12750128.jpg",
+      "surname": "Bulic",
+      "location": "Citluk",
+      "games_owned": 46,
+      "favorite_genre": "Action"
+    },
+    {
+      "id": 10,
+      "name": "Stjepan",
+      "url": "https://narod.hr/wp-content/uploads/2018/12/H20181205025712-1.jpg",
+      "surname": "Mesic",
+      "location": "Orahovica",
+      "games_owned": 96,
+      "favorite_genre": "Fantasy"
+    },
+    {
+      "id": 11,
+      "name": "Tarik",
+      "url": "https://www.novilist.hr/wp-content/uploads/2020/06/Tarik-Filipovic-radi-monodramu-o-zivotu-Cire-Blazevica.jpg",
+      "surname": "Filipovic",
+      "location": "Zagreb",
+      "games_owned": 19,
+      "favorite_genre": "Tile placement"
+    },
+    {
+      "id": 12,
+      "name": "Mirko",
+      "url": "https://static.jutarnji.hr/images/live-multimedia/binary/2016/9/25/11/k1_zagreb97-150313.jpg",
+      "surname": "Filipovic",
+      "location": "Vinkovci",
+      "games_owned": 44,
+      "favorite_genre": "Wargame"
+    },
+    {
+      "id": 13,
+      "name": "Jeff",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Jeff_Bezos_at_Amazon_Spheres_Grand_Opening_in_Seattle_-_2018_%2839074799225%29_%28cropped%29.jpg/800px-Jeff_Bezos_at_Amazon_Spheres_Grand_Opening_in_Seattle_-_2018_%2839074799225%29_%28cropped%29.jpg",
+      "surname": "Besos",
+      "location": "USA",
+      "games_owned": 131,
+      "favorite_genre": "Fantasy"
+    },
+    {
+      "id": 14,
+      "name": "Marijan",
+      "url": "https://static.slobodnadalmacija.hr/images/slike/2020/04/29/13553888.jpg",
+      "surname": "Ban",
+      "location": "Split",
+      "games_owned": 61,
+      "favorite_genre": "Legacy"
+    },
+    {
+      "id": 15,
+      "name": "Elon",
+      "url": "https://pyxis.nymag.com/v1/imgs/30c/b50/60c11d84de5143efcdb6e09ca2f7f0af11-05-elon-musk-twitter.rsquare.w330.jpg",
+      "surname": "Musk",
+      "location": "USA",
+      "games_owned": 96,
+      "favorite_genre": "Card drafting"
+    },
+    {
+      "id": 16,
+      "name": "Oliver",
+      "url": "https://crorec.net/wp-content/uploads/2018/07/OliverDragojevic.jpg",
+      "surname": "Dragojevic",
+      "location": "Split",
+      "games_owned": 101,
+      "favorite_genre": "Storytelling"
+    },
+    {
+      "id": 17,
+      "name": "Tomislav",
+      "url": "https://www.tportal.hr/media/thumbnail/w1000/82853.jpeg",
+      "surname": "Kalamarko",
+      "location": "Zadar",
+      "games_owned": 9,
+      "favorite_genre": "Sci-Fi"
+    },
+    {
+      "id": 18,
+      "name": "Vladimir",
+      "url": "https://www.vecernji.hr/media/img/28/ef/fd60980d3c7f7a404f3a.jpeg",
+      "surname": "Šeks",
+      "location": "Osijek",
+      "games_owned": 29,
+      "favorite_genre": "Fantasy"
+    },
+    {
+      "id": 19,
+      "name": "Ljubo",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Ljubo_Cesic_Rojs_16_obljetnica_vojnoredarstvene_operacije_Oluja_04082011_870.jpg",
+      "surname": "Cesic",
+      "location": "Batin",
+      "games_owned": 101,
+      "favorite_genre": "Roll and write"
+    },
+    {
+      "id": 20,
+      "name": "Vlatka",
+      "url": "https://static.story.hr/Picture/236840/jpeg/vlatka-pokos",
+      "surname": "Pokos",
+      "location": "Salzburg",
+      "games_owned": 93,
+      "favorite_genre": "Deck building"
+    },
+    {
+      "id": 21,
+      "name": "Ante",
+      "url": "https://www.poslovni-savjetnik.com/sites/default/files/styles/resize_555_x_374/public/aktualno/ante_gotovina_haag-1.jpg?itok=pEaD4M6k",
+      "surname": "Gotovina",
+      "location": "Tkon",
+      "games_owned": 87,
+      "favorite_genre": "Cooperative"
+    },
+    {
+      "id": 22,
+      "name": "Andrea",
+      "url": "https://image.dnevnik.hr/media/images/1920x1080/Jun2019/61704492.jpg",
+      "surname": "Šušnjara",
+      "location": "Split",
+      "games_owned": 53,
+      "favorite_genre": "Abstract strategy"
+    },
+    {
+      "id": 23,
+      "name": "Donald",
+      "url": "https://www.telepolis.pl/images/2021/01/Donald-Trump-zakaz-aplikacj-z-chin.jpg",
+      "surname": "Trump",
+      "location": "USA",
+      "games_owned": 113,
+      "favorite_genre": "Wargame"
     }
   ],
   "profile": {
     "id": 1,
     "name": "Mate",
-    "surname": "Matic",
+    "surname": "Horvat",
     "age": 19,
     "location": "Split",
-    "games_owned": "Sudoku, Ne ljuti se konju",
-    "favorite_game": "Sudoku",
+    "games_owned": "Scyhte, Anomia, Chess, Betrayal at Hous on the Hill, Sagadra, Mysterium, Wingspan, Monopoly",
+    "favorite_game": "Sagadra",
     "favorite_genre": "Fantasy",
-    "about": "Ja sam mali mate od mame i tate",
-    "has_location": "Naravno",
-    "avatar": "https://yt3.ggpht.com/ytc/AKedOLQO1tjN44tCHGFsqCMYKOgsu-1PUuBuWz51JU94=s900-c-k-c0x00ffffff-no-rj",
-    "trading_titles": "Covjece ne budi konj",
-    "looking_for": "Super Momcilo NES",
-    "positive_ratings": 4,
-    "negative_ratings": 2,
-    "times_matched": 9
+    "about": "Hey my name is Mate, I prefer mystery and abstract strategy games, I have a location to play with enough room for over 6 people. I like to be competitive but I play fair",
+    "has_location": "Yes",
+    "avatar": "https://www.maxpixel.net/static/photo/1x/Male-Man-Person-Handsome-Guy-Face-Portrait-Beard-6309454.jpg",
+    "trading_titles": "Currently trading Sagadra and Wingspan",
+    "looking_for": "I am looking for Catan",
+    "positive_ratings": 8,
+    "negative_ratings": 3,
+    "times_matched": 12
   },
   "profile_ratings": {
-    "canRate": "negative"
+    "canRate": "positive"
   }
 }
