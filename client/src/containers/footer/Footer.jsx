@@ -3,7 +3,7 @@ import DHLogo from '../../assets/logo.png';
 import './footer.css';
 
 const Footer = () => (
-  <div className="gpt3__footer section__padding">
+  <div className="gpt3__footer">
     <div className="gpt3__footer-links">
       <div className="gpt3__footer-links_logo">
         <img src={DHLogo} alt="gpt3_logo" />

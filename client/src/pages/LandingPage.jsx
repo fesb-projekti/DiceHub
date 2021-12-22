@@ -1,13 +1,11 @@
-import React from 'react';
-
 import { Footer, Possibility, WhatGPT3, Header } from '../containers';
 import { Navbar, Feature } from '../components/';
 
-import './LandingPage.module.css';
+import classes from "./LandingPage.module.css";
 
 const App = () => (
-  <div className="App">
-    <div className="gradient__bg">
+  <div className={classes.app}>
+    <div className={classes.gradient__bg}>
       <Navbar />
       <Header />
     </div>

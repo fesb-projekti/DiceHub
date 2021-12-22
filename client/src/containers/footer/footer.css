@@ -3,8 +3,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    background: var(--color-footer);
+    background:-moz-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+    background:-webkit-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+    background:-o-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+    background:-ms-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+    background:radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
 }
 
 .gpt3__footer-heading {
@@ -103,7 +106,6 @@
 }
 
 .gpt3__footer-copyright {
-    margin-top: 2rem;
     text-align: center;
     width: 100%;
 }
@@ -113,6 +115,7 @@
     font-family: var(--font-family);
     line-height: 15px;
     color: #fff;
+    padding-bottom: 1vh;
 }
 
 @media screen and (max-width: 850px) {
