@@ -5,7 +5,7 @@ import classes from "./Home.module.css";
 function Home() {
 
   const [profileCards, setProfileCards] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState();
+  const [currentIndex, setCurrentIndex] = useState(profileCards.length);
   const [lastDirection, setLastDirection] = useState();
 
   const currentIndexRef = useRef(currentIndex);
@@ -65,7 +65,7 @@ function Home() {
         {profileCards.map((character, index) =>
           <SwipeCard className={classes.swipe}
             ref={childRefs[index]}
-            key={character.name}
+            key={character.id}
             onSwipe={(dir) => swiped(dir, character.name, index)}
             onCardLeftScreen={() => outOfFrame(character.name, index)}>
             <div className={classes.card} style={{ backgroundImage: 'url(' + character.url + ')' }}>
