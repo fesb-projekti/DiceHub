@@ -1,11 +1,21 @@
-import classes from "./LandingPage.module.css";
+import React from 'react';
 
-function LandingPage() {
-    return ( 
-        <div className={classes.landingPage}>
-            <h2>Landing Page is rendered here</h2>
-        </div>
-     );
-}
+import { Footer, Possibility, WhatGPT3, Header } from '../containers';
+import {  Navbar, Feature } from '../components/';
 
-export default LandingPage;
+import './LandingPage.module.css';
+
+const App = () => (
+  <div className="App">
+    <div className="gradient__bg">
+      <Navbar />
+      <Header />
+    </div>
+    <WhatGPT3 />
+    <Feature />
+    <Possibility />
+    <Footer />
+  </div>
+);
+
+export default App;
