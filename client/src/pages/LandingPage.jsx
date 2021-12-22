@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Footer, Possibility, WhatGPT3, Header } from '../containers';
-import {  Navbar, Feature } from '../components/';
+import { Navbar, Feature } from '../components/';
 
 import './LandingPage.module.css';
 
