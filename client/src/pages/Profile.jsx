@@ -131,12 +131,12 @@ function Profile() {
                     <span className={classes.infoData}>{profile.favorite_genre}</span>
                 </div>
                 <div className={classes.infoRow}>
-                    <span className={classes.infoDesc}>About myself: </span>
-                    <span className={classes.infoData}>{profile.about}</span>
-                </div>
-                <div className={classes.infoRow}>
                     <span className={classes.infoDesc}>Location to play: </span>
                     <span className={classes.infoData}>{profile.has_location}</span>
+                </div>
+                <div className={classes.infoRow}>
+                    <span className={classes.infoDesc}>About myself: </span>
+                    <span className={classes.infoData}>{profile.about}</span>
                 </div>
             </div>
             <div className={classes.library}>
@@ -144,16 +144,16 @@ function Profile() {
                     <h3>Library</h3>
                 </div>
                 <div className={classes.infoRow}>
-                    <span className={classes.infoDesc}>Games owned: </span>
-                    <span className={classes.infoData}>{profile.games_owned}</span>
+                    <span className={classes.infoDesc}>Looking for: </span>
+                    <span className={classes.infoData}>{profile.looking_for}</span>
                 </div>
                 <div className={classes.infoRow}>
                     <span className={classes.infoDesc}>Trading: </span>
                     <span className={classes.infoData}>{profile.trading_titles}</span>
                 </div>
                 <div className={classes.infoRow}>
-                    <span className={classes.infoDesc}>Looking for: </span>
-                    <span className={classes.infoData}>{profile.looking_for}</span>
+                    <span className={classes.infoDesc}>Games owned: </span>
+                    <span className={classes.infoData}>{profile.games_owned}</span>
                 </div>
             </div>
             <div className={classes.rate}>
