@@ -23,12 +23,12 @@ function Profile() {
     }, [])
 
     const fetchProfile = async () => {
-        const res = await fetch("http://localhost:3001/profile");
+        const res = await fetch("https://dice-hub.ga/api/profile");
         const data = await res.json();
         return data;
     }
     const fetchRating = async () => {
-        const res = await fetch("http://localhost:3001/profile_ratings");
+        const res = await fetch("https://dice-hub.ga/api/profile_ratings");
         const data = await res.json();
         return data;
     }
@@ -75,14 +75,14 @@ function Profile() {
     }
 
     const updateProfile = async (profile) => {
-        await fetch("http://localhost:3001/profile", {
+        await fetch("https://dice-hub.ga/api/profile", {
             method: "PUT",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(profile)
         }).then(() => { console.log("Profile updated JSON") })
     }
     const updateRating = async () => {
-        await fetch("http://localhost:3001/profile_ratings", {
+        await fetch("https://dice-hub.ga/api/profile_ratings", {
             method: "PUT",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(ratings)
