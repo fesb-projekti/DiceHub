@@ -58,4 +58,10 @@
     font-weight: bold;
     white-space: nowrap;
   }
-  
+
+
+  @media only screen and (max-width: 1050px) {
+  .header li {
+    padding: 0 35px;
+  }
+}
