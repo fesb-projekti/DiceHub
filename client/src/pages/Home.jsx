@@ -79,23 +79,23 @@ function Home() {
       <div className={classes.info}>
         <div className={classes.infoRow}>
           <span className={classes.infoDesc}>Name: </span>
-          <span className={classes.infoData}>Mate</span>
+          <span className={classes.infoData}>{profileCards[currentIndex]?.name}</span>
         </div>
         <div className={classes.infoRow}>
           <span className={classes.infoDesc}>Surname: </span>
-          <span className={classes.infoData}>Matic</span>
+          <span className={classes.infoData}>{profileCards[currentIndex]?.surname}</span>
         </div>
         <div className={classes.infoRow}>
           <span className={classes.infoDesc}>Location: </span>
-          <span className={classes.infoData}>Split</span>
+          <span className={classes.infoData}>{profileCards[currentIndex]?.location}</span>
         </div>
         <div className={classes.infoRow}>
           <span className={classes.infoDesc}>Games owned: </span>
-          <span className={classes.infoData}>12</span>
+          <span className={classes.infoData}>{profileCards[currentIndex]?.games_owned}</span>
         </div>
         <div className={classes.infoRow}>
           <span className={classes.infoDesc}>Favorite genre: </span>
-          <span className={classes.infoData}>Fantasy</span>
+          <span className={classes.infoData}>{profileCards[currentIndex]?.favorite_genre}</span>
         </div>
       </div>
       {lastDirection ? <h3 className={classes.infoText}>You swiped {lastDirection}</h3> : ""}
