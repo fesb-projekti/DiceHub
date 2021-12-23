@@ -50,11 +50,11 @@ function Settings() {
                 </div>
                 <div className={classes.control}>
                     <label htmlFor="password">Password</label>
-                    <input type="text" id="password" placeholder="Example: 12345678" ref={passwordInputRef} />
+                    <input type="password" id="password" placeholder="Example: 12345678" ref={passwordInputRef} />
                 </div>
                 <div className={classes.control}>
                     <label htmlFor="repeat_password">Repeat password</label>
-                    <input type="text" id="repeat_password" placeholder="Example: 12345678" ref={repeatPasswordInputRef} />
+                    <input type="password" id="repeat_password" placeholder="Example: 12345678" ref={repeatPasswordInputRef} />
                 </div>
                 <div className={classes.control}>
                     <label htmlFor="age">Age</label>

@@ -20,7 +20,7 @@ function App() {
   const [isAuthorized, setAuthorize] = useState(false); // Authorization state, default is false
 
   useEffect(() => {
-    setAuthorize(false); // Change to false to view landing page, for development only
+    setAuthorize(true); // Change to false to view landing page, for development only
   }, []);
 
   // Change this to true or false if you want to render the LandingPage or the Application untill

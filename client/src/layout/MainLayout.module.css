@@ -4,7 +4,7 @@
 }
 
 .main{
-  margin: 0 50px;
+  margin: 0 0;
   background-color: white;
   padding-top: 5vh;
   height: 95vh;
@@ -30,7 +30,7 @@
 }
 
 
-@media only screen and (min-width: 300px) and (max-width: 680) {
+@media only screen and (min-width: 300px) and (max-width: 715) {
   .main{
     margin: 0 10px;
     background-color: rgb(255, 255, 255);
@@ -40,9 +40,9 @@
     border-right: 1px solid rgba(128, 128, 128, 0.384);
   }
   }
-@media only screen and (min-width: 650px) and (max-width: 950px) {
+@media only screen and (min-width: 715px) and (max-width: 970px) {
   .main{
-    margin: 0 200px;
+    margin: 0 230px;
     background-color: white;
     padding-top: 5vh;
     height: 95vh;
@@ -50,7 +50,7 @@
     border-right: 1px solid rgba(128, 128, 128, 0.384);
   }
   }
-@media only screen and (min-width: 950px) and (max-width: 1400px) {
+@media only screen and (min-width: 970px) and (max-width: 1400px) {
   .main{
     margin: 0 350px;
     background-color: white;
@@ -72,7 +72,7 @@
 }
   @media only screen and (min-width: 1500px) and (max-width: 1700px) {
   .main{
-    margin: 0 500px;
+    margin: 0 520px;
     background-color: white;
     padding-top: 5vh;
     height: 95vh;
@@ -82,7 +82,7 @@
 }
 @media only screen and (min-width: 1700px) {
   .main{
-    margin: 0 600px;
+    margin: 0 650px;
     background-color: white;
     padding-top: 5vh;
     height: 95vh;
