@@ -30,7 +30,7 @@
 }
 
 
-@media only screen and (min-width: 300px) and (max-width: 715) {
+@media only screen and (min-width: 300px) and (max-width: 725) {
   .main{
     margin: 0 10px;
     background-color: rgb(255, 255, 255);
@@ -40,7 +40,7 @@
     border-right: 1px solid rgba(128, 128, 128, 0.384);
   }
   }
-@media only screen and (min-width: 715px) and (max-width: 970px) {
+@media only screen and (min-width: 725px) and (max-width: 970px) {
   .main{
     margin: 0 230px;
     background-color: white;

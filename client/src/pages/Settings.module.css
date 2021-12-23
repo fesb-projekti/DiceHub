@@ -12,7 +12,7 @@
   
   .form {
     text-align: start;
-    width: 80%;
+    width: 90%;
 }
 
 .control {
@@ -36,7 +36,7 @@
     border-radius: 4px;
     border: 1px solid #ccc;
     resize: none;
-    width: 18vw;
+    width: 20vw;
   }
   
   .actions {
@@ -61,3 +61,15 @@
     border-color: #a50e48;
   }
   
+  @media only screen and (max-width: 900px) {
+    .control input,
+    .control textarea {
+      display: block;
+      font: inherit;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      resize: none;
+      width: 40vw;
+    }
+    }
