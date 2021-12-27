@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useMemo, createRef } from 'react'
+import { useNavigate } from "react-router";
 import SwipeCard from "../components/SwipeCard";
 import classes from "./Home.module.css";
 
@@ -9,22 +10,24 @@ function Home() {
   const [lastDirection, setLastDirection] = useState();
 
   const currentIndexRef = useRef(currentIndex);
+  let navigate = useNavigate();
 
   const childRefs = useMemo(
-    () =>Array(profileCards.length).fill(0).map((i) => createRef()),[profileCards.length]
+    () => Array(profileCards.length).fill(0).map((i) => createRef()), [profileCards.length]
   )
 
   useEffect(() => {
     const getProfileCards = async () => {
       const profileCardsFromServer = await fetchProfileCards();
       setProfileCards(profileCardsFromServer);
-      setCurrentIndex(profileCardsFromServer.length-1)
+      setCurrentIndex(profileCardsFromServer.length - 1)
     }
     getProfileCards();
   }, [])
 
   const fetchProfileCards = async () => {
-    const res = await fetch("https://dice-hub.ga/api/profilecards");
+    // const res = await fetch("https://dice-hub.ga/api/profilecards");
+    const res = await fetch("http://localhost:3001/profilecards");
     const data = await res.json();
     return data;
   }
@@ -39,11 +42,15 @@ function Home() {
 
   const swiped = (direction, index) => {
     setLastDirection(direction);
-    updateCurrentIndex(index-1);
+    updateCurrentIndex(index - 1);
+    if(direction == "up")
+      swipeUp(index);
+    else if(direction == "down")
+      swipeDown(index);
   }
 
   const swipe = (dir) => {
-    if (canSwipe && currentIndex < profileCards.length+1) {
+    if (canSwipe && currentIndex < profileCards.length + 1) {
       childRefs[currentIndex].current.swipe(dir);
       updateCurrentIndex(currentIndex - 1);
     }
@@ -59,6 +66,14 @@ function Home() {
     const newIndex = currentIndex + 1
     updateCurrentIndex(newIndex)
     childRefs[newIndex].current.restoreCard()
+  }
+
+  function swipeUp(id) {
+    navigate("/chat/" + id);
+  }
+
+  function swipeDown(id) {
+    navigate("/profile/" + id);
   }
 
   return (
@@ -102,8 +117,8 @@ function Home() {
       <div className={classes.buttons}>
         <button onClick={() => swipe("left")}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none" /><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z" /></svg></button>
         <button onClick={() => goBack()}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none" /><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z" /></svg></button>
-        <button><img src="https://img.icons8.com/metro/26/000000/info.png" alt="" /></button>
-        <button><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none" /><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" /></svg></button>
+        <button onClick={() => swipeUp(profileCards[currentIndex]?.id)}><img src="https://img.icons8.com/metro/26/000000/info.png" alt="" /></button>
+        <button onClick={() => swipeDown(profileCards[currentIndex]?.id)}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none" /><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" /></svg></button>
         <button onClick={() => swipe("right")}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z" /></svg></button>
       </div>
     </div>
