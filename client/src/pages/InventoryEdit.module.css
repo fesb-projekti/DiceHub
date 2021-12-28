@@ -1,56 +1,86 @@
 .inventoryEdit {
-  padding-top: 10vh;
-  height: 85vh;
+  padding-top: 15vh;
+  height: 90vh;
+  width: 100%;
   font-family: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: rgb(255, 129, 136);
-  background: linear-gradient(133deg,rgba(255, 129, 136, 0.2) 0%,rgba(255, 189, 82, 0.2) 50%,rgba(255, 140, 25, 0.2) 100%);
+  background: linear-gradient(
+    133deg,
+    rgba(255, 129, 136, 0.2) 0%,
+    rgba(255, 189, 82, 0.2) 50%,
+    rgba(255, 140, 25, 0.2) 100%
+  );
 }
 
-.inputField {
-  padding: 2%;
+.form {
+  text-align: start;
+  width: 80%;
 }
 
-.input {
-  width: 100%;
+.control {
+  display: flex;
+  flex-direction: row;
+  padding-top: 2vh;
+  justify-content: space-between;
+}
+
+.control label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.control input,
+.control textarea {
+  display: block;
+  font: inherit;
+  font-size: 14px;
+  font-weight: lighter;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  resize: none;
+  width: 16vw;
+}
+
+.actions {
+  padding-top: 5vh;
+  text-align: center;
 }
 
 .submitBtn {
   margin: 4%;
+  font: inherit;
+  cursor: pointer;
+  color: white;
+  padding: 0.35rem 1.4rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 140, 25, 0.8) 0%,
+    rgba(255, 189, 82, 0.8) 28%,
+    rgba(255, 129, 136, 0.8) 100%
+  );
+}
+
+.submitBtn:hover,
+.submitBtn:active {
   background: linear-gradient(
     to bottom right,
     rgba(255, 140, 25, 1) 0%,
     rgba(255, 189, 82, 1) 28%,
     rgba(255, 129, 136, 1) 100%
   );
-  border: 0;
-  border-radius: 12px;
-  color: #ffffff;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 2.5;
-  outline: transparent;
-  padding: 0 1rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow 0.2s ease-in-out;
-  touch-action: manipulation;
-  white-space: nowrap;
-}
-
-.submitBtn:not([disabled]):hover {
-  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
-    -0.125rem -0.125rem 1rem rgba(239, 71, 101, 0.5),
-    0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
+  border-color: #a50e48;
 }
 
 .cancel {
   margin: 4%;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.8);
   border: 0;
   border-radius: 12px;
   color: rgba(255, 140, 25);
@@ -66,8 +96,8 @@
   transition: box-shadow 0.2s ease-in-out;
 }
 
-.cancel:not([disabled]):hover {
-  box-shadow: 0 0 0.25rem rgba(255, 140, 25, 0.5),
-    -0.125rem -0.125rem 1rem rgba(255, 189, 82, 0.5),
-    0.125rem 0.125rem 1rem rgba(255, 129, 136, 0.5);
+.cancel:hover,
+.cancel:active {
+  background: rgba(255, 255, 255, 1);
+  color: rgba(255, 140, 25, 0.8);
 }
