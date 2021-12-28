@@ -33,41 +33,54 @@ function InventoryEdit() {
 
   return (
     <div className={classes.inventoryEdit}>
-      <form onSubmit={submitHandler}>
-        <div className={classes.inputField}>
-          <label>
-            Your Description:
-            <input
-              type="text"
-              value={enteredDescription}
-              onChange={descChangeHandler}
-              className={classes.input}
-            />
-          </label>
+      <form onSubmit={submitHandler} className={classes.form}>
+        <div className={classes.control}>
+          <label>Your description:</label>
+          <textarea
+            type="text"
+            rows={5}
+            value={enteredDescription}
+            onChange={descChangeHandler}
+            placeholder="Your description:"
+          />
         </div>
-        <div className={classes.inputField}>
-          <label>
-            Games owned:
-            <input
-              type="text"
-              value={enteredGames}
-              onChange={gamesChangeHandler}
-              className={classes.input}
-            />
-          </label>
+        <div className={classes.control}>
+          <label>Games owned:</label>
+          <input
+            type="text"
+            value={enteredGames}
+            onChange={gamesChangeHandler}
+            placeholder="What games do you own?"
+          />
         </div>
-        <div className={classes.inputField}>
-          <label>
-            Favorite game:
-            <input
-              type="text"
-              value={enteredFavorite}
-              onChange={favChangeHandler}
-              className={classes.input}
-            />
-          </label>
+        <div className={classes.control}>
+          <label>Favorite game:</label>
+          <input
+            type="text"
+            value={enteredFavorite}
+            onChange={favChangeHandler}
+            placeholder="What is your favorite game?"
+          />
         </div>
-        <div>
+        <div className={classes.control}>
+          <label>Trading:</label>
+          <input
+            type="text"
+            value={enteredFavorite}
+            onChange={favChangeHandler}
+            placeholder="What games are you trading?"
+          />
+        </div>
+        <div className={classes.control}>
+          <label>Looking for:</label>
+          <input
+            type="text"
+            value={enteredFavorite}
+            onChange={favChangeHandler}
+            placeholder="What are you looking for?"
+          />
+        </div>
+        <div className={classes.actions}>
           <input type="submit" value="Save" className={classes.submitBtn} />
           <Link to="/inventory/:id" className={classes.cancel}>
             Cancel
