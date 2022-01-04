@@ -6,6 +6,8 @@ function InventoryEdit() {
   const [enteredDescription, setEnteredDescription] = useState("");
   const [enteredGames, setEnteredGames] = useState("");
   const [enteredFavorite, setEnteredFavorite] = useState("");
+  const [enteredTrading, setEnteredTrading] = useState("");
+  const [enteredLookingFor, setEnteredLookingFor] = useState("");
 
   const descChangeHandler = (event) => {
     setEnteredDescription(event.target.value);
@@ -19,6 +21,14 @@ function InventoryEdit() {
     setEnteredFavorite(event.target.value);
   };
 
+  const tradingChangeHandler = (event) => {
+    setEnteredTrading(event.target.value);
+  };
+
+  const lookingForChangeHandler = (event) => {
+    setEnteredLookingFor(event.target.value);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -26,6 +36,8 @@ function InventoryEdit() {
       description: enteredDescription,
       games: enteredGames,
       favorite: enteredFavorite,
+      trading: enteredTrading,
+      lookingFor: enteredLookingFor,
     };
 
     console.log(gamesData);
@@ -66,8 +78,8 @@ function InventoryEdit() {
           <label>Trading:</label>
           <input
             type="text"
-            value={enteredFavorite}
-            onChange={favChangeHandler}
+            value={enteredTrading}
+            onChange={tradingChangeHandler}
             placeholder="What games are you trading?"
           />
         </div>
@@ -75,8 +87,8 @@ function InventoryEdit() {
           <label>Looking for:</label>
           <input
             type="text"
-            value={enteredFavorite}
-            onChange={favChangeHandler}
+            value={enteredLookingFor}
+            onChange={lookingForChangeHandler}
             placeholder="What are you looking for?"
           />
         </div>
