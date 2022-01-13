@@ -81,7 +81,7 @@ app.get("/profileCards/looking4", (req, res) => {
 
 app.post("/profileCards/vote", (req, res) => {
     const voterID = req.body.voterID
-    const ratedUserID = req.body.voterID
+    const ratedUserID = req.body.ratedUserID
     const vote = req.body.vote
 
     const sqlInsert = "INSERT INTO ratings (voterID,ratedUserID,vote) VALUES(?,?,?)"
@@ -139,8 +139,73 @@ app.get("/inventory/getFavGame", (req, res) => {
         res.send(result)
     })
 })
+////settings
+
+
+app.put("/update_profile", (req, res) => {
+    const keys = Object.keys(req.body)
+    let fieldNameArray = []
+    let valuesArray = []
+    let dataBaseFieldNameArray = []
+
+    keys.forEach((key, index) => {   //pushing values from req to an array
+        if (req.body[key] != "") {
+            fieldNameArray.push(key),
+                valuesArray.push(req.body[key])
+        }
+    })
+
+    for (let i = 0; i < fieldNameArray.length; i++) { //equalising dataBase field names with req object names
+        switch (fieldNameArray[i]) {
+            case 'name':
+                dataBaseFieldNameArray.push("ime")
+                break;
+            case 'surname':
+                dataBaseFieldNameArray.push("prezime")
+                break;
+            case 'password':
+                dataBaseFieldNameArray.push("passw")
+                break;
+            case 'age':
+                dataBaseFieldNameArray.push("age")
+                break;
+            case 'location':
+                dataBaseFieldNameArray.push("grad")
+                break;
+            case 'about':
+                dataBaseFieldNameArray.push("about")
+                break;
+            case 'hasLocation':
+                dataBaseFieldNameArray.push("hasLocation")
+                break;
+            default:
+                break;
+        }
+    }
+    if (fieldNameArray[2] = "repeatPassword") {                          //removal of repeating password field
+        fieldNameArray.splice(fieldNameArray.indexOf("repeatPassword"), 1)
+        valuesArray.splice(2, 1)
+    }
+
+    let que = "UPDATE korisnik SET " //setting up the query request
+    let arrLen = dataBaseFieldNameArray.length
+    let lastEl = dataBaseFieldNameArray.length - 1
+    for (let i = 0; i < arrLen; i++) {
+        if (i < lastEl) {
+            que = que + dataBaseFieldNameArray[i] + " = ?, "
+        }
+        else if (i == lastEl) {
+            que = que + dataBaseFieldNameArray[i] + " = ? "
+        }
+    }
+
+    que = que + " WHERE korisnik.ID = 10" //adding user ID that will be updated
+    db.query(que, valuesArray, (err, result) => {   //sending the query to the data base
+        res.send(result)
+        console.log(err)
+    })
+})
 
 app.listen(3001, () => {
     console.log("Listening on port 3001!");
-
 });

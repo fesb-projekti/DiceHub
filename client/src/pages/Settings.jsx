@@ -26,16 +26,22 @@ function Settings() {
 
         if (password !== repeatPassword) {
             alert("Passwords are not maching!");
+            repeatPasswordInputRef.current.focus();
             return;
         }
         const profile = { name, surname, password, repeatPassword, age, location, about, hasLocation };
-        await fetch("https://dice-hub.ga/api/update_profile", {
+        if(Object.values(profile).every(el=>el===null || el===""))
+        {
+            alert("You have not made any changes");
+            return;
+        }
+        // await fetch("https://dice-hub.ga/api/update_profile", {
+        await fetch("http://localhost:3001/update_profile", {
             method: "PUT",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(profile)
         }).then(() => { alert("You have updated your profile information"); history("/profile/:id") })
     }
-
     return (
         <div className={classes.settings}>
             <h4>You can change the profile settings here</h4>
@@ -50,11 +56,11 @@ function Settings() {
                 </div>
                 <div className={classes.control}>
                     <label htmlFor="password">Password</label>
-                    <input type="text" id="password" placeholder="Example: 12345678" ref={passwordInputRef} />
+                    <input type="password" id="password" placeholder="Example: 12345678" ref={passwordInputRef} />
                 </div>
                 <div className={classes.control}>
                     <label htmlFor="repeat_password">Repeat password</label>
-                    <input type="text" id="repeat_password" placeholder="Example: 12345678" ref={repeatPasswordInputRef} />
+                    <input type="password" id="repeat_password" placeholder="Example: 12345678" ref={repeatPasswordInputRef} />
                 </div>
                 <div className={classes.control}>
                     <label htmlFor="age">Age</label>

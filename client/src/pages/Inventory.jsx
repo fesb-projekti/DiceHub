@@ -16,6 +16,14 @@ function Inventory() {
         <span className={classes.inventoryDesc}>Favorite game: </span>
         <span>Sudoku</span>
       </div>
+      <div className={classes.inventoryDiv}>
+        <span className={classes.inventoryDesc}>Trading: </span>
+        <span>Sudoku</span>
+      </div>
+      <div className={classes.inventoryDiv}>
+        <span className={classes.inventoryDesc}>Looking for: </span>
+        <span>Super Momcilo NES</span>
+      </div>
       <button>
         <Link to="../inventory_edit" className={classes.link}>
           Edit
