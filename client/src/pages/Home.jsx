@@ -7,6 +7,7 @@ function Home() {
 
   const [profileCards, setProfileCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState();
+  // eslint-disable-next-line
   const [lastDirection, setLastDirection] = useState();
 
   const currentIndexRef = useRef(currentIndex);
@@ -43,9 +44,9 @@ function Home() {
   const swiped = (direction, index) => {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
-    if(direction == "up")
+    if(direction === "up")
       swipeUp(index);
-    else if(direction == "down")
+    else if(direction === "down")
       swipeDown(index);
   }
 
@@ -114,7 +115,6 @@ function Home() {
           <span className={classes.infoData}>{profileCards[currentIndex]?.favorite_genre}</span>
         </div>
       </div>
-      {lastDirection ? <h3 className={classes.infoText}>You swiped {lastDirection}</h3> : ""}
       <div className={classes.buttons}>
         <button onClick={() => swipe("left")}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none" /><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z" /></svg></button>
         <button onClick={() => goBack()}><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none" /><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z" /></svg></button>
