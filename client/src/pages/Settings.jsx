@@ -26,6 +26,7 @@ function Settings() {
 
         if (password !== repeatPassword) {
             alert("Passwords are not maching!");
+            repeatPasswordInputRef.current.focus();
             return;
         }
         const profile = { name, surname, password, repeatPassword, age, location, about, hasLocation };
