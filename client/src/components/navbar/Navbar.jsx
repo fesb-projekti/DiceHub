@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import DHLogo from '../../assets/logo.png';
 import './navbar.css';
+import {Link} from 'react-router-dom';
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -19,7 +20,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="gpt3__navbar-sign">
-        <p>Sign in</p>
+      <button type="button">Sign In</button><p/>
         <button type="button">Sign up</button>
       </div>
       <div className="gpt3__navbar-menu">
@@ -34,8 +35,8 @@ const Navbar = () => {
             <p><a href="#possibility">Our Aim</a></p>
           </div>
           <div className="gpt3__navbar-menu_container-links-sign">
-            <p>Sign in</p>
-            <button type="button">Sign up</button>
+          <button type="button">Sign In</button><p/>
+          <button type="button">Sign up</button>            
           </div>
         </div>
         )}

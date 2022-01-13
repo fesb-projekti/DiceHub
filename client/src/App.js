@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 // Landing page layout and its pages
 import LandingPageLayout from "./layout/LandingPageLayout";
 import LandingPage from "./pages/LandingPage";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
+
 // Application layout and its pages
 import MainLayout from "./layout/MainLayout";
 import Home from "./pages/Home"
@@ -53,8 +52,7 @@ function App() {
       <LandingPageLayout>
         <Routes>
           <Route path="/" exact={true} element={<LandingPage />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          
         </Routes>
       </LandingPageLayout>)
   }
