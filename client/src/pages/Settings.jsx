@@ -29,6 +29,11 @@ function Settings() {
             return;
         }
         const profile = { name, surname, password, repeatPassword, age, location, about, hasLocation };
+        if(Object.values(profile).every(el=>el===null || el===""))
+        {
+            alert("You have not made any changes");
+            return;
+        }
         // await fetch("https://dice-hub.ga/api/update_profile", {
         await fetch("http://localhost:3001/update_profile", {
             method: "PUT",
@@ -36,7 +41,6 @@ function Settings() {
             body: JSON.stringify(profile)
         }).then(() => { alert("You have updated your profile information"); history("/profile/:id") })
     }
-
     return (
         <div className={classes.settings}>
             <h4>You can change the profile settings here</h4>
