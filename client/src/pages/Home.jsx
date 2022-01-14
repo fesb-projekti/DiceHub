@@ -28,7 +28,7 @@ function Home() {
 
   const fetchProfileCards = async () => {
     // const res = await fetch("https://dice-hub.ga/api/profilecards");
-    const res = await fetch("http://localhost:3001/profilecards");
+    const res = await fetch("http://localhost:3001/profilecards").catch(()=>{console.log("Fetch error - Home")});
     const data = await res.json();
     return data;
   }
