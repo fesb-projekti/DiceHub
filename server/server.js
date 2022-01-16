@@ -189,6 +189,10 @@ app.put("/update_profile", (req, res) => {
             case 'password':
                 dataBaseFieldNameArray.push("passw")
                 break;
+            case 'repeatPassword':
+                dataBaseFieldNameArray.push("repeatPassword")
+                //valuesArray.pop()
+                break;
             case 'age':
                 dataBaseFieldNameArray.push("age")
                 break;
@@ -205,10 +209,17 @@ app.put("/update_profile", (req, res) => {
                 break;
         }
     }
-    if (fieldNameArray[2] = "repeatPassword") {                          //removal of repeating password field
-        fieldNameArray.splice(fieldNameArray.indexOf("repeatPassword"), 1)
-        valuesArray.splice(2, 1)
+    for (let i = 0; i < fieldNameArray.length; i++) {
+        if (fieldNameArray[i] == "repeatPassword") {                          //removal of repeating password field
+            //fieldNameArray.splice(fieldNameArray.indexOf("repeatPassword"), 1)
+            //valuesArray.splice(2, 1)
+            //console.log("found", fieldNameArray[i])
+            //console.log("found", valuesArray[i])
+            dataBaseFieldNameArray.splice(i, 1)
+            valuesArray.splice(i, 1)
+        }
     }
+
 
     let que = "UPDATE korisnik SET " //setting up the query request
     let arrLen = dataBaseFieldNameArray.length
@@ -221,10 +232,12 @@ app.put("/update_profile", (req, res) => {
             que = que + dataBaseFieldNameArray[i] + " = ? "
         }
     }
+    console.log(dataBaseFieldNameArray)
+    console.log(valuesArray)
 
     que = que + " WHERE korisnik.ID = 10" //adding user ID that will be updated
     db.query(que, valuesArray, (err, result) => {   //sending the query to the data base
-        res.send(result)
+        //res.send(result)
         console.log(err)
     })
 })
