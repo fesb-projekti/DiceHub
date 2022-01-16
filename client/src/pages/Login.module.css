@@ -1,8 +1,61 @@
 .login{
-    padding-top: 5vh;
     font-family: inherit;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: whitesmoke;
+    height: 100vh;
 }
+
+.loginBox{
+    padding: 5vh;
+    background: linear-gradient(133deg, rgba(255,129,136,0.3) 0%, rgba(255,189,82,0.3) 50%, rgba(255,140,25,0.3) 100%);
+    border: 1px solid rgb(150, 150, 150);
+    border-radius: 10px;
+}
+
+.control {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2vh;
+    justify-content: space-between;
+  }
+  
+  .control label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .control input:focus{
+      border: 1px solid grey;
+      outline: none;
+  }
+  
+  .control input{
+    display: block;
+    font: inherit;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 20vw;
+    height: 25px;
+  }
+
+  .form button {
+    margin-top: 3vh;
+    font: inherit;
+    cursor: pointer;
+    color: white;
+    padding: 0.35rem 1.4rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    background: linear-gradient(to bottom right,rgba(255, 140, 25, 0.8) 0%,rgba(255, 189, 82, 0.8) 28%,rgba(255, 129, 136, 0.8) 100%);
+  }
+  
+  .form button:hover,
+  .form button:active {
+    background: linear-gradient(to bottom right,rgba(255, 140, 25, 1) 0%,rgba(255, 189, 82, 1) 28%,rgba(255, 129, 136, 1) 100%);
+    border-color: #b30e4d;
+  }
