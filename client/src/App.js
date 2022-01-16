@@ -1,8 +1,11 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, NavLink} from "react-router-dom";
 import { useState, useEffect } from "react";
 // Landing page layout and its pages
 import LandingPageLayout from "./layout/LandingPageLayout";
 import LandingPage from "./pages/LandingPage";
+
+//Sign-up and registration
+
 
 // Application layout and its pages
 import MainLayout from "./layout/MainLayout";

@@ -1,0 +1,31 @@
+.containers {
+    background-color: coral;
+    padding: 20px 40px;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 7px -8px 11px -5px rgba(rgb(136, 181, 233));
+}
+
+.Tab{
+    display: flex;
+    justify-content: space-between;
+}
+
+.login, .registration{
+    background-color: rgb(199, 199, 140);
+    width: 50%;
+    font-size: 24px;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.login:hover, .register:hover{
+    text-decoration: none;
+    color: #fff;
+}
+
+.activeLink{
+    color: #fff;
+    background-color: rgb(231, 138, 16);
+}

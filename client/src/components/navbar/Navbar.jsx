@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
+import { format } from 'util';
 import DHLogo from '../../assets/logo.png';
 import './navbar.css';
-import {Link} from 'react-router-dom';
+import Login from "../../pages/Login";
+import Register from "../../pages/Register";
+import welcomeMessage from "../../pages/welcomeMessage";
+import { BrowserRouter as Router, Route, NavLink} from "react-router-dom";
+
+
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
