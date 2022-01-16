@@ -112,10 +112,19 @@ app.get("/profileCards/getNegativeRating", (req, res) => {
 //---------------------------------------------------------
 //---------------------------------------------------------
 
+let inventoryObj = {
+    about: "",
+    gamesOwned: [],
+    favGame: "",
+    looking4: [],
+    giving4trade: []
+}
 
-app.get("/inventory/getAbout", (req, res) => {
+
+
+app.get("/inventory/getAbout_FavGame", (req, res) => {
     const ID = req.body.ID
-    const sqlPut = "SELECT korisnik.about FROM korisnik WHERE korisnik.ID = ?"
+    const sqlPut = "SELECT igre.naziv, korisnik.About as favgame FROM igre JOIN korisnik ON igre.ID=korisnik.favGame WHERE igre.ID = (SELECT korisnik.favGame FROM korisnik WHERE korisnik.ID = 11) AND korisnik.ID = 11"
     db.query(sqlPut, [ID], (err, result) => {
         res.send(result)
     })
@@ -129,14 +138,6 @@ app.get("/inventory/getOwnedGames", (req, res) => {
     })
 })
 
-app.get("/inventory/getFavGame", (req, res) => {
-    const ID = req.body.ID
-    const sqlGet =
-        "SELECT igre.naziv as favgame FROM igre WHERE igre.ID = (SELECT korisnik.favGame FROM korisnik WHERE korisnik.ID = ?)"
-    db.query(sqlGet, [ID], (err, result) => {
-        res.send(result)
-    })
-})
 
 app.get("/inventory/looking4", (req, res) => {
     const ID = req.body.ID
@@ -153,6 +154,14 @@ app.get("/inventory/giving4trade", (req, res) => {
         res.send(result)
     })
 });
+
+app.get("/inventory/getAllGames", (req, res) => {
+    const ID = req.body.ID
+    const getAllGames = "SELECT igre.naziv FROM igre"
+    db.query(getAllGames, [ID], (err, result) => {
+        res.send(result)
+    })
+})
 ////settings
 
 
