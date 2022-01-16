@@ -24,13 +24,13 @@ function Profile() {
 
     const fetchProfile = async () => {
         // const res = await fetch("https://dice-hub.ga/api/profile");
-        const res = await fetch("http://localhost:3001/profile");
+        const res = await fetch("http://localhost:3001/profile").catch(()=>{console.log("Fetch error - Home")});
         const data = await res.json();
         return data;
     }
     const fetchRating = async () => {
         // const res = await fetch("https://dice-hub.ga/api/profile_ratings");
-        const res = await fetch("http://localhost:3001/profile_ratings");
+        const res = await fetch("http://localhost:3001/profile_ratings").catch(()=>{console.log("Fetch error - Profile")});
         const data = await res.json();
         return data;
     }

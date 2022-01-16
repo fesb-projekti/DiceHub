@@ -112,9 +112,9 @@ app.get("/profileCards/getNegativeRating", (req, res) => {
 //---------------------------------------------------------
 //---------------------------------------------------------
 
+
 app.get("/inventory/getAbout", (req, res) => {
     const ID = req.body.ID
-
     const sqlPut = "SELECT korisnik.about FROM korisnik WHERE korisnik.ID = ?"
     db.query(sqlPut, [ID], (err, result) => {
         res.send(result)
@@ -123,7 +123,6 @@ app.get("/inventory/getAbout", (req, res) => {
 
 app.get("/inventory/getOwnedGames", (req, res) => {
     const ID = req.body.ID
-
     const sqlGet = "SELECT igre.naziv FROM igre JOIN inventar ON igre.ID = inventar.igraID JOIN korisnik ON inventar.korisnikID = korisnik.ID WHERE korisnik.ID = ?"
     db.query(sqlGet, [ID], (err, result) => {
         res.send(result)
@@ -132,13 +131,28 @@ app.get("/inventory/getOwnedGames", (req, res) => {
 
 app.get("/inventory/getFavGame", (req, res) => {
     const ID = req.body.ID
-
     const sqlGet =
-        "SELECT igre.naziv as favgame FROM igre WHERE igre.ID = (SELECT korisnik.favGame FROM korisnik WHERE korisnik.ID = 10)"
+        "SELECT igre.naziv as favgame FROM igre WHERE igre.ID = (SELECT korisnik.favGame FROM korisnik WHERE korisnik.ID = ?)"
     db.query(sqlGet, [ID], (err, result) => {
         res.send(result)
     })
 })
+
+app.get("/inventory/looking4", (req, res) => {
+    const ID = req.body.ID
+    const sqlSelect = "SELECT igre.naziv FROM igre JOIN looking4 on igre.ID = looking4.igraWantID WHERE looking4.korisnikID = ?";
+    db.query(sqlSelect, [ID], (err, result) => {
+        res.send(result)
+    })
+});
+
+app.get("/inventory/giving4trade", (req, res) => {
+    const ID = req.body.ID
+    const sqlSelect = " SELECT igre.naziv FROM igre JOIN giving4trade on igre.ID = giving4trade.igraHaveID WHERE giving4trade.korisnikID = ?";
+    db.query(sqlSelect, [ID], (err, result) => {
+        res.send(result)
+    })
+});
 ////settings
 
 
