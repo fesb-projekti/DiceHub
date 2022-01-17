@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/profileCards/profile", (req, res) => {
     const ID = req.body.ID
-    const sqlSelect = "SELECT ime,  prezime,  grad,  about,  2021 - YEAR(datum_rodenja) AS age FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID WHERE korisnik.ID = ? LIMIT 1";
+    const sqlSelect = "SELECT ime,  prezime,  grad,  about, age, grad ,hasLocation  FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID WHERE korisnik.ID = ? LIMIT 1";
     db.query(sqlSelect, [ID], (err, result) => {
         res.send(result)
     })
@@ -49,9 +49,16 @@ app.get("/profileCards/giving4trade", (req, res) => {
     })
 });
 
+app.get("/profileCards/looking4", (req, res) => {
+    const ID = req.body.ID
+    const sqlSelect = "SELECT igre.naziv FROM igre JOIN looking4 on igre.ID = looking4.igraWantID WHERE looking4.korisnikID = ?";
+    db.query(sqlSelect, [ID], (err, result) => {
+        res.send(result)
+    })
+});
+
 app.get("/profileCards/getFavGame", (req, res) => {
     const ID = req.body.ID
-
     const sqlGet =
         "SELECT igre.naziv FROM igre WHERE igre.ID = (SELECT korisnik.favGame FROM korisnik WHERE korisnik.ID = ?)"
     db.query(sqlGet, [ID], (err, result) => {
@@ -61,7 +68,6 @@ app.get("/profileCards/getFavGame", (req, res) => {
 
 app.get("/profileCards/getFavGenre", (req, res) => {
     const ID = req.body.ID
-
     const sqlGet =
         "SELECT kategorija.naziv FROM kategorija WHERE kategorija.ID = (SELECT korisnik.favGenre FROM korisnik WHERE korisnik.ID = ?)"
     db.query(sqlGet, [ID], (err, result) => {
@@ -71,19 +77,10 @@ app.get("/profileCards/getFavGenre", (req, res) => {
 
 
 
-app.get("/profileCards/looking4", (req, res) => {
-    const ID = req.body.ID
-    const sqlSelect = "SELECT igre.naziv FROM igre JOIN looking4 on igre.ID = looking4.igraWantID WHERE looking4.korisnikID = ?";
-    db.query(sqlSelect, [ID], (err, result) => {
-        res.send(result)
-    })
-});
-
 app.post("/profileCards/vote", (req, res) => {
     const voterID = req.body.voterID
     const ratedUserID = req.body.ratedUserID
     const vote = req.body.vote
-
     const sqlInsert = "INSERT INTO ratings (voterID,ratedUserID,vote) VALUES(?,?,?)"
     db.query(sqlInsert, [voterID, ratedUserID, vote], (err, result) => {
         res.send(result)
@@ -92,7 +89,6 @@ app.post("/profileCards/vote", (req, res) => {
 
 app.get("/profileCards/getPositiveRating", (req, res) => {
     const ID = req.body.ID
-
     const sqlPut = "SELECT COUNT(vote) AS Broj FROM ratings WHERE vote = 'positive' AND ratedUserID = ?"
     db.query(sqlPut, [ID], (err, result) => {
         res.send(result)
@@ -101,7 +97,6 @@ app.get("/profileCards/getPositiveRating", (req, res) => {
 
 app.get("/profileCards/getNegativeRating", (req, res) => {
     const ID = req.body.ID
-
     const sqlPut = "SELECT COUNT(vote) AS Broj FROM ratings WHERE vote = 'negative' AND ratedUserID = ?"
     db.query(sqlPut, [ID], (err, result) => {
         res.send(result)
@@ -191,7 +186,6 @@ app.put("/update_profile", (req, res) => {
                 break;
             case 'repeatPassword':
                 dataBaseFieldNameArray.push("repeatPassword")
-                //valuesArray.pop()
                 break;
             case 'age':
                 dataBaseFieldNameArray.push("age")
@@ -211,10 +205,6 @@ app.put("/update_profile", (req, res) => {
     }
     for (let i = 0; i < fieldNameArray.length; i++) {
         if (fieldNameArray[i] == "repeatPassword") {                          //removal of repeating password field
-            //fieldNameArray.splice(fieldNameArray.indexOf("repeatPassword"), 1)
-            //valuesArray.splice(2, 1)
-            //console.log("found", fieldNameArray[i])
-            //console.log("found", valuesArray[i])
             dataBaseFieldNameArray.splice(i, 1)
             valuesArray.splice(i, 1)
         }
@@ -237,7 +227,7 @@ app.put("/update_profile", (req, res) => {
 
     que = que + " WHERE korisnik.ID = 10" //adding user ID that will be updated
     db.query(que, valuesArray, (err, result) => {   //sending the query to the data base
-        //res.send(result)
+        res.send(result)
         console.log(err)
     })
 })
