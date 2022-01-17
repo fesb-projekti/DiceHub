@@ -123,7 +123,7 @@ export default class Register extends Component {
                         <p className="text-white">{this.state.msg}</p>
                         <button 
                             color="success"
-                            onClic={this.onSubmitHandler} >
+                            onClick={this.onSubmitHandler} >
                             Register
                             {isLoading ? (
                                 <span className="spinner-border spinner-border-sm"
