@@ -22,6 +22,9 @@
     "util": "^0.12.4",
     "web-vitals": "^1.1.2"
   },
+
+  "proxy":"http://localhost:3001",
+
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -35,6 +38,7 @@
       "react-app/jest"
     ]
   },
+ 
   "browserslist": {
     "production": [
       ">0.2%",

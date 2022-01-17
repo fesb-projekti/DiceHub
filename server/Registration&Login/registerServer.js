@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const bodyParser = require("body-parser")
+const cors = require('cors');
+
+
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -16,6 +19,8 @@ db.connect((err) => {
     }
     console.log("Connected to the database!");
 })
+
+app.use(cors());
  
 app.get('/register', (req, res) => {      
     const username = req.body      //username   

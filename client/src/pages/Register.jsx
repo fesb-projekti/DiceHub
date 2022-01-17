@@ -4,65 +4,83 @@ import classes from "./Register.module.css";
 import { Link } from "react-router-dom";
 
 export default class Register extends Component {
-    //uzmi podatke od korisnika i spremi ih u definirane varijable
-    userData;
-    constructor(props) {
-        super(props);
+    
+    constructor(){
+        super();
+
         this.state = {
-            registerData: {
-                firstName: "",
-                lastName: "",
-                userName: "",
-                email: "",
-                location: "",
-                password: "",
-                isLoading: "",
-            },
-            msg: "",
-        };
+            firstName: '',
+            lastName: '',
+            userName: '',
+            email: '',
+            location: '',
+            password: '',
+            dateOfBirth: '',
+        }
+
+        this.email = this.email.bind(this);
+        this.password = this.password.bind(this);
+        this.firstName = this.firstName.bind(this);
+        this.lastName = this.lastName.bind(this);
+        this.userName = this.userName.bind(this);
+        this.location = this.location.bind(this);
+        this.dateOfBirth = this.dateOfBirth.bind(this);
     }
 
-    onChangeHandler = (e, key) => {
-        const { registerData } = this.state;
-        registerData[e.target.name] = e.target.value;
-        this.setState({ registerData });
-    };
+    email(event){
+        this.setState({email: event.target.value})
+    }
 
-    //oSH salje podatke preko APIja backendu
-    onSubmitHandler = (e) => {
-        e.preventDefault();
-        this.setState({ isLoading: true });
-        axios
-            .post("http://localhost:3001/api/user-registration", this.state.registerData)
-            .then((response) => {
-                this.setState({ isLoading: false });
-                //ukoliko je poziv = 200, to znaci da su uspjesno poslani podaci na backend
-                if (response.data.status === 200) {
-                    this.setState({
-                        msg: response.data.message,
-                        registerData: {
-                            firstName: "",
-                            lastName: "",
-                            userName: "",
-                            email: "",
-                            location: "",
-                            password: "",
+    password(event){
+        this.setState({password: event.target.value})
+    }
 
-                        },
-                    });
-                    setTimeout(() => {
-                        this.setState({ msg: "" });
-                    }, 2000);
-                }
+    firstName(event){
+        this.setState({firstName: event.target.value})
+    }
 
-                if (response.data.status === "failed") {
-                    this.setState({ msg: response.data.message });
-                    setTimeout(() => {
-                        this.setState({ msg: "" });
-                    }, 2000);
-                }
-            });
-    };
+    lastName(event){
+        this.setState({lastName: event.target.value})
+    }
+
+    userName(event){
+        this.setState({userName: event.target.value})
+    }
+
+    location(event){
+        this.setState({location: event.target.value})
+    }
+
+    dateOfBirth(event){
+        this.setState({dateOfBirth: event.target.value})
+    }
+
+    register(event){
+
+        fetch('http://localhost:3001/user-registration', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json', 
+                'Content-Type': 'application/json',
+            }, 
+            body: JSON.stringify({
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                userName: this.state.userName,
+                password: this.state.password,
+                location: this.state.location,
+                email: this.state.email,
+                dateOfBirth: this.state.dateOfBirth,
+            })
+        }).then((Response) => Response.json())
+            .then((Result) => {
+                if (Result.Status == 'Success')
+                    this.props.histoy.push("/profile");
+                    else
+                    alert("You are not authenticated!")
+            })
+    }
+
 
     render() {
         const isLoading = this.state.isLoading;
@@ -77,54 +95,55 @@ export default class Register extends Component {
                             type="name"
                             name="firstName"
                             placeholder="Enter your name"
-                            value={this.state.registerData.firstName}
-                            onChange={this.onChangeHandler}
+                            onChange={this.firstName}
                         />
                         <label for="lastName">Surname</label>
                         <input
                             type="name"
                             name="lastName"
                             placeholder="Enter your surname"
-                            value={this.state.registerData.lastName}
-                            onChange={this.onChangeHandler}
+                            onChange={this.lastName}
                         />
                         <label for="email">Email</label>
                         <input
                             type="email"
                             name="email"
                             placeholder="Enter your email"
-                            value={this.state.registerData.eMail}
-                            onChange={this.onChangeHandler}
+                            onChange={this.email}
                         />
                         <label for="userName">User name</label>
                         <input
                             type="name"
                             name="userName"
                             placeholder="Enter your user name"
-                            value={this.state.registerData.userName}
-                            onChange={this.onChangeHandler}
+                            onChange={this.userName}
                         />
                         <label for="location">Location</label>
                         <input
                             type="location"
                             name="location"
                             placeholder="Enter your location"
-                            value={this.state.registerData.location}
-                            onChange={this.onChangeHandler}
+                            onChange={this.location}
+                        />
+                        <label for="dateOfBirth">Date of birth</label>
+                        <input
+                            type="date"
+                            name="dateOfBirth"
+                            placeholder="Enter your date of birth"
+                            onChange={this.location}
                         />
                         <label for="password">Password</label>
                         <input
                             type="password"
                             name="password"
                             placeholder="Enter your password"
-                            value={this.state.registerData.password}
-                            onChange={this.onChangeHandler}
+                            onChange={this.password}
                         />
                         <p className="text-white">{this.state.msg}</p>
                         <button 
                             color="success"
-                            onClick={this.onSubmitHandler} >
-                            Register
+                            onClick={this.register} >
+                            Create account
                             {isLoading ? (
                                 <span className="spinner-border spinner-border-sm"
                                     role="status"
