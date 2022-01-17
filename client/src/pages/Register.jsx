@@ -13,7 +13,7 @@ export default class Register extends Component {
                 firstName: "",
                 lastName: "",
                 userName: "",
-                eMail: "",
+                email: "",
                 location: "",
                 password: "",
                 isLoading: "",
@@ -44,7 +44,7 @@ export default class Register extends Component {
                             firstName: "",
                             lastName: "",
                             userName: "",
-                            eMail: "",
+                            email: "",
                             location: "",
                             password: "",
 
@@ -68,72 +68,75 @@ export default class Register extends Component {
         const isLoading = this.state.isLoading;
 
         return (
-            <div>
-                <form className="containers shadow">
-                    <label for="firstName">Name</label>
-                    <input
-                        type="name"
-                        name="firstName"
-                        placeholder="Enter your name"
-                        value={this.state.registerData.firstName}
-                        onChange={this.onChangeHandler}
-                    />
-                    <label for="surname">Surname</label>
-                    <input
-                        type="name"
-                        name="surname"
-                        placeholder="Enter your surname"
-                        value={this.state.registerData.lastName}
-                        onChange={this.onChangeHandler}
-                    />
-                    <label for="email">Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Enter your email"
-                        value={this.state.registerData.eMail}
-                        onChange={this.onChangeHandler}
-                    />
-                    <label for="userName">User name</label>
-                    <input
-                        type="name"
-                        name="userName"
-                        placeholder="Enter your user name"
-                        value={this.state.registerData.userName}
-                        onChange={this.onChangeHandler}
-                    />
-                    <label for="location">Location</label>
-                    <input
-                        type="location"
-                        name="location"
-                        placeholder="Enter your location"
-                        value={this.state.registerData.location}
-                        onChange={this.onChangeHandler}
-                    />
-                    <label for="password">Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Enter your location"
-                        value={this.state.registerData.password}
-                        onChange={this.onChangeHandler}
-                    />
-                    <p className="text-white">{this.state.msg}</p>
-                    <button className="text-center mb-4"
-                        color="success"
-                        onClic={this.onSubmitHandler} >
-                        Register
-                        {isLoading ? (
-                            <span className="spinner-border spinner-border-sm"
-                                role="status"
-                                aria-hidden="true"
-                            ></span>
-                        ) : (
-                            <span></span>
-                        )}
-                    </button>
-                    <Link to="/login" className="text-white ml-5">Already member</Link>
-                </form>
+            <div className={classes.register}>
+                <div className={classes.registerBox}>
+                        <h3>DiceHub Register</h3>
+                    <form className={classes.container}>
+                        <label for="firstName">Name</label>
+                        <input
+                            type="name"
+                            name="firstName"
+                            placeholder="Enter your name"
+                            value={this.state.registerData.firstName}
+                            onChange={this.onChangeHandler}
+                        />
+                        <label for="lastName">Surname</label>
+                        <input
+                            type="name"
+                            name="lastName"
+                            placeholder="Enter your surname"
+                            value={this.state.registerData.lastName}
+                            onChange={this.onChangeHandler}
+                        />
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            value={this.state.registerData.eMail}
+                            onChange={this.onChangeHandler}
+                        />
+                        <label for="userName">User name</label>
+                        <input
+                            type="name"
+                            name="userName"
+                            placeholder="Enter your user name"
+                            value={this.state.registerData.userName}
+                            onChange={this.onChangeHandler}
+                        />
+                        <label for="location">Location</label>
+                        <input
+                            type="location"
+                            name="location"
+                            placeholder="Enter your location"
+                            value={this.state.registerData.location}
+                            onChange={this.onChangeHandler}
+                        />
+                        <label for="password">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Enter your location"
+                            value={this.state.registerData.password}
+                            onChange={this.onChangeHandler}
+                        />
+                        <p className="text-white">{this.state.msg}</p>
+                        <button 
+                            color="success"
+                            onClic={this.onSubmitHandler} >
+                            Register
+                            {isLoading ? (
+                                <span className="spinner-border spinner-border-sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                ></span>
+                            ) : (
+                                <span></span>
+                            )}
+                        </button>
+                        <button><Link to="/login" className="text-white ml-5">Already member</Link></button>
+                    </form>
+                </div>
             </div>
         );
 
