@@ -116,7 +116,7 @@ export default class Register extends Component {
                         <input
                             type="password"
                             name="password"
-                            placeholder="Enter your location"
+                            placeholder="Enter your password"
                             value={this.state.registerData.password}
                             onChange={this.onChangeHandler}
                         />
