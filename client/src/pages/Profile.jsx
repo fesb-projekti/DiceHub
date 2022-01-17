@@ -24,13 +24,13 @@ function Profile() {
 
     const fetchProfile = async () => {
         // const res = await fetch("https://dice-hub.ga/api/profile");
-        const res = await fetch("http://localhost:3001/profile").catch(()=>{console.log("Fetch error - Home")});
+        const res = await fetch("http://localhost:3001/profile").catch(() => { console.log("Fetch error - Home") });
         const data = await res.json();
         return data;
     }
     const fetchRating = async () => {
         // const res = await fetch("https://dice-hub.ga/api/profile_ratings");
-        const res = await fetch("http://localhost:3001/profile_ratings").catch(()=>{console.log("Fetch error - Profile")});
+        const res = await fetch("http://localhost:3001/profile_ratings").catch(() => { console.log("Fetch error - Profile") });
         const data = await res.json();
         return data;
     }
@@ -97,7 +97,7 @@ function Profile() {
             <div className={classes.profileHeader}>
                 <img src={profile.avatar} alt="IMG" />
                 <div className={classes.rating}>
-                    <h3>Ratings</h3>
+                    <h3 className={classes.username}>{profile.name} {profile.surname}</h3>
                     <div className={classes.infoRow}>
                         <span className={classes.infoDesc}>Positive ratings: </span>
                         <span className={classes.infoData}>{profile.positive_ratings}</span>
@@ -116,7 +116,6 @@ function Profile() {
                 <div className={classes.spacer}>
                     <h3>Personal information</h3>
                 </div>
-                <span className={classes.username}>{profile.name} {profile.surname}</span>
                 <div className={classes.infoRow}>
                     <span className={classes.infoDesc}>Age: </span>
                     <span className={classes.infoData}>{profile.age}</span>
