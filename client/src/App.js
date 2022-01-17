@@ -1,13 +1,11 @@
-import { Routes, Route, NavLink} from "react-router-dom";
+import { Routes, Route, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 // Landing page layout and its pages
 import LandingPageLayout from "./layout/LandingPageLayout";
 import LandingPage from "./pages/LandingPage";
-
 //Sign-up and registration
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-
 // Application layout and its pages
 import MainLayout from "./layout/MainLayout";
 import Home from "./pages/Home"
@@ -17,13 +15,14 @@ import Inventory from "./pages/Inventory";
 import InventoryEdit from "./pages/InventoryEdit";
 import Settings from "./pages/Settings";
 import About from "./pages/About";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
 
   const [isAuthorized, setAuthorize] = useState(false); // Authorization state, default is false
 
   useEffect(() => {
-    setAuthorize(false); // Change to false to view landing page, for development only
+    setAuthorize(true); // Change to false to view landing page, for development only
   }, []);
 
   // Change this to true or false if you want to render the LandingPage or the Application untill
@@ -47,6 +46,7 @@ function App() {
           <Route path="/inventory_edit" element={<InventoryEdit />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </MainLayout>)
   }
@@ -58,6 +58,7 @@ function App() {
           <Route path="/" exact={true} element={<LandingPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </LandingPageLayout>)
   }
