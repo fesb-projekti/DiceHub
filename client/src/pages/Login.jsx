@@ -24,7 +24,7 @@ function Login() {
     return (
         <div className={classes.login}>
             <div className={classes.loginBox}>
-                <h2>DiceHub login form</h2>
+                <h2>DiceHub Login</h2>
                 <form className={classes.form} onSubmit={onSubmit}>
                     <div className={classes.control}>
                         <label htmlFor="username">Username</label>
