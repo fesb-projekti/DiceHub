@@ -27,7 +27,7 @@ function Home() {
   }, [])
 
   const fetchProfileCards = async () => {
-    // const res = await fetch("https://dice-hub.ga/api/profilecards");
+    // const res = await fetch("https://dice-hub.ga/api/profileCards");
     const res = await fetch("http://localhost:3001/profilecards").catch(()=>{console.log("Fetch error - Home")});
     const data = await res.json();
     return data;
@@ -70,8 +70,7 @@ function Home() {
   }
 
   function swipeUp(id) {
-    // navigate("/chat/" + id);
-    navigate("/chat");
+    navigate("/chat/" + id);
   }
 
   function swipeDown(id) {
