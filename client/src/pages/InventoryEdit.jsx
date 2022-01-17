@@ -1,13 +1,29 @@
 import { useState } from "react";
 import classes from "./InventoryEdit.module.css";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 function InventoryEdit() {
   const [enteredDescription, setEnteredDescription] = useState("");
-  const [enteredGames, setEnteredGames] = useState("");
+  const [enteredGames, setEnteredGames] = useState([]);
   const [enteredFavorite, setEnteredFavorite] = useState("");
-  const [enteredTrading, setEnteredTrading] = useState("");
+  const [enteredTrading, setEnteredTrading] = useState([]);
   const [enteredLookingFor, setEnteredLookingFor] = useState("");
+  const [allGames, setAllGames] = useState([]);
+
+  useEffect(() => {
+    const getAllGames = async () => {
+      const allGamesFromServer = await fetchAllGames();
+      setAllGames(allGamesFromServer);
+    };
+    getAllGames();
+  });
+
+  const fetchAllGames = async () => {
+    const res = await fetch("http://localhost:3001/inventory_edit/getAllGames");
+    const data = await res.json();
+    return data;
+  };
 
   const descChangeHandler = (event) => {
     setEnteredDescription(event.target.value);
@@ -32,15 +48,10 @@ function InventoryEdit() {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    const gamesData = {
-      description: enteredDescription,
-      games: enteredGames,
-      favorite: enteredFavorite,
-      trading: enteredTrading,
-      lookingFor: enteredLookingFor,
+    const aboutFav = {
+      about: enteredDescription,
+      fav: enteredFavorite,
     };
-
-    console.log(gamesData);
   };
 
   return (

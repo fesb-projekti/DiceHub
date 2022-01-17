@@ -1,10 +1,6 @@
 .inventory {
   font-family: inherit;
   height: 94vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background: rgb(255, 129, 136);
   background: linear-gradient(
     133deg,
@@ -14,8 +10,18 @@
   );
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.inventory img {
+  width: 100%;
+}
+
 .inventoryDiv {
-  padding-top: 10vh;
   padding: 4%;
 }
 
@@ -54,4 +60,24 @@
 .link {
   text-decoration: none;
   color: white;
+}
+
+.spacer {
+  position: relative;
+  top: -0.5vh;
+  padding-bottom: 1vh;
+  width: 100%;
+  height: 4vh;
+  background: rgb(255, 140, 25);
+  background: linear-gradient(
+    133deg,
+    rgba(255, 140, 25, 0.4) 0%,
+    rgba(255, 189, 82, 0.4) 28%,
+    rgba(255, 129, 136, 0.4) 100%
+  );
+}
+
+.spacer h3 {
+  margin: 0;
+  text-align: center;
 }
