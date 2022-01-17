@@ -5,7 +5,8 @@ import LandingPageLayout from "./layout/LandingPageLayout";
 import LandingPage from "./pages/LandingPage";
 
 //Sign-up and registration
-
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 // Application layout and its pages
 import MainLayout from "./layout/MainLayout";
@@ -22,7 +23,7 @@ function App() {
   const [isAuthorized, setAuthorize] = useState(false); // Authorization state, default is false
 
   useEffect(() => {
-    setAuthorize(true); // Change to false to view landing page, for development only
+    setAuthorize(false); // Change to false to view landing page, for development only
   }, []);
 
   // Change this to true or false if you want to render the LandingPage or the Application untill
@@ -55,7 +56,8 @@ function App() {
       <LandingPageLayout>
         <Routes>
           <Route path="/" exact={true} element={<LandingPage />} />
-          
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </LandingPageLayout>)
   }
