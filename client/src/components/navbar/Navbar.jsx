@@ -3,12 +3,8 @@ import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import { format } from 'util';
 import DHLogo from '../../assets/logo.png';
 import './navbar.css';
-import Login from "../../pages/Login";
-import Register from "../../pages/Register";
-import welcomeMessage from "../../pages/welcomeMessage";
-import { BrowserRouter as Router, Route, NavLink} from "react-router-dom";
-
-
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -26,25 +22,25 @@ const Navbar = () => {
         </div>
       </div>
       <div className="gpt3__navbar-sign">
-      <button type="button">Sign In</button><p/>
-        <button type="button">Sign up</button>
+        <button type="button"><Link to="/login">Sign In</Link></button><p />
+        <button type="button"><Link to="register">Sign up</Link></button>
       </div>
       <div className="gpt3__navbar-menu">
         {toggleMenu
           ? <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />
           : <RiMenu3Line color="#fff" size={27} onClick={() => setToggleMenu(true)} />}
         {toggleMenu && (
-        <div className="gpt3__navbar-menu_container scale-up-center">
-          <div className="gpt3__navbar-menu_container-links">
-            <p><a href="#home">Home</a></p>
-            <p><a href="#dicehub">DiceHub?</a></p>
-            <p><a href="#possibility">Our Aim</a></p>
+          <div className="gpt3__navbar-menu_container scale-up-center">
+            <div className="gpt3__navbar-menu_container-links">
+              <p><a href="#home">Home</a></p>
+              <p><a href="#dicehub">DiceHub?</a></p>
+              <p><a href="#possibility">Our Aim</a></p>
+            </div>
+            <div className="gpt3__navbar-menu_container-links-sign">
+              <button type="button"><Link to="/login">Sign In</Link></button><p />
+              <button type="button"><Link to="register">Sign up</Link></button>
+            </div>
           </div>
-          <div className="gpt3__navbar-menu_container-links-sign">
-          <button type="button">Sign In</button><p/>
-          <button type="button">Sign up</button>            
-          </div>
-        </div>
         )}
       </div>
     </div>
