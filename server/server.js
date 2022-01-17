@@ -25,13 +25,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //---------------------------------------------------------
 
 app.get("/profileCards/profile", (req, res) => {
-    const ID = req.body.ID
-    const sqlSelect = "SELECT ime,  prezime,  grad,  about, age, grad ,hasLocation  FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID WHERE korisnik.ID = ? LIMIT 1";
+    const ID = req.body.username
+    const sqlSelect = "SELECT ime,  prezime,  grad,  about, age, grad ,hasLocation  FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID WHERE korisnik.username = ? LIMIT 1";
     db.query(sqlSelect, [ID], (err, result) => {
         res.send(result)
     })
 });
 
+app.get("/profileCards/allProfile", (req, res) => {
+    const ID = req.body.ID
+    const sqlSelect = "SELECT ime, prezime, username, hasLocation, COUNT(inventar.igraID) AS brojigara, kategorija.naziv AS FavKat FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID LEFT JOIN kategorija ON korisnik.favGenre = kategorija.ID WHERE korisnik.favGenre = ALL (SELECT DISTINCT kategorija.ID FROM kategorija WHERE kategorija.ID = korisnik.favGenre) GROUP BY korisnik.ID";
+    db.query(sqlSelect, [ID], (err, result) => {
+        console.log(result)
+        res.send(result)
+    })
+});
 
 app.get("/profileCards/gamesOwned", (req, res) => {
     const ID = req.body.ID
@@ -65,16 +73,6 @@ app.get("/profileCards/getFavGame", (req, res) => {
         res.send(result)
     })
 })
-
-app.get("/profileCards/getFavGenre", (req, res) => {
-    const ID = req.body.ID
-    const sqlGet =
-        "SELECT kategorija.naziv FROM kategorija WHERE kategorija.ID = (SELECT korisnik.favGenre FROM korisnik WHERE korisnik.ID = ?)"
-    db.query(sqlGet, [ID], (err, result) => {
-        res.send(result)
-    })
-})
-
 
 
 app.post("/profileCards/vote", (req, res) => {
