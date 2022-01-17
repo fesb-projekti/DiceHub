@@ -42,7 +42,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/profile/:id" element={<Profile />} />
-          <Route path="/inventory/:id" element={<Inventory />} />
+          <Route path="/inventory" element={<Inventory />} />
           <Route path="/inventory_edit" element={<InventoryEdit />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/about" element={<About />} />

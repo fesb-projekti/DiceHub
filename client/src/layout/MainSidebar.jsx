@@ -8,7 +8,7 @@ function MainSidebar({ active }) {
             <div className={classes.sidebar}>
                 <span><Link to="/chat">Chat</Link></span>
                 <span><Link to="/profile/:id">Profile</Link></span>
-                <span><Link to="/inventory/:id">Inventory</Link></span>
+                <span><Link to="/inventory">Inventory</Link></span>
                 <span><Link to="/settings">Settings</Link></span>
                 <span><Link to="/about">About</Link></span>
                 <div className={classes.logout}>
