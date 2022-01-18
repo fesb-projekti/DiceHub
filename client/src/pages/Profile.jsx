@@ -1,10 +1,12 @@
 import classes from "./Profile.module.css";
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 function Profile() {
 
     const [profile, setProfile] = useState({});
     const [canRate, setCanRate] = useState("false");
+    let { username } = useParams();
     let ratings = {};
 
     useEffect(() => {
@@ -16,15 +18,15 @@ function Profile() {
             const ratingFromServer = await fetchRating();
             setCanRate(ratingFromServer.canRate);
             ratings = ratingFromServer;
-            console.log("rating: " + ratingFromServer.canRate);
         }
         getProfile();
         getRating();
     }, [])
-
     const fetchProfile = async () => {
-        // const res = await fetch("https://dice-hub.ga/api/profile");
-        const res = await fetch("http://localhost:3001/profile").catch(() => { console.log("Fetch error - Home") });
+        if (username === undefined || "" || null)
+            username = "dane"; // Set username from context (authorized user)
+        console.log(username);
+        const res = await fetch("https://dice-hub.ga/api/profileCards/profile/" + username).catch(() => { console.log("Fetch error - Home") });
         const data = await res.json();
         return data;
     }
@@ -97,18 +99,18 @@ function Profile() {
             <div className={classes.profileHeader}>
                 <img src={profile.avatar} alt="IMG" />
                 <div className={classes.rating}>
-                    <h3 className={classes.username}>{profile.name} {profile.surname}</h3>
+                    <h3 className={classes.username}>{profile[0]?.ime} {profile[0]?.prezime}</h3>
                     <div className={classes.infoRow}>
                         <span className={classes.infoDesc}>Positive ratings: </span>
-                        <span className={classes.infoData}>{profile.positive_ratings}</span>
+                        <span className={classes.infoData}>{profile[0]?.positive_ratings}</span>
                     </div>
                     <div className={classes.infoRow}>
                         <span className={classes.infoDesc}>Negative ratings: </span>
-                        <span className={classes.infoData}>{profile.negative_ratings}</span>
+                        <span className={classes.infoData}>{profile[0]?.negative_ratings}</span>
                     </div>
                     <div className={classes.infoRow}>
                         <span className={classes.infoDesc}>Times matched: </span>
-                        <span className={classes.infoData}>{profile.times_matched}</span>
+                        <span className={classes.infoData}>{profile[0]?.times_matched}</span>
                     </div>
                 </div>
             </div>
@@ -118,27 +120,27 @@ function Profile() {
                 </div>
                 <div className={classes.infoRow}>
                     <span className={classes.infoDesc}>Age: </span>
-                    <span className={classes.infoData}>{profile.age}</span>
+                    <span className={classes.infoData}>{profile[0]?.age}</span>
                 </div>
                 <div className={classes.infoRow}>
                     <span className={classes.infoDesc}>Location: </span>
-                    <span className={classes.infoData}>{profile.location}</span>
+                    <span className={classes.infoData}>{profile[0]?.grad}</span>
                 </div>
                 <div className={classes.infoRow}>
                     <span className={classes.infoDesc}>Favorite game: </span>
-                    <span className={classes.infoData}>{profile.favorite_game}</span>
+                    <span className={classes.infoData}>{profile[0]?.favorite_game}</span>
                 </div>
                 <div className={classes.infoRow}>
                     <span className={classes.infoDesc}>Favorite genre: </span>
-                    <span className={classes.infoData}>{profile.favorite_genre}</span>
+                    <span className={classes.infoData}>{profile[0]?.favorite_genre}</span>
                 </div>
                 <div className={classes.infoRow}>
                     <span className={classes.infoDesc}>Location to play: </span>
-                    <span className={classes.infoData}>{profile.has_location}</span>
+                    <span className={classes.infoData}>{profile[0]?.has_location}</span>
                 </div>
                 <div className={classes.infoRow}>
                     <span className={classes.infoDesc}>About myself: </span>
-                    <span className={classes.infoData}>{profile.about}</span>
+                    <span className={classes.infoData}>{profile[0]?.about}</span>
                 </div>
             </div>
             <div className={classes.library}>
@@ -147,15 +149,15 @@ function Profile() {
                 </div>
                 <div className={classes.infoRow}>
                     <span className={classes.infoDesc}>Looking for: </span>
-                    <span className={classes.infoData}>{profile.looking_for}</span>
+                    <span className={classes.infoData}>{profile[0]?.looking_for}</span>
                 </div>
                 <div className={classes.infoRow}>
                     <span className={classes.infoDesc}>Trading: </span>
-                    <span className={classes.infoData}>{profile.trading_titles}</span>
+                    <span className={classes.infoData}>{profile[0]?.trading_titles}</span>
                 </div>
                 <div className={classes.infoRow}>
                     <span className={classes.infoDesc}>Games owned: </span>
-                    <span className={classes.infoData}>{profile.games_owned}</span>
+                    <span className={classes.infoData}>{profile[0]?.games_owned}</span>
                 </div>
             </div>
             <div className={classes.rate}>
