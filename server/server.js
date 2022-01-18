@@ -239,7 +239,7 @@ app.put("/update_profile", (req, res) => {
 app.get('/login', (req, res) => {
     const username = req.body.username        //username  
     const password = req.body.passw
-    const sqlSelect = "SELECT username, IF(username = ? AND passw = ?, true,false ) as test FROM korisnik";
+    const sqlSelect = "SELECT username, IF(username = ? AND passw = ?, true,false ) as loginReturnVal FROM korisnik";
     db.query(sqlSelect, [username, password], (err, result) => {
         res.send(result)
     })
