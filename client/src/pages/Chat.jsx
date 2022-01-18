@@ -2,7 +2,7 @@ import axios from "axios";
 import React, {useContext, useEffect, useState, useRef} from "react";
 import "./Chat.module.css";
 import Conversation from "./chatcomponents/conversation/Conversation";
-import chatOnline from "./chatcomponents/chatOnline/chatOnline";
+import ChatOnline from "./chatcomponents/chatOnline/chatOnline";
 import {AuthContext} from "./chatcomponents/context/AuthContext";
 import Message from "./chatcomponents/message/Message";
 import {io} from "socket.io-client";
@@ -39,7 +39,7 @@ export default function Chat(){
    useEffect(() => {
        socket.current.emit("addUser", user._id);
        socket.current.on("getUsers", users=>{
-        setOnlineUsers(users);
+        setOnlineUsers(users.followings.filter(f=>users.some(u=>u.userId === f)));
        })
    }, [user])
 
@@ -141,7 +141,7 @@ export default function Chat(){
             </div>
             <div className="chatOnline">
                 <div className="chatOnlineWrapper">
-                    <chatOnline onlineUsers = {onlineUsers} currentId = {user._id} setCurrentChat={setCurrentChat}/>
+                    <ChatOnline onlineUsers = {onlineUsers} currentId = {user._id} setCurrentChat={setCurrentChat}/>
                 </div>
             </div>
         </div>
