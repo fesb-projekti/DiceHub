@@ -22,7 +22,6 @@ function App() {
   const [isAuthorized, setAuthorize] = useState(false); // Authorization state, default is false
   
   const session = localStorage.getItem("username");
-  console.log(session);
   useEffect(() => {
     if (session != undefined)
     setAuthorize(true);
