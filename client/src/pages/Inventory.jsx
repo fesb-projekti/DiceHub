@@ -1,15 +1,13 @@
 import classes from "./Inventory.module.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
-
+import { useState, useEffect } from "react";
 import image from "./assets/boardgames.png";
 
 function Inventory() {
   const [aboutFav, setAboutFav] = useState({});
-  const [ownedGames, setOwnedGames] = useState("");
-  const [lookingFor, setLookingFor] = useState("");
-  const [trading, setTrading] = useState("");
+  const [ownedGames, setOwnedGames] = useState({});
+  const [lookingFor, setLookingFor] = useState({});
+  const [trading, setTrading] = useState({});
 
   useEffect(() => {
     const getAboutFav = async () => {
@@ -28,7 +26,6 @@ function Inventory() {
       const tradingFromServer = await fetchTrading();
       setTrading(tradingFromServer);
     };
-
     getAboutFav();
     getOwnedGames();
     getLookingFor();
@@ -65,31 +62,29 @@ function Inventory() {
       <div className={classes.container}>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Player description: </span>
-          <span>{aboutFav.about}</span>
+          <span>{aboutFav?.about}</span>
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Looking for: </span>
-          <span>{lookingFor}</span>
+          <span>{lookingFor?.titles}</span>
         </div>
         <div className={classes.spacer}>
           <h3>Games</h3>
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Games owned: </span>
-          <span>{ownedGames}</span>
+          <span>{ownedGames?.titles}</span>
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Favorite game: </span>
-          <span>{aboutFav.fav}</span>
+          <span>{aboutFav?.favorite}</span>
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Trading: </span>
-          <span>{trading}</span>
+          <span>{trading?.titles}</span>
         </div>
         <button>
-          <Link to="../inventory_edit" className={classes.link}>
-            Edit
-          </Link>
+          <Link to="../inventory_edit" className={classes.link}>Edit</Link>
         </button>
       </div>
     </div>

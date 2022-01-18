@@ -105,7 +105,7 @@ function InventoryEdit() {
         </div>
         <div className={classes.actions}>
           <input type="submit" value="Save" className={classes.submitBtn} />
-          <Link to="/inventory/:id" className={classes.cancel}>
+          <Link to="/inventory" className={classes.cancel}>
             Cancel
           </Link>
         </div>
