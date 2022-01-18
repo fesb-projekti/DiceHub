@@ -21,10 +21,6 @@ function App() {
 
   const [isAuthorized, setAuthorize] = useState(false); // Authorization state, default is false
 
-  useEffect(() => {
-    setAuthorize(true); // Change to false to view landing page, for development only
-  }, []);
-
   // Change this to true or false if you want to render the LandingPage or the Application untill
   // proper login with accounts is implemented
 
@@ -36,7 +32,7 @@ function App() {
   if (isAuthorized) {
     // If the client is authorized show him the application so he can use it fully
     return (
-      <MainLayout>
+      <MainLayout logout={setAuthorize}>
         <Routes>
           <Route path="/" exact={true} element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -61,7 +57,7 @@ function App() {
         <Routes>
           <Route path="/" exact={true} element={<LandingPage />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login login={setAuthorize} />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </LandingPageLayout>)
