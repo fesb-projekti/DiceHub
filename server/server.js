@@ -236,10 +236,10 @@ app.put("/update_profile", (req, res) => {
 //LOGIN--------------------------------------------------------
 //LOGIN--------------------------------------------------------
 
-app.get('/login', (req, res) => {
-    const username = req.body.username        //username  
-    const password = req.body.passw
-    const sqlSelect = "SELECT username, IF(username = ? AND passw = ?, true,false ) as loginReturnVal FROM korisnik";
+app.post("/login", (req, res) => {
+    const username = req.body.username;        //username  
+    const password = req.body.passw;
+    const sqlSelect = "SELECT id, username FROM korisnik WHERE korisnik.username = ? AND korisnik.passw = ?";
     db.query(sqlSelect, [username, password], (err, result) => {
         res.send(result)
     })
