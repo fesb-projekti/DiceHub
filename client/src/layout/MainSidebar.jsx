@@ -6,10 +6,9 @@ function MainSidebar({ active, logout }) {
     const history = useNavigate();
 
     function handleLogout() {
-        logout(false);
-        console.log("removing storage");
         localStorage.removeItem("username");
         history("/home");
+        logout(false);
     }
 
     if (active)

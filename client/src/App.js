@@ -1,4 +1,4 @@
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 // Landing page layout and its pages
 import LandingPageLayout from "./layout/LandingPageLayout";
@@ -20,14 +20,15 @@ import ErrorPage from "./pages/ErrorPage";
 function App() {
 
   const [isAuthorized, setAuthorize] = useState(false); // Authorization state, default is false
-
-  // Change this to true or false if you want to render the LandingPage or the Application untill
-  // proper login with accounts is implemented
-
-  // Implement login and register, set the state after the client is authorized, if its an existing client get the
-  // the previous stsate and redirect him to the app. Cookies, sessions, local storage ... ?!?
-  // Also we always need to check this state in case someone tries to browser route manually so we don't show either if the 
-  // state is not correct.
+  
+  const session = localStorage.getItem("username");
+  console.log(session);
+  useEffect(() => {
+    if (session != undefined)
+    setAuthorize(true);
+  else
+    setAuthorize(false);
+  }, []);
 
   if (isAuthorized) {
     // If the client is authorized show him the application so he can use it fully
