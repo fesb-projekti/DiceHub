@@ -1,5 +1,4 @@
 import React from "react";
-import MainNavbar from "../layout/MainNavbar";
 import "./Chat.module.css";
 import Conversation from "./chatcomponents/conversation/Conversation";
 
@@ -7,7 +6,6 @@ import Conversation from "./chatcomponents/conversation/Conversation";
 export default function Chat(){
     return(
         <>
-        <MainNavbar/>
         <div className ="chat">
             <div className="chatMenu">
                 <div className="chatMenuWrapper">
