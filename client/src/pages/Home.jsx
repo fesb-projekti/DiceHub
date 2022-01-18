@@ -27,7 +27,7 @@ function Home() {
   }, [])
 
   const fetchProfileCards = async () => {
-    const res = await fetch("https://dice-hub.ga/api/profilecards/allProfile").catch(()=>{console.log("Fetch error - Home")});
+    const res = await fetch("https://dice-hub.ga/api/profilecards/allProfile").catch(() => { console.log("Fetch error - Home") });
     const data = await res.json();
     return data;
   }
@@ -43,9 +43,9 @@ function Home() {
   const swiped = (direction, index) => {
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
-    if(direction === "up")
+    if (direction === "up")
       swipeUp(profileCards[index]?.username);
-    else if(direction === "down")
+    else if (direction === "down")
       swipeDown(profileCards[index]?.username);
   }
 
@@ -82,10 +82,10 @@ function Home() {
         {profileCards.map((character, index) =>
           <SwipeCard className={classes.swipe}
             ref={childRefs[index]}
-            key={character.id}
+            key={character.ID}
             onSwipe={(dir) => swiped(dir, index)}
             onCardLeftScreen={() => outOfFrame(character.name, index)}>
-            <div className={classes.card} style={{ backgroundImage: 'url(' + character.url + ')' }}>
+            <div className={classes.card} style={{ backgroundImage: 'url(' + character.img + ')' }}>
               <h3>{character.name}</h3>
             </div>
           </SwipeCard>
