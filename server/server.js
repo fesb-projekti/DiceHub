@@ -232,6 +232,19 @@ app.put("/update_profile", (req, res) => {
     })
 })
 
+//LOGIN--------------------------------------------------------
+//LOGIN--------------------------------------------------------
+//LOGIN--------------------------------------------------------
+
+app.get('/login', (req, res) => {
+    const username = req.body.username        //username  
+    const password = req.body.passw
+    const sqlSelect = "SELECT username, IF(username = ? AND passw = ?, true,false ) as test FROM korisnik";
+    db.query(sqlSelect, [username, password], (err, result) => {
+        res.send(result)
+    })
+});
+
 app.listen(3001, () => {
     console.log("Listening on port 3001!");
 });
