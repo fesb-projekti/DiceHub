@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import DHLogo from '../../assets/logo.png';
 import './navbar.css';
@@ -11,7 +11,7 @@ const Navbar = () => {
     <div className="gpt3__navbar">
       <div className="gpt3__navbar-links">
         <div className="gpt3__navbar-links_logo">
-          <img src={DHLogo} />
+          <img src={DHLogo} alt="" />
         </div>
         <div className="gpt3__navbar-links_container">
           <p><a href="#home">Home</a></p>
