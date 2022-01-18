@@ -16,6 +16,7 @@ export default class Register extends Component {
             location: '',
             password: '',
             dateOfBirth: '',
+            avatar: '',
         }
 
         this.email = this.email.bind(this);
@@ -25,6 +26,11 @@ export default class Register extends Component {
         this.userName = this.userName.bind(this);
         this.location = this.location.bind(this);
         this.dateOfBirth = this.dateOfBirth.bind(this);
+        this.avatar = this.avatar.bind(this);
+    }
+
+    avatar(event){
+        this.setState({avatar: event.target.value})
     }
 
     email(event){
@@ -56,7 +62,7 @@ export default class Register extends Component {
     }
 
     register(event){
-
+        
         fetch('http://localhost:3001/user-registration', {
             method: 'post',
             headers: {
@@ -64,17 +70,18 @@ export default class Register extends Component {
                 'Content-Type': 'application/json',
             }, 
             body: JSON.stringify({
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                userName: this.state.userName,
-                password: this.state.password,
-                location: this.state.location,
-                email: this.state.email,
-                dateOfBirth: this.state.dateOfBirth,
+                firstName: this.state.firstName.bind(this),
+                lastName: this.state.lastName.bind(this),
+                userName: this.state.userName.bind(this),
+                password: this.state.password.bind(this),
+                location: this.state.location.bind(this),
+                email: this.state.email.bind(this),
+                dateOfBirth: this.state.dateOfBirth.bind(this),
+                avatar: this.state.avatar.bind(this),
             })
         }).then((Response) => Response.json())
             .then((Result) => {
-                if (Result.Status == 'Success')
+                if (Result.Status === 'Success')
                     this.props.histoy.push("/profile");
                     else
                     alert("You are not authenticated!")
@@ -103,6 +110,13 @@ export default class Register extends Component {
                             name="lastName"
                             placeholder="Enter your surname"
                             onChange={this.lastName}
+                        />
+                        <label for ="avatar">Avatar link</label>
+                        <input
+                        type="text"
+                        name="avatar"
+                        placeholder="paste link for your avatar img"
+                        onChange={this.avatar}
                         />
                         <label for="email">Email</label>
                         <input
