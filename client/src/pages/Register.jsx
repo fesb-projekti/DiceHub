@@ -4,8 +4,8 @@ import classes from "./Register.module.css";
 import { Link } from "react-router-dom";
 
 export default class Register extends Component {
-    
-    constructor(){
+
+        constructor(){
         super();
 
         this.state = {
@@ -26,12 +26,14 @@ export default class Register extends Component {
         this.userName = this.userName.bind(this);
         this.location = this.location.bind(this);
         this.dateOfBirth = this.dateOfBirth.bind(this);
-        this.avatar = this.avatar.bind(this);
+        this.avatar = this.avatar.bind(this)
     }
+
+   
 
     avatar(event){
         this.setState({avatar: event.target.value})
-    }
+    }1
 
     email(event){
         this.setState({email: event.target.value})
@@ -70,14 +72,14 @@ export default class Register extends Component {
                 'Content-Type': 'application/json',
             }, 
             body: JSON.stringify({
-                firstName: this.state.firstName.bind(this),
-                lastName: this.state.lastName.bind(this),
-                userName: this.state.userName.bind(this),
-                password: this.state.password.bind(this),
-                location: this.state.location.bind(this),
-                email: this.state.email.bind(this),
-                dateOfBirth: this.state.dateOfBirth.bind(this),
-                avatar: this.state.avatar.bind(this),
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                userName: this.state.userName,
+                password: this.state.password,
+                location: this.state.location,
+                email: this.state.email,
+                dateOfBirth: this.state.dateOfBirth,
+                avatar: this.state.avatar
             })
         }).then((Response) => Response.json())
             .then((Result) => {
@@ -90,7 +92,7 @@ export default class Register extends Component {
 
 
     render() {
-        const isLoading = this.state.isLoading;
+        
 
         return (
             <div className={classes.register}>
@@ -99,73 +101,66 @@ export default class Register extends Component {
                     <form className={classes.container}>
                         <label for="firstName">Name</label>
                         <input
-                            type="name"
-                            name="firstName"
+                            type="text"
+                            id="firstName"
                             placeholder="Enter your name"
                             onChange={this.firstName}
                         />
                         <label for="lastName">Surname</label>
                         <input
-                            type="name"
-                            name="lastName"
+                            type="text"
+                            id="lastName"
                             placeholder="Enter your surname"
                             onChange={this.lastName}
                         />
                         <label for ="avatar">Avatar link</label>
                         <input
                         type="text"
-                        name="avatar"
+                        id="avatar"
                         placeholder="paste link for your avatar img"
                         onChange={this.avatar}
                         />
                         <label for="email">Email</label>
                         <input
                             type="email"
-                            name="email"
+                            id="email"
                             placeholder="Enter your email"
                             onChange={this.email}
                         />
                         <label for="userName">User name</label>
                         <input
-                            type="name"
-                            name="userName"
+                            type="text"
+                            id="userName"
                             placeholder="Enter your user name"
                             onChange={this.userName}
                         />
                         <label for="location">Location</label>
                         <input
-                            type="location"
-                            name="location"
+                            type="text"
+                            id="location"
                             placeholder="Enter your location"
                             onChange={this.location}
                         />
                         <label for="dateOfBirth">Date of birth</label>
                         <input
                             type="date"
-                            name="dateOfBirth"
+                            id="dateOfBirth"
                             placeholder="Enter your date of birth"
-                            onChange={this.location}
+                            onChange={this.dateOfBirth}
                         />
                         <label for="password">Password</label>
                         <input
                             type="password"
-                            name="password"
+                            id="password"
                             placeholder="Enter your password"
                             onChange={this.password}
                         />
-                        <p className="text-white">{this.state.msg}</p>
+                        
                         <button 
                             color="success"
                             onClick={this.register} >
                             Create account
-                            {isLoading ? (
-                                <span className="spinner-border spinner-border-sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                ></span>
-                            ) : (
-                                <span></span>
-                            )}
+                          
                         </button>
                         <button><Link to="/login" className="text-white ml-5">Already member</Link></button>
                     </form>

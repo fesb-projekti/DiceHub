@@ -1,10 +1,28 @@
-import React from 'react'
+import axios from 'axios';
+import React, {useState, useEffect} from 'react'
 import "./conversation.css";
 
-function Conversation() {
+function Conversation({conversation, currentUser}) {
+
+    const [user, setUser] = useState(null)
+    
+    useEffect(() => {
+        const friendId = conversation.members.find(m=>m !== currentUser._id);
+
+        const getUser = async () => {
+            try{
+            const resp = await axios("/users?userId =" + friendId);
+            setUser(resp.data)
+            }catch(err){
+                console.log(err);
+            }
+        };
+        getUser()
+    }, [currentUser, conversation]);
+
     return (
         <div className="conversation">
-            <span className="conversationName"></span>
+            <span className="conversationName">{user.username}</span>
         </div>
     )
 }

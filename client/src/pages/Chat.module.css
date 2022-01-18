@@ -18,11 +18,40 @@
   flex: 5.5;
 }
 
+.chatBoxWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.chatBoxTop{
+  height:100%;
+  overflow-y: scroll;
+  padding-right: 10px;
+}
+
 .chatBoxBottom{
   margin-top: 5px;
   display:flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.chatMessageInput{
+  width: 80%;
+  height: 90px;
+  padding: 10px;
+}
+
+.chatSubmitButton{
+  width: 70px;
+  height: 40px;
+  border: none; 
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: teal;
+  text-emphasis-color: white;
 }
 
 .chatMessageInput{
@@ -40,3 +69,10 @@
   height: 100%;
 }
 
+.noConversationText{
+  position:absolute;
+  top: 10%;
+  font-size: 50px;
+  color: grey;
+  cursor:default;
+}
