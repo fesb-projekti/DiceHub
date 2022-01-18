@@ -22,7 +22,7 @@ function App() {
   const [isAuthorized, setAuthorize] = useState(false); // Authorization state, default is false
 
   useEffect(() => {
-    setAuthorize(false); // Change to false to view landing page, for development only
+    setAuthorize(true); // Change to false to view landing page, for development only
   }, []);
 
   // Change this to true or false if you want to render the LandingPage or the Application untill
@@ -41,9 +41,11 @@ function App() {
           <Route path="/" exact={true} element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/chat" element={<Chat />}>
-            <Route path=":id" element={<Chat />} />
+            <Route path=":username" element={<Chat />} />
           </Route>
-          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/profile" element={<Profile />}>
+            <Route path=":username" element={<Profile />} />
+          </Route>
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/inventory_edit" element={<InventoryEdit />} />
           <Route path="/settings" element={<Settings />} />

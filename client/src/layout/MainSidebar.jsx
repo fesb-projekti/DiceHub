@@ -7,7 +7,7 @@ function MainSidebar({ active }) {
         return (
             <div className={classes.sidebar}>
                 <span><Link to="/chat">Chat</Link></span>
-                <span><Link to="/profile/:id">Profile</Link></span>
+                <span><Link to="/profile">Profile</Link></span>
                 <span><Link to="/inventory">Inventory</Link></span>
                 <span><Link to="/settings">Settings</Link></span>
                 <span><Link to="/about">About</Link></span>
