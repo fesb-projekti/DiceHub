@@ -24,8 +24,7 @@ function Profile() {
     }, [])
     const fetchProfile = async () => {
         if (username === undefined || "" || null)
-            username = "dane"; // Set username from context (authorized user)
-        console.log(username);
+            username = localStorage.getItem("username");
         const res = await fetch("https://dice-hub.ga/api/profileCards/profile/" + username).catch(() => { console.log("Fetch error - Home") });
         const data = await res.json();
         return data;

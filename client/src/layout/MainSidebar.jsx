@@ -1,8 +1,16 @@
 import classes from "./MainSidebar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function MainSidebar({ active }) {
+function MainSidebar({ active, logout }) {
     // Using two returns with same items, but different classes to achieve a css transition
+    const history = useNavigate();
+
+    function handleLogout() {
+        localStorage.removeItem("username");
+        history("/home");
+        logout(false);
+    }
+
     if (active)
         return (
             <div className={classes.sidebar}>
@@ -12,7 +20,7 @@ function MainSidebar({ active }) {
                 <span><Link to="/settings">Settings</Link></span>
                 <span><Link to="/about">About</Link></span>
                 <div className={classes.logout}>
-                    <span><Link to="#">Logout</Link></span>
+                    <span ><Link to="/" onClick={handleLogout}>Logout</Link></span>
                 </div>
             </div >
         )
@@ -24,7 +32,7 @@ function MainSidebar({ active }) {
             <span><Link to="/settings">Settings</Link></span>
             <span><Link to="/about">About</Link></span>
             <div className={classes.logout}>
-                <span><Link to="#">Logout</Link></span>
+                <span><Link to="/" onClick={handleLogout}>Logout</Link></span>
             </div>
         </div >
     )

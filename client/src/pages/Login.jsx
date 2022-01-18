@@ -2,7 +2,7 @@ import classes from "./Login.module.css";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({login}) {
     
     const history = useNavigate();
     const nameInputRef = useRef();
@@ -14,11 +14,14 @@ function Login() {
         const password = passwordInputRef.current.value;
 
         const info = { name,password };
-        await fetch("http://localhost:3001/authorize", {
-            method: "PUT",
+        await fetch("http://localhost:3001/login", {
+            method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(info)
         }).then(() => { history("/") })
+
+        localStorage.setItem("username", name);
+        login(true);
     }
 
     return (
