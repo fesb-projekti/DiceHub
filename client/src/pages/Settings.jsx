@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Settings() {
-    const history = useNavigate();
+    const navigate = useNavigate();
     const nameInputRef = useRef();
     const surnameInputRef = useRef();
     const passwordInputRef = useRef();
@@ -40,7 +40,7 @@ function Settings() {
             method: "PUT",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(profile)
-        }).then(() => { alert("You have updated your profile information"); history("/profile/:id") })
+        }).then(() => { alert("You have updated your profile information"); navigate("/profile/:id") })
     }
     return (
         <div className={classes.settings}>
