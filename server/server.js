@@ -27,9 +27,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //---------------------------------------------------------
 //---------------------------------------------------------
 
-app.get("/profileCards/profile/:username", (req, res) => {
-    const ID = req.params.username
-    const sqlSelect = "SELECT ime,prezime,grad,about,age,hasLocation,img FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID WHERE korisnik.username = ? LIMIT 1";
+app.get("/profileCards/profile/:ID", (req, res) => {
+    const ID = req.params.ID
+    const sqlSelect = "SELECT ime,prezime,grad,about,age,hasLocation,img FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID WHERE korisnik.ID = ? LIMIT 1";
     db.query(sqlSelect, [ID], (err, result) => {
         res.send(result)
     })

@@ -37,10 +37,10 @@ function App() {
           <Route path="/" exact={true} element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/chat" element={<Chat />}>
-            <Route path=":username" element={<Chat />} />
+            <Route path=":id" element={<Chat />} />
           </Route>
           <Route path="/profile" element={<Profile />}>
-            <Route path=":username" element={<Profile />} />
+            <Route path=":id" element={<Profile />} />
           </Route>
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/inventory_edit" element={<InventoryEdit />} />
