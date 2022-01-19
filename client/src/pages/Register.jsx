@@ -7,16 +7,18 @@ export default class Register extends Component {
 
     constructor() {
         super();
+
         this.state = {
-            firstName: '',
-            lastName: '',
-            userName: '',
-            city: '',
-            country: '',
-            password: '',
-            dateOfBirth: '',
-            avatar: '',
+            firstName: "",
+            lastName: "",
+            userName: "",
+            city: "",
+            country: "",
+            password: "",
+            dateOfBirth: "",
+            avatar: "",
         }
+
 
         this.password = this.password.bind(this);
         this.firstName = this.firstName.bind(this);
@@ -35,6 +37,7 @@ export default class Register extends Component {
     avatar(event) {
         this.setState({ avatar: event.target.value })
     }
+
 
     password(event) {
         this.setState({ password: event.target.value })
@@ -61,18 +64,29 @@ export default class Register extends Component {
     }
 
     register(event) {
+
         event.preventDefault();
+
         fetch('http://localhost:3001/userRegister', {
-            method: 'POST',
+            method: 'post',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(this?.state)
+            body: JSON.stringify({
+                firstName: this?.state.firstName.bind(this),
+                lastName: this?.state.lastName.bind(this),
+                userName: this?.state.userName.bind(this),
+                password: this?.state.password.bind(this),
+                city: this?.state.city.bind(this),
+                dateOfBirth: this?.state.dateOfBirth.bind(this),
+                avatar: this?.state.avatar.bind(this),
+                country: this?.state.country.bind(this),
+            })
         }).then((Response) => Response.json())
             .then((Result) => {
-                if (Result.Status === 'Success')
-                    this.props.history.push("/profile");
+                if (Result.Status === 200)
+                    this.props.history.push("/login");
                 else
                     alert("You are not authenticated!")
             })

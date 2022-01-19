@@ -1,7 +1,7 @@
 .gpt3__possibility {
     display: flex;
     flex-direction: row;
-    background-color: #a9b7e7;
+    background-color: #f1a363;
 }
 
 .gpt3__possibility-image {
@@ -47,7 +47,7 @@
 }
 
 .gpt3__possibility-content p {
-    color: var(--color-text);
+    color: whitesmoke;
     font-family: var(--font-family);
     font-weight: 400;
     font-size: 16px;

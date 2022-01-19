@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const mysql = require("mysql");
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
+const cors = require('cors');
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -16,8 +17,10 @@ db.connect((err) => {
     }
     console.log("Connected to the database!");
 })
+
+app.use(cors());
  
-app.get('/api/user-registration', (req, res) => {      
+app.get('/api/userRegister', (req, res) => {      
     const username = req.body       
     const sqlSelect = " SELECT korisnik.username FROM korisnik WHERE username = ("+req.body.username+")"; 
     db.query(sqlPut,[username],  (err, result) => {
@@ -27,7 +30,7 @@ app.get('/api/user-registration', (req, res) => {
         }
         else
         {
-            app.post("/api/user-registration", (req, res) => {
+            app.post("/api/userRegister", (req, res) => {
                 const username = req.body.username
                 const passw = req.body.password
                 const ime = req.body.ime
