@@ -90,7 +90,7 @@ export default class Register extends Component {
 
 
     render() {
-        const isLoading = this.state.isLoading;
+        
 
         return (
             <div className={classes.register}>
@@ -99,14 +99,14 @@ export default class Register extends Component {
                     <form className={classes.container}>
                         <label for="firstName">Name</label>
                         <input
-                            type="name"
+                            type="text"
                             name="firstName"
                             placeholder="Enter your name"
                             onChange={this.firstName}
                         />
                         <label for="lastName">Surname</label>
                         <input
-                            type="name"
+                            type="text"
                             name="lastName"
                             placeholder="Enter your surname"
                             onChange={this.lastName}
@@ -127,14 +127,14 @@ export default class Register extends Component {
                         />
                         <label for="userName">User name</label>
                         <input
-                            type="name"
+                            type="text"
                             name="userName"
                             placeholder="Enter your user name"
                             onChange={this.userName}
                         />
                         <label for="location">Location</label>
                         <input
-                            type="location"
+                            type="text"
                             name="location"
                             placeholder="Enter your location"
                             onChange={this.location}
@@ -158,14 +158,7 @@ export default class Register extends Component {
                             color="success"
                             onClick={this.register} >
                             Create account
-                            {isLoading ? (
-                                <span className="spinner-border spinner-border-sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                ></span>
-                            ) : (
-                                <span></span>
-                            )}
+                           
                         </button>
                         <button><Link to="/login" className="text-white ml-5">Already member</Link></button>
                     </form>
