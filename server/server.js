@@ -87,21 +87,20 @@ app.post("/profileCards/vote", (req, res) => {
     })
 })
 
-app.get("/profileCards/getPositiveRating", (req, res) => {
-    const ID = req.body.ID
-    const sqlPut = "SELECT COUNT(vote) AS Broj FROM ratings WHERE vote = 'positive' AND ratedUserID = ?"
-    db.query(sqlPut, [ID], (err, result) => {
-        res.send(result)
+app.get("/getRatings/:ID", (req, res) => {
+    const ID = req.params.ID;
+	  let data = {};
+    const sqlPositive = "SELECT COUNT(vote) AS Broj, vote FROM ratings WHERE vote = 'positive' AND ratedUserID = ?"
+    db.query(sqlPositive, [ID], (err, result) => {
+        data.positive = result;
+    })
+	  const sqlNegative = "SELECT COUNT(vote) AS Broj, vote FROM ratings WHERE vote = 'negative' AND ratedUserID = ?"
+    db.query(sqlNegative, [ID], (err, result) => {
+        data.negative = result;
+        res.send(data);
     })
 })
 
-app.get("/profileCards/getNegativeRating", (req, res) => {
-    const ID = req.body.ID
-    const sqlPut = "SELECT COUNT(vote) AS Broj FROM ratings WHERE vote = 'negative' AND ratedUserID = ?"
-    db.query(sqlPut, [ID], (err, result) => {
-        res.send(result)
-    })
-})
 
 // BACKEND CODE FOR INVENTORY------------------------------
 //---------------------------------------------------------
