@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import image from "./assets/boardgames.png";
 
 function Inventory() {
-  const [aboutFav, setAboutFav] = useState({});
-  const [ownedGames, setOwnedGames] = useState({});
-  const [lookingFor, setLookingFor] = useState({});
-  const [trading, setTrading] = useState({});
+  const [aboutFav, setAboutFav] = useState([]);
+  const [ownedGames, setOwnedGames] = useState([]);
+  const [lookingFor, setLookingFor] = useState([]);
+  const [trading, setTrading] = useState([]);
 
   useEffect(() => {
     const getAboutFav = async () => {
@@ -33,22 +33,22 @@ function Inventory() {
   }, []);
 
   const fetchAboutFav = async () => {
-    const res = await fetch("http://localhost:3001/inventory/getAbout_FavGame");
+    const res = await fetch("https://dice-hub.ga/api/inventory/getAbout_FavGame/" + localStorage.getItem("id"));
     const data = await res.json();
     return data;
   };
   const fetchOwnedGames = async () => {
-    const res = await fetch("http://localhost:3001/inventory/getOwnedGames");
+    const res = await fetch("https://dice-hub.ga/api/inventory/getOwnedGames/" + localStorage.getItem("id"));
     const data = await res.json();
     return data;
   };
   const fetchLookingFor = async () => {
-    const res = await fetch("http://localhost:3001/inventory/looking4");
+    const res = await fetch("https://dice-hub.ga/api/inventory/looking4/" + localStorage.getItem("id"));
     const data = await res.json();
     return data;
   };
   const fetchTrading = async () => {
-    const res = await fetch("http://localhost:3001/inventory/giving4trade");
+    const res = await fetch("https://dice-hub.ga/api/inventory/giving4trade/" + localStorage.getItem("id"));
     const data = await res.json();
     return data;
   };
@@ -62,26 +62,26 @@ function Inventory() {
       <div className={classes.container}>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Player description: </span>
-          <span>{aboutFav?.about}</span>
+          <span>{aboutFav[0]?.naziv}</span>
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Looking for: </span>
-          <span>{lookingFor?.titles}</span>
+          <span>{lookingFor.map((el)=>(el?.naziv+" "))} </span>
         </div>
         <div className={classes.spacer}>
           <h3>Games</h3>
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Games owned: </span>
-          <span>{ownedGames?.titles}</span>
+          <span>{ownedGames?.map((el)=>(el?.naziv+" "))}</span>
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Favorite game: </span>
-          <span>{aboutFav?.favorite}</span>
+          <span>{aboutFav[0]?.naziv}</span>
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Trading: </span>
-          <span>{trading?.titles}</span>
+          <span>{trading[0] == undefined ? "Nothing so far" : trading.map((el)=>(el?.naziv+" "))}</span>
         </div>
         <button>
           <Link to="../inventory_edit" className={classes.link}>Edit</Link>
