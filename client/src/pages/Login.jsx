@@ -21,9 +21,9 @@ function Login({ login }) {
         });
         const data = await result.json();
         if (data[0]?.id !== undefined) {
-            history("/");
             localStorage.setItem("username", data[0]?.username);
             localStorage.setItem("id", data[0]?.id);
+            history("/");
             login(true);
         }
         else{

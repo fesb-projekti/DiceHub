@@ -7,8 +7,9 @@ function MainSidebar({ active, logout }) {
 
     function handleLogout() {
         localStorage.removeItem("username");
-        history("/home");
+        localStorage.removeItem("id");
         logout(false);
+        history("/");
     }
 
     if (active)
