@@ -63,7 +63,7 @@ export default class Register extends Component {
         this.setState({dateOfBirth: event.target.value})
     }
 
-    register(event){
+    register(event) {
         
         fetch('http://localhost:3001/user-registration', {
             method: 'post',
@@ -84,11 +84,11 @@ export default class Register extends Component {
         }).then((Response) => Response.json())
             .then((Result) => {
                 if (Result.Status === 'Success')
-                    this.props.histoy.push("/profile");
+                    this.props.history.push("/profile");
                     else
                     alert("You are not authenticated!")
             })
-    }
+    };
 
 
     render() {
