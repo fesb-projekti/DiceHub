@@ -3,6 +3,7 @@ const app = express();
 const mysql = require("mysql");
 const bodyParser = require("body-parser")
 const cors = require('cors');
+const { json } = require("body-parser");
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -107,15 +108,6 @@ app.get("/profileCards/getNegativeRating", (req, res) => {
 //---------------------------------------------------------
 //---------------------------------------------------------
 
-let inventoryObj = {
-    about: "",
-    gamesOwned: [],
-    favGame: "",
-    looking4: [],
-    giving4trade: []
-}
-
-
 
 app.get("/inventory/getAbout_FavGame", (req, res) => {
     const ID = req.body.ID
@@ -133,28 +125,45 @@ app.get("/inventory/getOwnedGames", (req, res) => {
     })
 })
 
-
 app.get("/inventory/looking4", (req, res) => {
     const ID = req.body.ID
-    const sqlSelect = "SELECT igre.naziv FROM igre JOIN looking4 on igre.ID = looking4.igraWantID WHERE looking4.korisnikID = ?";
+    const sqlSelect = "SELECT igre.naziv FROM igre JOIN inventar ON igre.ID = inventar.looking4 JOIN korisnik ON inventar.korisnikID = korisnik.ID WHERE korisnik.ID = 10";
     db.query(sqlSelect, [ID], (err, result) => {
         res.send(result)
     })
 });
 
 app.get("/inventory/giving4trade", (req, res) => {
+    let gamesObj = {}
+    let parsedGamesObj = {}
     const ID = req.body.ID
-    const sqlSelect = " SELECT igre.naziv FROM igre JOIN giving4trade on igre.ID = giving4trade.igraHaveID WHERE giving4trade.korisnikID = ?";
+    const sqlSelect = "SELECT igre.naziv FROM igre JOIN inventar ON igre.ID = inventar.giving4trade JOIN korisnik ON inventar.korisnikID = korisnik.ID WHERE korisnik.ID = 10";
     db.query(sqlSelect, [ID], (err, result) => {
         res.send(result)
+        gamesObj = JSON.stringify(result)
+        parsedGamesObj = JSON.parse(gamesObj)
+        console.log(parsedGamesObj[0].naziv)
+        console.log(parsedGamesObj[1].naziv)
     })
 });
 
 app.get("/inventory/getAllGames", (req, res) => {
+    let gamesObj = {}
+    let parsedGamesObj = {}
     const ID = req.body.ID
-    const getAllGames = "SELECT igre.naziv FROM igre"
+    const getAllGames = "SELECT igre.ID ,igre.naziv FROM igre"
     db.query(getAllGames, [ID], (err, result) => {
-        res.send(result)
+        //res.send(result)
+        gamesObj = JSON.stringify(result)
+        parsedGamesObj = JSON.parse(gamesObj)
+        console.log(parsedGamesObj[0].ID)
+        console.log(parsedGamesObj[1].naziv)
+        console.log(parsedGamesObj[3].naziv)
+        console.log(parsedGamesObj[4].naziv)
+        console.log(parsedGamesObj[5].naziv)
+        console.log(parsedGamesObj[6].naziv)
+        console.log(parsedGamesObj[7].naziv)
+        res.send(parsedGamesObj)
     })
 })
 ////settings
