@@ -20,15 +20,15 @@ function Login({ login }) {
             body: JSON.stringify(info)
         });
         const data = await result.json();
-        if (data[0]?.id != undefined) {
+        if (data[0]?.id !== undefined) {
             history("/");
             localStorage.setItem("username", data[0]?.username);
+            localStorage.setItem("id", data[0]?.id);
             login(true);
         }
         else{
             alert("Incorrect login information!");
         }
-
     }
 
     return (
