@@ -38,7 +38,7 @@ app.get("/profileCards/profile/:ID", (req, res) => {
 
 app.get("/profileCards/allProfile", (req, res) => {
     const ID = req.body.ID
-    const sqlSelect = "SELECT korisnik.ID ,ime, prezime, username, grad, COUNT(inventar.igraID) AS brojigara, kategorija.naziv AS FavKat, img FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID LEFT JOIN kategorija ON korisnik.favGenre = kategorija.ID WHERE korisnik.favGenre = ALL (SELECT DISTINCT kategorija.ID FROM kategorija WHERE kategorija.ID = korisnik.favGenre) GROUP BY korisnik.ID";
+    const sqlSelect = "SELECT korisnik.ID,ime, prezime, username, grad, COUNT(inventar.igraID) AS brojigara, kategorija.naziv AS FavKat, img FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID LEFT JOIN kategorija ON korisnik.favGenre = kategorija.ID WHERE korisnik.favGenre = ALL (SELECT DISTINCT kategorija.ID FROM kategorija WHERE kategorija.ID = korisnik.favGenre) GROUP BY korisnik.ID";
     db.query(sqlSelect, [ID], (err, result) => {
         res.send(result)
     })
@@ -90,12 +90,12 @@ app.post("/profileCards/vote", (req, res) => {
 
 app.get("/getRatings/:ID", (req, res) => {
     const ID = req.params.ID;
-    let data = {};
+	  let data = {};
     const sqlPositive = "SELECT COUNT(vote) AS Broj, vote FROM ratings WHERE vote = 'positive' AND ratedUserID = ?"
     db.query(sqlPositive, [ID], (err, result) => {
         data.positive = result;
     })
-    const sqlNegative = "SELECT COUNT(vote) AS Broj, vote FROM ratings WHERE vote = 'negative' AND ratedUserID = ?"
+	  const sqlNegative = "SELECT COUNT(vote) AS Broj, vote FROM ratings WHERE vote = 'negative' AND ratedUserID = ?"
     db.query(sqlNegative, [ID], (err, result) => {
         data.negative = result;
         res.send(data);
@@ -115,62 +115,54 @@ app.get("/getRater/:user/:voter", (req, res) => {
 //---------------------------------------------------------
 //---------------------------------------------------------
 
+let inventoryObj = {
+    about: "",
+    gamesOwned: [],
+    favGame: "",
+    looking4: [],
+    giving4trade: []
+}
 
-app.get("/inventory/getAbout_FavGame", (req, res) => {
-    const ID = req.body.ID
-    const sqlPut = "SELECT igre.naziv, korisnik.About as favgame FROM igre JOIN korisnik ON igre.ID=korisnik.favGame WHERE igre.ID = (SELECT korisnik.favGame FROM korisnik WHERE korisnik.ID = 11) AND korisnik.ID = 11"
-    db.query(sqlPut, [ID], (err, result) => {
+
+
+app.get("/inventory/getAbout_FavGame/:ID", (req, res) => {
+    const ID = req.params.ID;
+    const sqlPut = "SELECT igre.naziv, korisnik.About AS about FROM igre JOIN korisnik ON igre.ID=korisnik.favGame WHERE igre.ID = (SELECT korisnik.favGame FROM korisnik WHERE korisnik.ID = ?) AND korisnik.ID = ?"
+    db.query(sqlPut, [ID,ID], (err, result) => {
         res.send(result)
     })
 })
 
-app.get("/inventory/getOwnedGames", (req, res) => {
-    const ID = req.body.ID
+app.get("/inventory/getOwnedGames/:ID", (req, res) => {
+    const ID = req.params.ID;
     const sqlGet = "SELECT igre.naziv FROM igre JOIN inventar ON igre.ID = inventar.igraID JOIN korisnik ON inventar.korisnikID = korisnik.ID WHERE korisnik.ID = ?"
     db.query(sqlGet, [ID], (err, result) => {
         res.send(result)
     })
 })
 
-app.get("/inventory/looking4", (req, res) => {
-    const ID = req.body.ID
-    const sqlSelect = "SELECT igre.naziv FROM igre JOIN inventar ON igre.ID = inventar.looking4 JOIN korisnik ON inventar.korisnikID = korisnik.ID WHERE korisnik.ID = 10";
+
+app.get("/inventory/looking4/:ID", (req, res) => {
+    const ID = req.params.ID;
+    const sqlSelect = "SELECT igre.naziv FROM igre JOIN looking4 on igre.ID = looking4.igraWantID WHERE looking4.korisnikID = ?";
     db.query(sqlSelect, [ID], (err, result) => {
         res.send(result)
     })
 });
 
-app.get("/inventory/giving4trade", (req, res) => {
-    let gamesObj = {}
-    let parsedGamesObj = {}
-    const ID = req.body.ID
-    const sqlSelect = "SELECT igre.naziv FROM igre JOIN inventar ON igre.ID = inventar.giving4trade JOIN korisnik ON inventar.korisnikID = korisnik.ID WHERE korisnik.ID = 10";
+app.get("/inventory/giving4trade/:ID", (req, res) => {
+    const ID = req.params.ID;
+    const sqlSelect = "SELECT igre.naziv FROM igre JOIN giving4trade ON igre.ID = giving4trade.igraHaveID WHERE giving4trade.korisnikID = ?";
     db.query(sqlSelect, [ID], (err, result) => {
         res.send(result)
-        gamesObj = JSON.stringify(result)
-        parsedGamesObj = JSON.parse(gamesObj)
-        console.log(parsedGamesObj[0].naziv)
-        console.log(parsedGamesObj[1].naziv)
     })
 });
 
-app.get("/inventory/getAllGames", (req, res) => {
-    let gamesObj = {}
-    let parsedGamesObj = {}
-    const ID = req.body.ID
-    const getAllGames = "SELECT igre.ID ,igre.naziv FROM igre"
+app.get("/inventory/getAllGames/:ID", (req, res) => {
+    const ID = req.params.ID;
+    const getAllGames = "SELECT igre.naziv FROM igre"
     db.query(getAllGames, [ID], (err, result) => {
-        //res.send(result)
-        gamesObj = JSON.stringify(result)
-        parsedGamesObj = JSON.parse(gamesObj)
-        console.log(parsedGamesObj[0].ID)
-        console.log(parsedGamesObj[1].naziv)
-        console.log(parsedGamesObj[3].naziv)
-        console.log(parsedGamesObj[4].naziv)
-        console.log(parsedGamesObj[5].naziv)
-        console.log(parsedGamesObj[6].naziv)
-        console.log(parsedGamesObj[7].naziv)
-        res.send(parsedGamesObj)
+        res.send(result)
     })
 })
 ////settings
@@ -252,7 +244,7 @@ app.put("/update_profile", (req, res) => {
 //LOGIN--------------------------------------------------------
 //LOGIN--------------------------------------------------------
 
-app.post("/login", (req, res) => {
+app.post('/login', (req, res) => {
     const username = req.body.username;        //username  
     const password = req.body.passw;
     const sqlSelect = "SELECT id, username FROM korisnik WHERE korisnik.username = ? AND korisnik.passw = ?";
@@ -261,37 +253,6 @@ app.post("/login", (req, res) => {
     })
 });
 
-
-
-
-
-//registration
-app.get('/api/user-registration', (req, res) => {
-    const username = req.body
-    const sqlSelect = " SELECT korisnik.username FROM korisnik WHERE username = (" + req.body.username + ")";
-    db.query(sqlSelect, [username], (err, result) => {
-        if (sqlSelect != null) {
-            console.log(err)
-        }
-        else {
-            app.post("/user-registration", (req, res) => {
-                const username = req.body.username
-                const passw = req.body.password
-                const ime = req.body.ime
-                const prezime = req.body.prezime
-                const datum_rodenja = req.body.datum_rodenja
-                const drzava = req.body.drzava
-                const about = req.body.About
-                const sqlInsert = " INSERT INTO korisnik (username, passw, ime, prezime, datum_rodenja, drzava, About) VALUES (?,?,?,?,?,?,?)";
-                db.query(sqlInsert, [username, passw, ime, prezime, datum_rodenja, drzava, about], (err, result) => {
-                    res.send(200)
-                })
-            })
-        }
-    })
-})
-
 app.listen(3001, () => {
     console.log("Listening on port 3001!");
 });
-
