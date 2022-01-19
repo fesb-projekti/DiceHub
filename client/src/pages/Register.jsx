@@ -7,7 +7,6 @@ export default class Register extends Component {
 
     constructor() {
         super();
-
         this.state = {
             firstName: '',
             lastName: '',
@@ -18,7 +17,6 @@ export default class Register extends Component {
             dateOfBirth: '',
             avatar: '',
         }
-
 
         this.password = this.password.bind(this);
         this.firstName = this.firstName.bind(this);
@@ -37,7 +35,6 @@ export default class Register extends Component {
     avatar(event) {
         this.setState({ avatar: event.target.value })
     }
-
 
     password(event) {
         this.setState({ password: event.target.value })
@@ -64,23 +61,14 @@ export default class Register extends Component {
     }
 
     register(event) {
-
-        fetch('http://localhost:3001/user-registration', {
-            method: 'post',
+        event.preventDefault();
+        fetch('http://localhost:3001/userRegister', {
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                firstName: this.state.firstName.bind(this),
-                lastName: this.state.lastName.bind(this),
-                userName: this.state.userName.bind(this),
-                password: this.state.password.bind(this),
-                city: this.state.city.bind(this),
-                dateOfBirth: this.state.dateOfBirth.bind(this),
-                avatar: this.state.avatar.bind(this),
-                country: this.state.country.bind(this),
-            })
+            body: JSON.stringify(this?.state)
         }).then((Response) => Response.json())
             .then((Result) => {
                 if (Result.Status === 'Success')
