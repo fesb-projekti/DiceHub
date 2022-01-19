@@ -2,23 +2,33 @@ import classes from "./Login.module.css";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
-    
+function Login({ login }) {
+
     const history = useNavigate();
     const nameInputRef = useRef();
     const passwordInputRef = useRef();
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        const name = nameInputRef.current.value;
-        const password = passwordInputRef.current.value;
+        const username = nameInputRef.current.value;
+        const passw = passwordInputRef.current.value;
+        const info = { username, passw };
 
-        const info = { name,password };
-        await fetch("http://localhost:3001/authorize", {
-            method: "PUT",
+        const result = await fetch("https://dice-hub.ga/api/login", {
+            method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(info)
-        }).then(() => { history("/") })
+        });
+        const data = await result.json();
+        if (data[0]?.id !== undefined) {
+            localStorage.setItem("username", data[0]?.username);
+            localStorage.setItem("id", data[0]?.id);
+            history("/");
+            login(true);
+        }
+        else{
+            alert("Incorrect login information!");
+        }
     }
 
     return (
@@ -34,7 +44,7 @@ function Login() {
                         <label htmlFor="password">Password</label>
                         <input type="password" id="password" placeholder="Example: 12345678" ref={passwordInputRef} />
                     </div>
-                <button>Login</button>
+                    <button>Login</button>
                 </form>
             </div>
         </div>

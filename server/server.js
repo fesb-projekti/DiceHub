@@ -28,9 +28,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //---------------------------------------------------------
 //---------------------------------------------------------
 
-app.get("/profileCards/profile/:username", (req, res) => {
-    const ID = req.params.username
-    const sqlSelect = "SELECT ime,prezime,grad,about,age,rad,hasLocation FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID WHERE korisnik.username = ? LIMIT 1";
+app.get("/profileCards/profile/:ID", (req, res) => {
+    const ID = req.params.ID
+    const sqlSelect = "SELECT ime,prezime,grad,about,age,hasLocation,img FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID WHERE korisnik.ID = ? LIMIT 1";
     db.query(sqlSelect, [ID], (err, result) => {
         res.send(result)
     })
@@ -38,7 +38,7 @@ app.get("/profileCards/profile/:username", (req, res) => {
 
 app.get("/profileCards/allProfile", (req, res) => {
     const ID = req.body.ID
-    const sqlSelect = "SELECT korisnik.ID ,ime, prezime, username, hasLocation, COUNT(inventar.igraID) AS brojigara, kategorija.naziv AS FavKat, img FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID LEFT JOIN kategorija ON korisnik.favGenre = kategorija.ID WHERE korisnik.favGenre = ALL (SELECT DISTINCT kategorija.ID FROM kategorija WHERE kategorija.ID = korisnik.favGenre) GROUP BY korisnik.ID";
+    const sqlSelect = "SELECT korisnik.ID ,ime, prezime, username, grad, COUNT(inventar.igraID) AS brojigara, kategorija.naziv AS FavKat, img FROM korisnik LEFT JOIN inventar ON korisnik.ID = inventar.korisnikID LEFT JOIN igre ON inventar.igraID = igre.ID LEFT JOIN kategorija ON korisnik.favGenre = kategorija.ID WHERE korisnik.favGenre = ALL (SELECT DISTINCT kategorija.ID FROM kategorija WHERE kategorija.ID = korisnik.favGenre) GROUP BY korisnik.ID";
     db.query(sqlSelect, [ID], (err, result) => {
         res.send(result)
     })
@@ -88,21 +88,20 @@ app.post("/profileCards/vote", (req, res) => {
     })
 })
 
-app.get("/profileCards/getPositiveRating", (req, res) => {
-    const ID = req.body.ID
-    const sqlPut = "SELECT COUNT(vote) AS Broj FROM ratings WHERE vote = 'positive' AND ratedUserID = ?"
-    db.query(sqlPut, [ID], (err, result) => {
-        res.send(result)
+app.get("/getRatings/:ID", (req, res) => {
+    const ID = req.params.ID;
+	  let data = {};
+    const sqlPositive = "SELECT COUNT(vote) AS Broj, vote FROM ratings WHERE vote = 'positive' AND ratedUserID = ?"
+    db.query(sqlPositive, [ID], (err, result) => {
+        data.positive = result;
+    })
+	  const sqlNegative = "SELECT COUNT(vote) AS Broj, vote FROM ratings WHERE vote = 'negative' AND ratedUserID = ?"
+    db.query(sqlNegative, [ID], (err, result) => {
+        data.negative = result;
+        res.send(data);
     })
 })
 
-app.get("/profileCards/getNegativeRating", (req, res) => {
-    const ID = req.body.ID
-    const sqlPut = "SELECT COUNT(vote) AS Broj FROM ratings WHERE vote = 'negative' AND ratedUserID = ?"
-    db.query(sqlPut, [ID], (err, result) => {
-        res.send(result)
-    })
-})
 
 // BACKEND CODE FOR INVENTORY------------------------------
 //---------------------------------------------------------
@@ -245,10 +244,10 @@ app.put("/update_profile", (req, res) => {
 //LOGIN--------------------------------------------------------
 //LOGIN--------------------------------------------------------
 
-app.get('/login', (req, res) => {
-    const username = req.body.username        //username  
-    const password = req.body.passw
-    const sqlSelect = "SELECT username, IF(username = ? AND passw = ?, true,false ) as loginReturnVal FROM korisnik";
+app.post("/login", (req, res) => {
+    const username = req.body.username;        //username  
+    const password = req.body.passw;
+    const sqlSelect = "SELECT id, username FROM korisnik WHERE korisnik.username = ? AND korisnik.passw = ?";
     db.query(sqlSelect, [username, password], (err, result) => {
         res.send(result)
     })
@@ -257,3 +256,34 @@ app.get('/login', (req, res) => {
 app.listen(3001, () => {
     console.log("Listening on port 3001!");
 });
+
+
+
+//registration
+app.get('/api/user-registration', (req, res) => {      
+    const username = req.body       
+    const sqlSelect = " SELECT korisnik.username FROM korisnik WHERE username = ("+req.body.username+")"; 
+    db.query(sqlSelect,[username],  (err, result) => {
+        if(sqlSelect !=null)
+        {
+           console.log(err)
+        }
+        else
+        {
+            app.post("/user-registration", (req, res) => {
+                const username = req.body.username
+                const passw = req.body.password
+                const ime = req.body.ime
+                const prezime = req.body.prezime
+                const datum_rodenja = req.body.datum_rodenja
+                const drzava = req.body.drzava
+                const about= req.body.About
+                const sqlInsert = " INSERT INTO korisnik (username, passw, ime, prezime, datum_rodenja, drzava, About) VALUES (?,?,?,?,?,?,?)"; 
+                db.query(sqlInsert, [username, passw, ime,prezime,datum_rodenja,drzava,about], (err, result) => {
+                    res.send(200)
+                })
+            })
+        }
+    })
+})
+    

@@ -12,25 +12,33 @@ export default class Register extends Component {
             firstName: '',
             lastName: '',
             userName: '',
-            email: '',
-            location: '',
+            city: '',
+            country: '',
             password: '',
             dateOfBirth: '',
+            avatar: '',
         }
 
-        this.email = this.email.bind(this);
+        
         this.password = this.password.bind(this);
         this.firstName = this.firstName.bind(this);
         this.lastName = this.lastName.bind(this);
         this.userName = this.userName.bind(this);
-        this.location = this.location.bind(this);
+        this.city = this.city.bind(this);
         this.dateOfBirth = this.dateOfBirth.bind(this);
+        this.avatar = this.avatar.bind(this);
+        this.country = this.country.bind(this);
     }
 
-    email(event){
-        this.setState({email: event.target.value})
+    country(event){
+        this.setState({country: event.target.value})
     }
 
+    avatar(event){
+        this.setState({avatar: event.target.value})
+    }
+
+    
     password(event){
         this.setState({password: event.target.value})
     }
@@ -47,8 +55,8 @@ export default class Register extends Component {
         this.setState({userName: event.target.value})
     }
 
-    location(event){
-        this.setState({location: event.target.value})
+    city(event){
+        this.setState({city: event.target.value})
     }
 
     dateOfBirth(event){
@@ -56,7 +64,7 @@ export default class Register extends Component {
     }
 
     register(event){
-
+        
         fetch('http://localhost:3001/user-registration', {
             method: 'post',
             headers: {
@@ -64,17 +72,18 @@ export default class Register extends Component {
                 'Content-Type': 'application/json',
             }, 
             body: JSON.stringify({
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                userName: this.state.userName,
-                password: this.state.password,
-                location: this.state.location,
-                email: this.state.email,
-                dateOfBirth: this.state.dateOfBirth,
+                firstName: this.state.firstName.bind(this),
+                lastName: this.state.lastName.bind(this),
+                userName: this.state.userName.bind(this),
+                password: this.state.password.bind(this),
+                city: this.state.city.bind(this),
+                dateOfBirth: this.state.dateOfBirth.bind(this),
+                avatar: this.state.avatar.bind(this),
+                country:  this.state.country.bind(this),
             })
         }).then((Response) => Response.json())
             .then((Result) => {
-                if (Result.Status == 'Success')
+                if (Result.Status === 'Success')
                     this.props.histoy.push("/profile");
                     else
                     alert("You are not authenticated!")
@@ -83,8 +92,7 @@ export default class Register extends Component {
 
 
     render() {
-        const isLoading = this.state.isLoading;
-
+    
         return (
             <div className={classes.register}>
                 <div className={classes.registerBox}>
@@ -92,38 +100,46 @@ export default class Register extends Component {
                     <form className={classes.container}>
                         <label for="firstName">Name</label>
                         <input
-                            type="name"
+                            type="text"
                             name="firstName"
                             placeholder="Enter your name"
                             onChange={this.firstName}
                         />
                         <label for="lastName">Surname</label>
                         <input
-                            type="name"
+                            type="text"
                             name="lastName"
                             placeholder="Enter your surname"
                             onChange={this.lastName}
                         />
-                        <label for="email">Email</label>
+                        <label for ="avatar">Avatar link</label>
                         <input
-                            type="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            onChange={this.email}
+                        type="text"
+                        name="avatar"
+                        placeholder="Paste link to your avatar img"
+                        onChange={this.avatar}
                         />
+                       
                         <label for="userName">User name</label>
                         <input
-                            type="name"
+                            type="text"
                             name="userName"
                             placeholder="Enter your user name"
                             onChange={this.userName}
                         />
-                        <label for="location">Location</label>
+                        <label for="city">City</label>
                         <input
-                            type="location"
-                            name="location"
-                            placeholder="Enter your location"
-                            onChange={this.location}
+                            type="text"
+                            name="city"
+                            placeholder="Enter your city"
+                            onChange={this.city}
+                        />
+                        <label for="country">Country</label>
+                        <input
+                            type="text"
+                            name="country"
+                            placeholder="Enter your country"
+                            onChange={this.city}
                         />
                         <label for="dateOfBirth">Date of birth</label>
                         <input
@@ -144,14 +160,7 @@ export default class Register extends Component {
                             color="success"
                             onClick={this.register} >
                             Create account
-                            {isLoading ? (
-                                <span className="spinner-border spinner-border-sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                ></span>
-                            ) : (
-                                <span></span>
-                            )}
+                           
                         </button>
                         <button><Link to="/login" className="text-white ml-5">Already member</Link></button>
                     </form>
