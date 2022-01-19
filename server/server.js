@@ -102,6 +102,14 @@ app.get("/getRatings/:ID", (req, res) => {
     })
 })
 
+app.get("/getRater/:user/:voter", (req, res) => {
+    const userID = req.params.user;
+    const voterID = req.params.voter;
+    const sqlQuery = "SELECT vote FROM ratings WHERE voterID = ? AND ratedUserID = ?"
+    db.query(sqlQuery, [voterID,userID], (err, result) => {
+        res.send(result)
+    })
+})
 
 // BACKEND CODE FOR INVENTORY------------------------------
 //---------------------------------------------------------
