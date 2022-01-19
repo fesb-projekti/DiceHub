@@ -13,6 +13,7 @@ export default class Register extends Component {
             lastName: '',
             userName: '',
             city: '',
+            country: '',
             password: '',
             dateOfBirth: '',
             avatar: '',
@@ -26,6 +27,11 @@ export default class Register extends Component {
         this.city = this.city.bind(this);
         this.dateOfBirth = this.dateOfBirth.bind(this);
         this.avatar = this.avatar.bind(this);
+        this.country = this.country.bind(this);
+    }
+
+    country(event){
+        this.setState({country: event.target.value})
     }
 
     avatar(event){
@@ -73,6 +79,7 @@ export default class Register extends Component {
                 city: this.state.city.bind(this),
                 dateOfBirth: this.state.dateOfBirth.bind(this),
                 avatar: this.state.avatar.bind(this),
+                country:  this.state.country.bind(this),
             })
         }).then((Response) => Response.json())
             .then((Result) => {
@@ -125,6 +132,13 @@ export default class Register extends Component {
                             type="text"
                             name="city"
                             placeholder="Enter your city"
+                            onChange={this.city}
+                        />
+                        <label for="country">Country</label>
+                        <input
+                            type="text"
+                            name="country"
+                            placeholder="Enter your country"
                             onChange={this.city}
                         />
                         <label for="dateOfBirth">Date of birth</label>
