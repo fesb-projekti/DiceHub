@@ -116,7 +116,7 @@ export default class Register extends Component {
                         <input
                         type="text"
                         name="avatar"
-                        placeholder="paste link for your avatar img"
+                        placeholder="Paste link to your avatar img"
                         onChange={this.avatar}
                         />
                        
