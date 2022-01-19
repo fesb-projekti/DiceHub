@@ -12,19 +12,18 @@ export default class Register extends Component {
             firstName: '',
             lastName: '',
             userName: '',
-            email: '',
-            location: '',
+            city: '',
             password: '',
             dateOfBirth: '',
             avatar: '',
         }
 
-        this.email = this.email.bind(this);
+        
         this.password = this.password.bind(this);
         this.firstName = this.firstName.bind(this);
         this.lastName = this.lastName.bind(this);
         this.userName = this.userName.bind(this);
-        this.location = this.location.bind(this);
+        this.city = this.city.bind(this);
         this.dateOfBirth = this.dateOfBirth.bind(this);
         this.avatar = this.avatar.bind(this);
     }
@@ -33,10 +32,7 @@ export default class Register extends Component {
         this.setState({avatar: event.target.value})
     }
 
-    email(event){
-        this.setState({email: event.target.value})
-    }
-
+    
     password(event){
         this.setState({password: event.target.value})
     }
@@ -53,8 +49,8 @@ export default class Register extends Component {
         this.setState({userName: event.target.value})
     }
 
-    location(event){
-        this.setState({location: event.target.value})
+    city(event){
+        this.setState({city: event.target.value})
     }
 
     dateOfBirth(event){
@@ -74,8 +70,7 @@ export default class Register extends Component {
                 lastName: this.state.lastName.bind(this),
                 userName: this.state.userName.bind(this),
                 password: this.state.password.bind(this),
-                location: this.state.location.bind(this),
-                email: this.state.email.bind(this),
+                city: this.state.city.bind(this),
                 dateOfBirth: this.state.dateOfBirth.bind(this),
                 avatar: this.state.avatar.bind(this),
             })
@@ -90,8 +85,7 @@ export default class Register extends Component {
 
 
     render() {
-        
-
+    
         return (
             <div className={classes.register}>
                 <div className={classes.registerBox}>
@@ -118,13 +112,7 @@ export default class Register extends Component {
                         placeholder="paste link for your avatar img"
                         onChange={this.avatar}
                         />
-                        <label for="email">Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            onChange={this.email}
-                        />
+                       
                         <label for="userName">User name</label>
                         <input
                             type="text"
@@ -132,12 +120,12 @@ export default class Register extends Component {
                             placeholder="Enter your user name"
                             onChange={this.userName}
                         />
-                        <label for="location">Location</label>
+                        <label for="city">City</label>
                         <input
                             type="text"
-                            name="location"
-                            placeholder="Enter your location"
-                            onChange={this.location}
+                            name="city"
+                            placeholder="Enter your city"
+                            onChange={this.city}
                         />
                         <label for="dateOfBirth">Date of birth</label>
                         <input
