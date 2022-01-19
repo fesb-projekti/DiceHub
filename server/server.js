@@ -254,7 +254,7 @@ app.listen(3001, () => {
 app.get('/api/user-registration', (req, res) => {      
     const username = req.body       
     const sqlSelect = " SELECT korisnik.username FROM korisnik WHERE username = ("+req.body.username+")"; 
-    db.query(sqlPut,[username],  (err, result) => {
+    db.query(sqlSelect,[username],  (err, result) => {
         if(sqlSelect !=null)
         {
            console.log(err)
