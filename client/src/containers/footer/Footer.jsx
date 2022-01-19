@@ -16,7 +16,6 @@ const Footer = () => (
         <p>info@dicehub.com</p>
       </div>
     </div>
-
     <div className="gpt3__footer-copyright">
       <p>@2021 DH. All rights reserved.</p>
     </div>

@@ -9,9 +9,7 @@ const App = () => (
       <Navbar />
       <Header />
     </div>
-    
     <WhatGPT3 />
-    <Feature />
     <Possibility />
     <Footer />
   </div>
