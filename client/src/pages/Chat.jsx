@@ -19,6 +19,7 @@ export default function Chat() {
   const { user } = useContext(AuthContext);
   const scrollRef = useRef();
 
+  /*
   useEffect(() => {
     socket.current = io("ws://localhost:3001");
     socket.current.on("getMessage", (data) => {
@@ -68,7 +69,7 @@ export default function Chat() {
     };
     getMessages();
   }, [currentChat]);
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const message = {
@@ -76,6 +77,7 @@ export default function Chat() {
       text: newMessage,
       conversationId: currentChat._id,
     };
+    
 
     const receiverId = currentChat.members.find(
       (member) => member !== user._id
@@ -99,10 +101,9 @@ export default function Chat() {
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
+  */
   return (
-    <>
-      <MainNavbar />
+    
       <div className="chat">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
@@ -132,7 +133,7 @@ export default function Chat() {
                     onChange={(e) => setNewMessage(e.target.value)}
                     value={newMessage}
                   ></textarea>
-                  <button className="chatSubmitButton" onClick={handleSubmit}>
+                  <button className="chatSubmitButton" /*onClick={handleSubmit}*/>
                     Send
                   </button>
                 </div>
@@ -148,12 +149,12 @@ export default function Chat() {
           <div className="chatOnlineWrapper">
             <ChatOnline
               onlineUsers={onlineUsers}
-              currentId={user._id}
+              /*currentId={user._id}*/
               setCurrentChat={setCurrentChat}
             />
           </div>
         </div>
       </div>
-    </>
+    
   );
 }
