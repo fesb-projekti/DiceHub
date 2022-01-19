@@ -1,173 +1,121 @@
-import React, { Component } from "react";
-import axios from "axios";
 import classes from "./Register.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
-export default class Register extends Component {
+function Register() {
 
-    constructor() {
-        super();
+    const history = useNavigate();
+    const nameInputRef = useRef();
+    const surnameInputRef = useRef();
+    const avatarInputRef = useRef();
+    const usernameInputRef = useRef();
+    const cityInputRef = useRef();
+    const countryInputRef = useRef();
+    const dobInputRef = useRef();
+    const passwordInputRef = useRef();
 
-        this.state = {
-            firstName: "",
-            lastName: "",
-            userName: "",
-            city: "",
-            country: "",
-            password: "",
-            dateOfBirth: "",
-            avatar: "",
-        }
-
-
-        this.password = this.password.bind(this);
-        this.firstName = this.firstName.bind(this);
-        this.lastName = this.lastName.bind(this);
-        this.userName = this.userName.bind(this);
-        this.city = this.city.bind(this);
-        this.dateOfBirth = this.dateOfBirth.bind(this);
-        this.avatar = this.avatar.bind(this);
-        this.country = this.country.bind(this);
-    }
-
-    country(event) {
-        this.setState({ country: event.target.value })
-    }
-
-    avatar(event) {
-        this.setState({ avatar: event.target.value })
-    }
-
-
-    password(event) {
-        this.setState({ password: event.target.value })
-    }
-
-    firstName(event) {
-        this.setState({ firstName: event.target.value })
-    }
-
-    lastName(event) {
-        this.setState({ lastName: event.target.value })
-    }
-
-    userName(event) {
-        this.setState({ userName: event.target.value })
-    }
-
-    city(event) {
-        this.setState({ city: event.target.value })
-    }
-
-    dateOfBirth(event) {
-        this.setState({ dateOfBirth: event.target.value })
-    }
-
-    register(event) {
-
+    const register = async (event) => {
         event.preventDefault();
+        const name = nameInputRef.current.value;
+        const surname = surnameInputRef.current.value;
+        const username = usernameInputRef.current.value;
+        const avatar = avatarInputRef.current.value;
+        const city = cityInputRef.current.value;
+        const country = countryInputRef.current.value;
+        const dob = dobInputRef.current.value;
+        const password = passwordInputRef.current.value;
 
-        fetch('http://localhost:3001/userRegister', {
-            method: 'post',
+        const result = await fetch("https://dice-hub.ga/api/userRegistration", {
+            method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                firstName: this?.state.firstName.bind(this),
-                lastName: this?.state.lastName.bind(this),
-                userName: this?.state.userName.bind(this),
-                password: this?.state.password.bind(this),
-                city: this?.state.city.bind(this),
-                dateOfBirth: this?.state.dateOfBirth.bind(this),
-                avatar: this?.state.avatar.bind(this),
-                country: this?.state.country.bind(this),
+                firstName: name,
+                lastName: surname,
+                userName: username,
+                avatar: avatar,
+                city: city,
+                country: country,
+                dateOfBirth: dob,
+                password: password
             })
-        }).then((Response) => Response.json())
-            .then((Result) => {
-                if (Result.Status === 200)
-                    this.props.history.push("/login");
-                else
-                    alert("You are not authenticated!")
-            })
+        })
+        const data = await result.json();
+        if (data[0]?.status === 1) {
+            history("/login");
+        }
+        else alert("Username already in use");
     };
 
-    render() {
-        return (
-            <div className={classes.register}>
-                <div className={classes.registerBox}>
-                    <h3>DiceHub Register</h3>
-                    <form className={classes.container}>
-                        <label htmlFor="firstName">Name</label>
-                        <input
-                            type="text"
-                            name="firstName"
-                            placeholder="Enter your name"
-                            onChange={this.firstName}
-                        />
-                        <label htmlFor="lastName">Surname</label>
-                        <input
-                            type="text"
-                            name="lastName"
-                            placeholder="Enter your surname"
-                            onChange={this.lastName}
-                        />
-                        <label htmlFor="avatar">Avatar link</label>
-                        <input
-                            type="text"
-                            name="avatar"
-                            placeholder="Paste link to your avatar img"
-                            onChange={this.avatar}
-                        />
-
-                        <label htmlFor="userName">User name</label>
-                        <input
-                            type="text"
-                            name="userName"
-                            placeholder="Enter your user name"
-                            onChange={this.userName}
-                        />
-                        <label htmlFor="city">City</label>
-                        <input
-                            type="text"
-                            name="city"
-                            placeholder="Enter your city"
-                            onChange={this.city}
-                        />
-                        <label htmlFor="country">Country</label>
-                        <input
-                            type="text"
-                            name="country"
-                            placeholder="Enter your country"
-                            onChange={this.country}
-                        />
-                        <label htmlFor="dateOfBirth">Date of birth</label>
-                        <input
-                            type="date"
-                            name="dateOfBirth"
-                            placeholder="Enter your date of birth"
-                            onChange={this.dateOfBirth}
-                        />
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Enter your password"
-                            onChange={this.password}
-                        />
-                        <p className="text-white">{this.state.msg}</p>
-                        <button
-                            color="success"
-                            onClick={this.register} >
-                            Create account
-                        </button>
-                        <button><Link to="/login" className="text-white ml-5">Already member</Link></button>
-                    </form>
-                </div>
+    return (
+        <div className={classes.register}>
+            <div className={classes.registerBox}>
+                <h3>DiceHub Register</h3>
+                <form className={classes.container}>
+                    <label htmlFor="firstName">Name</label>
+                    <input
+                        type="text"
+                        name="firstName"
+                        placeholder="Enter your name"
+                        ref={nameInputRef}
+                    />
+                    <label htmlFor="lastName">Surname</label>
+                    <input
+                        type="text"
+                        name="lastName"
+                        placeholder="Enter your surname"
+                        ref={surnameInputRef}
+                    />
+                    <label htmlFor="avatar">Avatar link</label>
+                    <input
+                        type="text"
+                        name="avatar"
+                        placeholder="Paste link to your avatar img"
+                        ref={avatarInputRef}
+                    />
+                    <label htmlFor="userName">User name</label>
+                    <input
+                        type="text"
+                        name="userName"
+                        placeholder="Enter your user name"
+                        ref={usernameInputRef}
+                    />
+                    <label htmlFor="city">City</label>
+                    <input
+                        type="text"
+                        name="city"
+                        placeholder="Enter your city"
+                        ref={cityInputRef}
+                    />
+                    <label htmlFor="country">Country</label>
+                    <input
+                        type="text"
+                        name="country"
+                        placeholder="Enter your country"
+                        ref={countryInputRef}
+                    />
+                    <label htmlFor="dateOfBirth">Date of birth</label>
+                    <input
+                        type="date"
+                        name="dateOfBirth"
+                        placeholder="Enter your date of birth"
+                        ref={dobInputRef}
+                    />
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        ref={passwordInputRef}
+                    />
+                    <button color="success" onClick={register} >Create account</button>
+                    <button><Link to="/login" className="text-white ml-5">Already member</Link></button>
+                </form>
             </div>
-        );
-
-    }
-
-
+        </div>
+    );
 }
+
+export default Register;

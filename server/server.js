@@ -20,7 +20,6 @@ db.connect((err) => {
 })
 
 app.use(cors());
-
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -252,6 +251,31 @@ app.post('/login', (req, res) => {
         res.send(result)
     })
 });
+
+app.post('/userRegistration', (req, res) => {
+    const username = req.body.userName
+    const sqlSelect = "SELECT korisnik.username FROM korisnik WHERE username = ?";
+    db.query(sqlSelect, [username], (err, result) => {
+        if (result != "") {
+            res.send([{"status": 0}]);
+        }
+        else 
+        {
+          const username = req.body.userName
+          const passw = req.body.password
+          const ime = req.body.firstName
+          const prezime = req.body.lastName
+          const datum_rodenja = req.body.dateOfBirth
+          const img = req.body.avatar
+          const drzava = req.body.country
+          const city = req.body.city
+          const sqlInsert = " INSERT INTO korisnik (username, passw, ime, prezime, datum_rodenja, drzava, grad, img) VALUES (?,?,?,?,?,?,?,?)";
+          db.query(sqlInsert, [username, passw, ime, prezime, datum_rodenja, drzava, city, img], (err, result) => {
+                    res.send([{"status": 1}]);
+                })
+          }
+    })
+})
 
 app.listen(3001, () => {
     console.log("Listening on port 3001!");
