@@ -24,6 +24,8 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //BACKEND CODE FOR PROFILE --------------------------------
+//---------------------------------------------------------
+//---------------------------------------------------------
 
 app.get("/profileCards/profile/:ID", (req, res) => {
     const ID = req.params.ID
@@ -75,6 +77,8 @@ app.get("/getRater/:user/:voter", (req, res) => {
 })
 
 // BACKEND CODE FOR INVENTORY------------------------------
+//---------------------------------------------------------
+//---------------------------------------------------------
 
 let inventoryObj = {
     about: "",
@@ -100,6 +104,7 @@ app.get("/inventory/getOwnedGames/:ID", (req, res) => {
     })
 })
 
+
 app.get("/inventory/looking4/:ID", (req, res) => {
     const ID = req.params.ID;
     const sqlSelect = "SELECT igre.naziv FROM igre JOIN looking4 on igre.ID = looking4.igraWantID WHERE looking4.korisnikID = ?";
@@ -123,8 +128,8 @@ app.get("/inventory/getAllGames", (req, res) => {
         res.send(result)
     })
 })
-
 ////settings
+
 
 app.put("/update_profile", (req, res) => {
     const keys = Object.keys(req.body)
@@ -175,7 +180,8 @@ app.put("/update_profile", (req, res) => {
             valuesArray.splice(i, 1)
         }
     }
-	
+
+
     let que = "UPDATE korisnik SET " //setting up the query request
     let arrLen = dataBaseFieldNameArray.length
     let lastEl = dataBaseFieldNameArray.length - 1
@@ -197,7 +203,9 @@ app.put("/update_profile", (req, res) => {
     })
 })
 
-//LOGIN - REGISTER --------------------------------------------------
+//LOGIN--------------------------------------------------------
+//LOGIN--------------------------------------------------------
+//LOGIN--------------------------------------------------------
 
 app.post('/login', (req, res) => {
     const username = req.body.username;        //username  
