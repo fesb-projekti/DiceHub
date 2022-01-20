@@ -36,7 +36,7 @@ function Settings() {
             return;
         }
         // await fetch("https://dice-hub.ga/api/update_profile", {
-        await fetch("http://localhost:3001/update_profile", {
+        await fetch("https://dice-hub.ga/api/update_profile", {
             method: "PUT",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(profile)
