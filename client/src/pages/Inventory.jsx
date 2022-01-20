@@ -33,7 +33,7 @@ function Inventory() {
   }, []);
 
   const fetchAboutFav = async () => {
-    const res = await fetch("https://dice-hub.ga/api/inventory/getAbout_FavGame/" + localStorage.getItem("id"));
+    const res = await fetch("https://dice-hub.ga/api/inventory/favGameAndGenre/" + localStorage.getItem("id"));
     const data = await res.json();
     return data;
   };
@@ -77,7 +77,7 @@ function Inventory() {
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Favorite game: </span>
-          <span>{aboutFav[0]?.naziv}</span>
+          <span>{aboutFav[0]?.FavGame}</span>
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Trading: </span>
