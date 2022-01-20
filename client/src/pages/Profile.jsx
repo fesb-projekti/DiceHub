@@ -7,6 +7,10 @@ function Profile() {
     const [profile, setProfile] = useState({});
     const [ratings, setRatings] = useState({});
     const [rater, setRater] = useState({});
+    const [aboutFav, setAboutFav] = useState([]);
+    const [ownedGames, setOwnedGames] = useState([]);
+    const [lookingFor, setLookingFor] = useState([]);
+    const [trading, setTrading] = useState([]);
     let { id } = useParams();
 
     useEffect(() => {
@@ -22,9 +26,29 @@ function Profile() {
             const raterInfoFromServer = await fetchRater();
             setRater(raterInfoFromServer);
         }
+        const getAboutFav = async () => {
+            const aboutFavFromServer = await fetchAboutFav();
+            setAboutFav(aboutFavFromServer);
+          };
+          const getOwnedGames = async () => {
+            const ownedGamesFromServer = await fetchOwnedGames();
+            setOwnedGames(ownedGamesFromServer);
+          };
+          const getLookingFor = async () => {
+            const lookingForFromServer = await fetchLookingFor();
+            setLookingFor(lookingForFromServer);
+          };
+          const getTrading = async () => {
+            const tradingFromServer = await fetchTrading();
+            setTrading(tradingFromServer);
+          };
         getRating();
         getProfile();
         getRater();
+        getAboutFav();
+        getOwnedGames();
+        getLookingFor();
+        getTrading();
     }, [])
 
     const fetchProfile = async () => {
@@ -43,14 +67,53 @@ function Profile() {
     }
     const fetchRater = async () => {
         if (id !== undefined) {
-            const res = await fetch("https://dice-hub.ga/api/getRater/" + localStorage.getItem("id") + "/"+ id).catch(() => { console.log("Fetch error - Profile") });
+            const res = await fetch("https://dice-hub.ga/api/getRater/" + localStorage.getItem("id") + "/" + id).catch(() => { console.log("Fetch error - Profile") });
             const data = await res.json();
             return data;
         }
+        else return;
     }
+    const fetchAboutFav = async () => {
+        if (id === undefined || "" || null)
+            id = localStorage.getItem("id");
+        const res = await fetch("https://dice-hub.ga/api/inventory/favGameAndGenre/" + id);
+        const data = await res.json();
+        return data;
+    };
+    const fetchOwnedGames = async () => {
+        if (id === undefined || "" || null)
+            id = localStorage.getItem("id");
+        const res = await fetch("https://dice-hub.ga/api/inventory/getOwnedGames/" + id);
+        const data = await res.json();
+        return data;
+    };
+    const fetchLookingFor = async () => {
+        if (id === undefined || "" || null)
+            id = localStorage.getItem("id");
+        const res = await fetch("https://dice-hub.ga/api/inventory/looking4/" + id);
+        const data = await res.json();
+        return data;
+    };
+    const fetchTrading = async () => {
+        if (id === undefined || "" || null)
+            id = localStorage.getItem("id");
+        const res = await fetch("https://dice-hub.ga/api/inventory/giving4trade/" + id);
+        const data = await res.json();
+        return data;
+    };
 
     const changeRating = async (arg) => {
-        //TODO          
+        if(arg === 1 ){
+            const temp = {...ratings};
+            temp.positive[0].Broj +=1;
+            setRatings(temp);
+        }
+        if(arg === -1 ){
+            const temp = {...ratings};
+            temp.negative[0].Broj +=1;
+            setRatings(temp);
+        }
+        //TODO, lock user from having two votes on same profile, and push data to backend        
     }
 
     if (ratings.positive === undefined || ratings.negative === undefined) {
@@ -71,10 +134,6 @@ function Profile() {
                             <span className={classes.infoDesc}>Negative ratings: </span>
                             <span className={classes.infoData}>{ratings?.negative[0]?.Broj}</span>
                         </div>
-                        <div className={classes.infoRow}>
-                            <span className={classes.infoDesc}>Times matched: </span>
-                            <span className={classes.infoData}>{ratings?.positive[0]?.Broj}</span>
-                        </div>
                     </div>
                 </div>
                 <div className={classes.bio}>
@@ -91,11 +150,11 @@ function Profile() {
                     </div>
                     <div className={classes.infoRow}>
                         <span className={classes.infoDesc}>Favorite game: </span>
-                        <span className={classes.infoData}>{profile[0]?.favorite_game}</span>
+                        <span className={classes.infoData}>{aboutFav[0]?.FavGame}</span>
                     </div>
                     <div className={classes.infoRow}>
                         <span className={classes.infoDesc}>Favorite genre: </span>
-                        <span className={classes.infoData}>{profile[0]?.favorite_genre}</span>
+                        <span className={classes.infoData}>{aboutFav[0]?.FavKat}</span>
                     </div>
                     <div className={classes.infoRow}>
                         <span className={classes.infoDesc}>Location to play: </span>
@@ -103,7 +162,7 @@ function Profile() {
                     </div>
                     <div className={classes.infoRow}>
                         <span className={classes.infoDesc}>About myself: </span>
-                        <span className={classes.infoData}>{profile[0]?.about}</span>
+                        <span className={classes.infoData}>{profile[0]?.About}</span>
                     </div>
                 </div>
                 <div className={classes.library}>
@@ -112,15 +171,15 @@ function Profile() {
                     </div>
                     <div className={classes.infoRow}>
                         <span className={classes.infoDesc}>Looking for: </span>
-                        <span className={classes.infoData}>{profile[0]?.looking_for}</span>
+                        <span className={classes.infoData}>{lookingFor[0] == undefined ? "Nothing so far" : lookingFor.map((el)=>(el?.naziv+" "))}</span>
                     </div>
                     <div className={classes.infoRow}>
                         <span className={classes.infoDesc}>Trading: </span>
-                        <span className={classes.infoData}>{profile[0]?.trading_titles}</span>
+                        <span className={classes.infoData}>{trading[0] == undefined ? "Nothing so far" : trading.map((el)=>(el?.naziv+" "))}</span>
                     </div>
                     <div className={classes.infoRow}>
                         <span className={classes.infoDesc}>Games owned: </span>
-                        <span className={classes.infoData}>{profile[0]?.games_owned}</span>
+                        <span className={classes.infoData}>{trading[0] == undefined ? "Nothing so far" : ownedGames?.map((el)=>(el?.naziv+" "))}</span>
                     </div>
                 </div>
                 <div className={classes.rate}>
