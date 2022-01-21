@@ -8,6 +8,7 @@ function Inventory() {
   const [ownedGames, setOwnedGames] = useState([]);
   const [lookingFor, setLookingFor] = useState([]);
   const [trading, setTrading] = useState([]);
+  const [profile, setProfile] = useState({});
 
   useEffect(() => {
     const getAboutFav = async () => {
@@ -26,14 +27,24 @@ function Inventory() {
       const tradingFromServer = await fetchTrading();
       setTrading(tradingFromServer);
     };
+    const getProfile = async () => {
+      const profileFromServer = await fetchProfile();
+      setProfile(profileFromServer);
+  }
     getAboutFav();
     getOwnedGames();
     getLookingFor();
     getTrading();
+    getProfile();
   }, []);
 
+  const fetchProfile = async () => {
+    const res = await fetch("https://dice-hub.ga/api/profileCards/profile/" + localStorage.getItem("id"));
+    const data = await res.json();
+    return data;
+}
   const fetchAboutFav = async () => {
-    const res = await fetch("https://dice-hub.ga/api/inventory/getAbout_FavGame/" + localStorage.getItem("id"));
+    const res = await fetch("https://dice-hub.ga/api/inventory/favGameAndGenre/" + localStorage.getItem("id"));
     const data = await res.json();
     return data;
   };
@@ -62,7 +73,7 @@ function Inventory() {
       <div className={classes.container}>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Player description: </span>
-          <span>{aboutFav[0]?.naziv}</span>
+          <span>{profile[0]?.About}</span>
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Looking for: </span>
@@ -77,7 +88,7 @@ function Inventory() {
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Favorite game: </span>
-          <span>{aboutFav[0]?.naziv}</span>
+          <span>{aboutFav[0]?.FavGame}</span>
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Trading: </span>
