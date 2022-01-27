@@ -1,7 +1,7 @@
 import classes from "./Inventory.module.css";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import image from "./assets/boardgames.png";
+import image from "../assets/boardgames.png";
 
 function Inventory() {
   const [aboutFav, setAboutFav] = useState([]);
@@ -92,7 +92,7 @@ function Inventory() {
         </div>
         <div className={classes.inventoryDiv}>
           <span className={classes.inventoryDesc}>Trading: </span>
-          <span>{trading[0] == undefined ? "Nothing so far" : trading.map((el)=>(el?.naziv+" "))}</span>
+          <span>{trading[0] === undefined ? "Nothing so far" : trading.map((el)=>(el?.naziv+" "))}</span>
         </div>
         <button>
           <Link to="../inventory_edit" className={classes.link}>Edit</Link>
