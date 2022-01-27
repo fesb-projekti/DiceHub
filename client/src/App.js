@@ -23,7 +23,7 @@ function App() {
   
   const session = localStorage.getItem("username");
   useEffect(() => {
-    if (session != undefined)
+    if (session !== undefined)
     setAuthorize(true);
   else
     setAuthorize(false);
