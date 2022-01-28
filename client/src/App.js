@@ -23,7 +23,7 @@ function App() {
   
   const session = localStorage.getItem("username");
   useEffect(() => {
-    if (session !== undefined)
+    if (session != undefined)
     setAuthorize(true);
   else
     setAuthorize(false);
@@ -46,7 +46,7 @@ function App() {
           <Route path="/inventory_edit" element={<InventoryEdit />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/about" element={<About />} />
-          <Route path="*" element={<ErrorPage />} />
+          <Route path="*" element={<ErrorPage auth={isAuthorized}/>} />
         </Routes>
       </MainLayout>)
   }
@@ -58,7 +58,7 @@ function App() {
           <Route path="/" exact={true} element={<LandingPage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login login={setAuthorize} />} />
-          <Route path="*" element={<ErrorPage />} />
+          <Route path="*" element={<ErrorPage auth={isAuthorized} />} />
         </Routes>
       </LandingPageLayout>)
   }
