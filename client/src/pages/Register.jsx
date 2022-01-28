@@ -11,7 +11,7 @@ function Register() {
     const usernameInputRef = useRef();
     const cityInputRef = useRef();
     const countryInputRef = useRef();
-    const dobInputRef = useRef();
+    const ageInputRef = useRef();
     const passwordInputRef = useRef();
 
     const register = async (event) => {
@@ -22,7 +22,7 @@ function Register() {
         const avatar = avatarInputRef.current.value;
         const city = cityInputRef.current.value;
         const country = countryInputRef.current.value;
-        const dob = dobInputRef.current.value;
+        const age = ageInputRef.current.value;
         const password = passwordInputRef.current.value;
 
         const result = await fetch("https://dice-hub.ga/api/userRegistration", {
@@ -38,7 +38,7 @@ function Register() {
                 avatar: avatar,
                 city: city,
                 country: country,
-                dateOfBirth: dob,
+                age: age,
                 password: password
             })
         })
@@ -96,12 +96,12 @@ function Register() {
                         placeholder="Enter your country"
                         ref={countryInputRef}
                     />
-                    <label htmlFor="dateOfBirth">Date of birth</label>
+                    <label htmlFor="age">Age</label>
                     <input
-                        type="date"
-                        name="dateOfBirth"
-                        placeholder="Enter your date of birth"
-                        ref={dobInputRef}
+                        type="text"
+                        name="age"
+                        placeholder="Enter your age"
+                        ref={ageInputRef}
                     />
                     <label htmlFor="password">Password</label>
                     <input

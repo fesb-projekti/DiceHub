@@ -221,12 +221,12 @@ app.post('/userRegistration', (req, res) => {
           const passw = req.body.password
           const ime = req.body.firstName
           const prezime = req.body.lastName
-          const datum_rodenja = req.body.dateOfBirth
+          const age = req.body.age
           const img = req.body.avatar
           const drzava = req.body.country
           const city = req.body.city
           const sqlInsert = " INSERT INTO korisnik (username, passw, ime, prezime, datum_rodenja, drzava, grad, img) VALUES (?,?,?,?,?,?,?,?)";
-          db.query(sqlInsert, [username, passw, ime, prezime, datum_rodenja, drzava, city, img], (err, result) => {
+          db.query(sqlInsert, [username, passw, ime, prezime, age, drzava, city, img], (err, result) => {
                     res.send([{"status": 1}]);
                 })
           }
