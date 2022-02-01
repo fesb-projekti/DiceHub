@@ -2,4 +2,6 @@
 
 Platform for board games, find and meet new people, exchange and play board games. This application has been made in react and its using node.js for backend with MySQL database.
 
+You can check it out on www.dice-hub.ga
+
 **This project is still under development, more info will be added later once the project has been finished!**
