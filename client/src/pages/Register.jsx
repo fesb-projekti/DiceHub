@@ -57,56 +57,56 @@ function Register() {
                     <label htmlFor="firstName">Name</label>
                     <input
                         type="text"
-                        name="firstName"
+                        required id="firstName"
                         placeholder="Enter your name"
                         ref={nameInputRef}
                     />
                     <label htmlFor="lastName">Surname</label>
                     <input
                         type="text"
-                        name="lastName"
+                        required id="lastName"
                         placeholder="Enter your surname"
                         ref={surnameInputRef}
                     />
                     <label htmlFor="avatar">Avatar link</label>
                     <input
                         type="text"
-                        name="avatar"
+                        required id="avatar"
                         placeholder="Paste link to your avatar img"
                         ref={avatarInputRef}
                     />
                     <label htmlFor="userName">User name</label>
                     <input
                         type="text"
-                        name="userName"
+                        required id="userName"
                         placeholder="Enter your user name"
                         ref={usernameInputRef}
                     />
                     <label htmlFor="city">City</label>
                     <input
                         type="text"
-                        name="city"
+                        required id="city"
                         placeholder="Enter your city"
                         ref={cityInputRef}
                     />
                     <label htmlFor="country">Country</label>
                     <input
                         type="text"
-                        name="country"
+                        required id="country"
                         placeholder="Enter your country"
                         ref={countryInputRef}
                     />
                     <label htmlFor="age">Age</label>
                     <input
                         type="text"
-                        name="age"
+                        required id="age"
                         placeholder="Enter your age"
                         ref={ageInputRef}
                     />
                     <label htmlFor="password">Password</label>
                     <input
                         type="password"
-                        name="password"
+                        required id="password"
                         placeholder="Enter your password"
                         ref={passwordInputRef}
                     />
